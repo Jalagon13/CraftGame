@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class GameSignals
 {
-    public static readonly Signal TEST = new("TEST");
+    public static readonly Signal ON_LEFT_CLICK = new("OnLeftClick");
 }
