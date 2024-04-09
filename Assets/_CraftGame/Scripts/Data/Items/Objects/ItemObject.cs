@@ -26,13 +26,13 @@ public abstract class ItemObject : ScriptableObject
 }
 
 [Serializable]
-	public struct ItemParameter : IEquatable<ItemParameter>
-	{
-		public ItemParameterObject Parameter;
-		public float Value;
+public struct ItemParameter : IEquatable<ItemParameter>
+{
+	public ItemParameterObject Parameter;
+	public float Value;
 
-		public bool Equals(ItemParameter other)
-		{
-			return other.Parameter == Parameter;
-		}
+	public bool Equals(ItemParameter other)
+	{
+		return other.Parameter == Parameter;
 	}
+}
