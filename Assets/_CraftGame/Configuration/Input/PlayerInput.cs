@@ -134,6 +134,214 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Hotbar"",
+            ""id"": ""89fbfc81-b66c-4dfb-935d-c0992e47385e"",
+            ""actions"": [
+                {
+                    ""name"": ""1"",
+                    ""type"": ""Button"",
+                    ""id"": ""13948664-dcb2-4ea1-9c91-83b899c3fe48"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""2"",
+                    ""type"": ""Button"",
+                    ""id"": ""46d26183-ec79-4c63-b8c3-ca34a09af36a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""3"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb17ede2-611d-419c-abdf-47358c82e5e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f22de50e-707f-4bf9-98c6-c13c2e26c4ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""5"",
+                    ""type"": ""Button"",
+                    ""id"": ""69a5b97b-feb2-4822-94cc-af4c84dd434d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""6"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4c35137-7ae7-4fd7-a3a2-f329e86e38c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""7"",
+                    ""type"": ""Button"",
+                    ""id"": ""d0cf37a4-53c9-4132-84bc-fbbe8582bc61"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""8"",
+                    ""type"": ""Button"",
+                    ""id"": ""073f91e4-0907-4617-84a7-86712bd7f5b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""9"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fc2f189-b06d-4848-83d8-e0b4b12ced92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""cfb5d8fa-9046-4b6b-a10f-613add295bbd"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b83c1340-caf5-4d26-85cc-061dd9e3f50f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac618c92-7253-4016-8f58-2357a9bac4c1"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d05971a5-154e-48ad-8f6c-21b354c1738b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33fd0cde-3026-4bc9-a348-df2d35b52b88"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58ea8599-a63c-4ab7-a6ab-c6005c91cf15"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec4be409-37c0-4a17-a9b4-f358532fcb6b"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e37b2852-7848-4ed0-a58b-79f6adfd8cb9"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27d27970-57aa-4bc6-9f36-d4b5943d58ff"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aedd8b98-d74c-4ae0-83cd-f6c53e97cc30"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a17073b7-8164-4b40-bd09-5c83750afb7b"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -143,6 +351,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_PrimaryAction = m_Player.FindAction("PrimaryAction", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
+        // Hotbar
+        m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
+        m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
+        m_Hotbar__2 = m_Hotbar.FindAction("2", throwIfNotFound: true);
+        m_Hotbar__3 = m_Hotbar.FindAction("3", throwIfNotFound: true);
+        m_Hotbar__4 = m_Hotbar.FindAction("4", throwIfNotFound: true);
+        m_Hotbar__5 = m_Hotbar.FindAction("5", throwIfNotFound: true);
+        m_Hotbar__6 = m_Hotbar.FindAction("6", throwIfNotFound: true);
+        m_Hotbar__7 = m_Hotbar.FindAction("7", throwIfNotFound: true);
+        m_Hotbar__8 = m_Hotbar.FindAction("8", throwIfNotFound: true);
+        m_Hotbar__9 = m_Hotbar.FindAction("9", throwIfNotFound: true);
+        m_Hotbar_Scroll = m_Hotbar.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,10 +482,141 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Hotbar
+    private readonly InputActionMap m_Hotbar;
+    private List<IHotbarActions> m_HotbarActionsCallbackInterfaces = new List<IHotbarActions>();
+    private readonly InputAction m_Hotbar__1;
+    private readonly InputAction m_Hotbar__2;
+    private readonly InputAction m_Hotbar__3;
+    private readonly InputAction m_Hotbar__4;
+    private readonly InputAction m_Hotbar__5;
+    private readonly InputAction m_Hotbar__6;
+    private readonly InputAction m_Hotbar__7;
+    private readonly InputAction m_Hotbar__8;
+    private readonly InputAction m_Hotbar__9;
+    private readonly InputAction m_Hotbar_Scroll;
+    public struct HotbarActions
+    {
+        private @PlayerInput m_Wrapper;
+        public HotbarActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @_1 => m_Wrapper.m_Hotbar__1;
+        public InputAction @_2 => m_Wrapper.m_Hotbar__2;
+        public InputAction @_3 => m_Wrapper.m_Hotbar__3;
+        public InputAction @_4 => m_Wrapper.m_Hotbar__4;
+        public InputAction @_5 => m_Wrapper.m_Hotbar__5;
+        public InputAction @_6 => m_Wrapper.m_Hotbar__6;
+        public InputAction @_7 => m_Wrapper.m_Hotbar__7;
+        public InputAction @_8 => m_Wrapper.m_Hotbar__8;
+        public InputAction @_9 => m_Wrapper.m_Hotbar__9;
+        public InputAction @Scroll => m_Wrapper.m_Hotbar_Scroll;
+        public InputActionMap Get() { return m_Wrapper.m_Hotbar; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HotbarActions set) { return set.Get(); }
+        public void AddCallbacks(IHotbarActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HotbarActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HotbarActionsCallbackInterfaces.Add(instance);
+            @_1.started += instance.On_1;
+            @_1.performed += instance.On_1;
+            @_1.canceled += instance.On_1;
+            @_2.started += instance.On_2;
+            @_2.performed += instance.On_2;
+            @_2.canceled += instance.On_2;
+            @_3.started += instance.On_3;
+            @_3.performed += instance.On_3;
+            @_3.canceled += instance.On_3;
+            @_4.started += instance.On_4;
+            @_4.performed += instance.On_4;
+            @_4.canceled += instance.On_4;
+            @_5.started += instance.On_5;
+            @_5.performed += instance.On_5;
+            @_5.canceled += instance.On_5;
+            @_6.started += instance.On_6;
+            @_6.performed += instance.On_6;
+            @_6.canceled += instance.On_6;
+            @_7.started += instance.On_7;
+            @_7.performed += instance.On_7;
+            @_7.canceled += instance.On_7;
+            @_8.started += instance.On_8;
+            @_8.performed += instance.On_8;
+            @_8.canceled += instance.On_8;
+            @_9.started += instance.On_9;
+            @_9.performed += instance.On_9;
+            @_9.canceled += instance.On_9;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+        }
+
+        private void UnregisterCallbacks(IHotbarActions instance)
+        {
+            @_1.started -= instance.On_1;
+            @_1.performed -= instance.On_1;
+            @_1.canceled -= instance.On_1;
+            @_2.started -= instance.On_2;
+            @_2.performed -= instance.On_2;
+            @_2.canceled -= instance.On_2;
+            @_3.started -= instance.On_3;
+            @_3.performed -= instance.On_3;
+            @_3.canceled -= instance.On_3;
+            @_4.started -= instance.On_4;
+            @_4.performed -= instance.On_4;
+            @_4.canceled -= instance.On_4;
+            @_5.started -= instance.On_5;
+            @_5.performed -= instance.On_5;
+            @_5.canceled -= instance.On_5;
+            @_6.started -= instance.On_6;
+            @_6.performed -= instance.On_6;
+            @_6.canceled -= instance.On_6;
+            @_7.started -= instance.On_7;
+            @_7.performed -= instance.On_7;
+            @_7.canceled -= instance.On_7;
+            @_8.started -= instance.On_8;
+            @_8.performed -= instance.On_8;
+            @_8.canceled -= instance.On_8;
+            @_9.started -= instance.On_9;
+            @_9.performed -= instance.On_9;
+            @_9.canceled -= instance.On_9;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+        }
+
+        public void RemoveCallbacks(IHotbarActions instance)
+        {
+            if (m_Wrapper.m_HotbarActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IHotbarActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HotbarActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HotbarActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public HotbarActions @Hotbar => new HotbarActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPrimaryAction(InputAction.CallbackContext context);
         void OnToggleInventory(InputAction.CallbackContext context);
+    }
+    public interface IHotbarActions
+    {
+        void On_1(InputAction.CallbackContext context);
+        void On_2(InputAction.CallbackContext context);
+        void On_3(InputAction.CallbackContext context);
+        void On_4(InputAction.CallbackContext context);
+        void On_5(InputAction.CallbackContext context);
+        void On_6(InputAction.CallbackContext context);
+        void On_7(InputAction.CallbackContext context);
+        void On_8(InputAction.CallbackContext context);
+        void On_9(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

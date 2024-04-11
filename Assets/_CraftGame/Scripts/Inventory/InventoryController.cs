@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
+	[SerializeField] private PlayerObject _po;
 	[SerializeField] private ItemObject _testItem1; // Test delete later
 	[SerializeField] private ItemObject _testItem2; // Test delete later
 	[SerializeField] private int _slotAmount;
@@ -14,15 +15,20 @@ public class InventoryController : MonoBehaviour
 	private InventoryView _inventoryView;
 	private MouseItemModel _mouseItemModel;
 	private MouseItemView _mouseItemView;
+	private HotbarController _hotbarController;
 	private PlayerInput _playerInput;
 	
 	private void Awake()
 	{
 		_inventoryModel = new(_slotAmount);
 		_mouseItemModel = new();
+		_hotbarController = GetComponent<HotbarController>();
+		_hotbarController.PlayerInventory = _inventoryModel;
 		
 		_playerInput = new PlayerInput();
 		_playerInput.Player.ToggleInventory.started += ToggleInventroy;
+		
+		_po.PlayerInventory = this;
 	}
 	
 	private void OnEnable()

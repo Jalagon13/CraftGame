@@ -12,6 +12,8 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
 	[SerializeField] private TextMeshProUGUI _itemQuantityText;
 	
 	private int _inventoryIndex;
+	
+	public int InventoryIndex => _inventoryIndex;
 
 	public void OnPointerClick(PointerEventData eventData)
 	{

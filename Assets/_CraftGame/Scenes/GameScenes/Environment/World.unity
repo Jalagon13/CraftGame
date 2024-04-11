@@ -218,7 +218,11 @@ MonoBehaviour:
   _maxHitPoints: 5
   _canBeHit: 1
   _lootTable:
-    <Table>k__BackingField: []
+    <Table>k__BackingField:
+    - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+      Min: 3
+      Max: 5
+      Chance: 100
   _clickFeedback: {fileID: 1659108158}
   _destroyFeedback: {fileID: 2057158304}
 --- !u!1 &759723237
