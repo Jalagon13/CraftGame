@@ -17,6 +17,7 @@ public abstract class ItemObject : ScriptableObject
 	[field: SerializeField] public string Name { get; private set; }
 	[field: SerializeField] public Sprite UiDisplay { get; private set; }
 	[field: SerializeField] public bool Stackable { get; private set; }
+	[field: TextArea]
 	[field: SerializeField] public string Description { get; private set; }
 	[field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 	
