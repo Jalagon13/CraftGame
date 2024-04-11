@@ -4,5 +4,6 @@ using UnityEngine;
 
 public static class GameSignals
 {
-    public static readonly Signal ON_SLOT_VIEW_CLICKED = new("OnSlotViewClicked");
+	public static readonly Signal ON_SLOT_LEFT_CLICKED = new("OnSlotLeftClicked");
+	public static readonly Signal ON_SLOT_RIGHT_CLICKED = new("OnSlotRightClicked");
 }

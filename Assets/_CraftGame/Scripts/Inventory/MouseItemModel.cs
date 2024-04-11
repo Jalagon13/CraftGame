@@ -8,6 +8,11 @@ public class MouseItemModel
 	
 	public InventoryItem MouseInventoryItem { get { return _mouseInventoryItem; } set { _mouseInventoryItem = value;}}
 	
+	public MouseItemModel()
+	{
+		_mouseInventoryItem = new();
+	}
+	
 	public void OverrideMouseItem(InventoryItem item)
 	{
 		_mouseInventoryItem = item;

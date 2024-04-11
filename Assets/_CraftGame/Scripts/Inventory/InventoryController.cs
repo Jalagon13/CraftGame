@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
-	[SerializeField] private ItemObject _testItem; // Test delete later
+	[SerializeField] private ItemObject _testItem1; // Test delete later
+	[SerializeField] private ItemObject _testItem2; // Test delete later
 	[SerializeField] private int _slotAmount;
 	
 	private InventoryModel _inventoryModel;
@@ -29,7 +30,8 @@ public class InventoryController : MonoBehaviour
 		_playerInput.Enable();
 		_inventoryModel.OnInventoryUpdate += OnInventoryUpdate;
 		
-		GameSignals.ON_SLOT_VIEW_CLICKED.AddListener(InventorySlotClicked);
+		GameSignals.ON_SLOT_LEFT_CLICKED.AddListener(InventorySlotLeftClicked);
+		GameSignals.ON_SLOT_RIGHT_CLICKED.AddListener(InventorySlotRightClicked);
 	}
 	
 	private void OnDisable()
@@ -37,16 +39,18 @@ public class InventoryController : MonoBehaviour
 		_playerInput.Disable();
 		_inventoryModel.OnInventoryUpdate -= OnInventoryUpdate;
 		
-		GameSignals.ON_SLOT_VIEW_CLICKED.RemoveListener(InventorySlotClicked);
+		GameSignals.ON_SLOT_LEFT_CLICKED.RemoveListener(InventorySlotLeftClicked);
+		GameSignals.ON_SLOT_RIGHT_CLICKED.RemoveListener(InventorySlotRightClicked);
 	}
 	
 	private void Start()
 	{
 		InitializeViews();
-		CollectItem(new InventoryItem(){ Item = _testItem, Quantity = 11}); // Test delete later
+		CollectItem(new InventoryItem(){ Item = _testItem1, Quantity = 11}); // Test delete later
+		CollectItem(new InventoryItem(){ Item = _testItem2, Quantity = 9}); // Test delete later
 	}
 	
-	private void InventorySlotClicked(ISignalParameters parameters)
+	private void InventorySlotRightClicked(ISignalParameters parameters)
 	{
 		int clickedInventorySlotIndex = (int)parameters.GetParameter("inventoryIndex");
 		InventoryItem inventoryItem = _inventoryModel.InventoryItems[clickedInventorySlotIndex];
@@ -58,7 +62,6 @@ public class InventoryController : MonoBehaviour
 			{
 				if(inventoryItem.Item.Name == mouseItem.Item.Name)
 				{
-					// Add Mouse Item to Inventory slot
 					inventoryItem.Quantity += mouseItem.Quantity;
 					mouseItem.Item = null;
 					mouseItem.Quantity = 0;
@@ -66,22 +69,104 @@ public class InventoryController : MonoBehaviour
 				else
 				{
 					// Swap the two items
+					ItemObject tempItem = inventoryItem.Item;
+					int tempQuantity = inventoryItem.Quantity;
+					
+					inventoryItem.Item = mouseItem.Item;
+					inventoryItem.Quantity = mouseItem.Quantity;
+					
+					mouseItem.Item = tempItem;
+					mouseItem.Quantity = tempQuantity;
+				}
+			}
+			else
+			{
+				int inventoryItemQuantity = inventoryItem.Quantity;
+				int newInventoryItemQuantity = inventoryItemQuantity / 2;
+				int newMouseItemQuantity = inventoryItemQuantity - newInventoryItemQuantity;
+				
+				inventoryItem.Quantity = newInventoryItemQuantity;
+				
+				mouseItem.Item = inventoryItem.Item;
+				mouseItem.Quantity = newMouseItemQuantity;
+				
+				if(inventoryItem.Quantity == 0)
+				{
+					inventoryItem.Item = null;
+				}
+			}
+		}
+		else
+		{
+			if(mouseItem.HasItem())
+			{
+				
+			}
+		}
+		
+		// update views
+		_inventoryView.UpdateView(_inventoryModel.InventoryItems);
+		_mouseItemView.UpdateView(_mouseItemModel.MouseInventoryItem);
+	}
+	
+	private void InventorySlotLeftClicked(ISignalParameters parameters)
+	{
+		int clickedInventorySlotIndex = (int)parameters.GetParameter("inventoryIndex");
+		InventoryItem inventoryItem = _inventoryModel.InventoryItems[clickedInventorySlotIndex];
+		InventoryItem mouseItem = _mouseItemModel.MouseInventoryItem;
+		
+		if(inventoryItem.HasItem())
+		{
+			if(mouseItem.HasItem())
+			{
+				if(inventoryItem.Item.Name == mouseItem.Item.Name)
+				{
+					inventoryItem.Quantity += mouseItem.Quantity;
+					mouseItem.Item = null;
+					mouseItem.Quantity = 0;
+				}
+				else
+				{
+					// Swap the two items
+					ItemObject tempItem = inventoryItem.Item;
+					int tempQuantity = inventoryItem.Quantity;
+					
+					inventoryItem.Item = mouseItem.Item;
+					inventoryItem.Quantity = mouseItem.Quantity;
+					
+					mouseItem.Item = tempItem;
+					mouseItem.Quantity = tempQuantity;
 				}
 			}
 			else
 			{
 				mouseItem.Item = inventoryItem.Item;
 				mouseItem.Quantity = inventoryItem.Quantity;
+				
+				inventoryItem.Item = null;
+				inventoryItem.Quantity = 0;
+			}
+		}
+		else
+		{
+			if(mouseItem.HasItem())
+			{
+				inventoryItem.Item = mouseItem.Item;
+				inventoryItem.Quantity = mouseItem.Quantity;
+				
+				mouseItem.Item = null;
+				mouseItem.Quantity = 0;
 			}
 		}
 		
 		// update views
-		// next up find a way to update views of everything for testing
+		_inventoryView.UpdateView(_inventoryModel.InventoryItems);
+		_mouseItemView.UpdateView(_mouseItemModel.MouseInventoryItem);
 	}
 	
 	private void OnInventoryUpdate(List<InventoryItem> updatedInventory)
 	{
-		_inventoryView.UpdateInventoryView(updatedInventory);
+		_inventoryView.UpdateView(updatedInventory);
 	}
 	
 	private void InitializeViews()

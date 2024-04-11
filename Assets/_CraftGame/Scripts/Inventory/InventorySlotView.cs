@@ -17,7 +17,14 @@ public class InventorySlotView : MonoBehaviour, IPointerClickHandler
 	{
 		if(eventData.button == PointerEventData.InputButton.Left)
 		{
-			Signal signal = GameSignals.ON_SLOT_VIEW_CLICKED;
+			Signal signal = GameSignals.ON_SLOT_LEFT_CLICKED;
+			signal.ClearParameters();
+			signal.AddParameter("inventoryIndex", _inventoryIndex);
+			signal.Dispatch();
+		}
+		else if(eventData.button == PointerEventData.InputButton.Right)
+		{
+			Signal signal = GameSignals.ON_SLOT_RIGHT_CLICKED;
 			signal.ClearParameters();
 			signal.AddParameter("inventoryIndex", _inventoryIndex);
 			signal.Dispatch();

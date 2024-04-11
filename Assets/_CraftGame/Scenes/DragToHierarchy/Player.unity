@@ -747,7 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635fa05c1d6b343bbbfc804261c942b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testItem: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+  _testItem1: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+  _testItem2: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
   _slotAmount: 36
 --- !u!1 &1643723598
 GameObject:

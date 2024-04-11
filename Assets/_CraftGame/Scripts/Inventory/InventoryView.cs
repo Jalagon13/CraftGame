@@ -42,7 +42,7 @@ public class InventoryView : MonoBehaviour
 		_inventorySlotViews.Add(inventorySlotView);
 	}
 	
-	public void UpdateInventoryView(List<InventoryItem> updatedInventory)
+	public void UpdateView(List<InventoryItem> updatedInventory)
 	{
 		int counter = 0;
 		
