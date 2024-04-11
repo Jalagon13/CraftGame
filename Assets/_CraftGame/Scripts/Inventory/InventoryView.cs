@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,20 +25,20 @@ public class InventoryView : MonoBehaviour
 			// If one of the first 9 slots, add it to _hotbarSlotHolder, else, add it to _inventorySlotView
 			if(i < 9)
 			{
-				InitializeSlot(_hotbarSlotHolder, inventoryItems[i]);
+				InitializeSlot(_hotbarSlotHolder, i);
 			}
 			else
 			{
-				InitializeSlot(_inventorySlotHolder, inventoryItems[i]);
+				InitializeSlot(_inventorySlotHolder, i);
 			}
 		}
 	}
 	
-	private void InitializeSlot(Transform slotHolder, InventoryItem item)
+	private void InitializeSlot(Transform slotHolder, int inventoryIndex)
 	{
 		var inventorySlotView = Instantiate(_inventorySlotView, default, Quaternion.identity);
 		inventorySlotView.transform.SetParent(slotHolder);
-		inventorySlotView.UpdateView(item);
+		inventorySlotView.Initialize(inventoryIndex);
 		_inventorySlotViews.Add(inventorySlotView);
 	}
 	

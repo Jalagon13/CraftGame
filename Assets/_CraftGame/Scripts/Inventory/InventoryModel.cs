@@ -49,7 +49,6 @@ public class InventoryModel
 		
 		// Inventory is full functionality
 		
-		
 	}
 	
 	private void IncreaseItemQuantity(InventoryItem item, int amount)
