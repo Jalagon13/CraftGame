@@ -14,7 +14,13 @@ public class LootTable
 		foreach (var loot in Loot())
 		{
 			// Spawn Loot here.
-			GameManager.Instance.SpawnItem(spawnPos, loot.Key, loot.Value);
+			InventoryItem inventoryItem = new()
+			{
+				Item = loot.Key,
+				Quantity = loot.Value	
+			};
+			
+			GameManager.Instance.SpawnItem(spawnPos, inventoryItem);
 		}
 	}
 	

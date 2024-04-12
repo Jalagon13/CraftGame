@@ -37,16 +37,11 @@ public class ItemBehavior : MonoBehaviour
 		}
 	}
 	
-	public void Initialize(ItemObject item, int currentStack, List<ItemParameter> currentParameters)
+	public void Initialize(InventoryItem inventoryItem)
 	{
-		_inventoryItem = new()
-		{
-			Item = item,
-			Quantity = currentStack
-		};
+		_inventoryItem = inventoryItem;
+		_sr.sprite = _inventoryItem.Item.UiDisplay;
 		
-		_inventoryItem.Item.DefaultParameterList = currentParameters;
-		_sr.sprite = item.UiDisplay;
-		gameObject.name = $"[Item] {item.Name}";
+		gameObject.name = $"[Item] {_inventoryItem.Item.Name}";
 	}
 }
