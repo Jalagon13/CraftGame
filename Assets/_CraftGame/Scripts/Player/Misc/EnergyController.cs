@@ -11,6 +11,8 @@ public class EnergyController : MonoBehaviour
 	
 	private void Awake()
 	{
+		_currentEnergy = _maxEnergy;
+		
 		GameSignals.CLICKABLE_CLICKED.AddListener(DrainEnergy);
 	}
 	
