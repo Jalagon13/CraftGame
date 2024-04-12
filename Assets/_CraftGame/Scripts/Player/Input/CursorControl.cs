@@ -39,6 +39,7 @@ public class CursorControl : MonoBehaviour
 		if(_currentClickable != null)
 		{
 			_currentClickable.Hit(1);
+			GameSignals.CLICKABLE_CLICKED.Dispatch();
 		}
 	}
 	
