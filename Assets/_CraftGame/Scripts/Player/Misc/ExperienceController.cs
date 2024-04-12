@@ -22,7 +22,14 @@ public class ExperienceController : MonoBehaviour
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_experienceView = FindObjectOfType<ExperienceView>();
+		_experienceView.UpdateView(0);
 	}
 	
-	private void OnClickableDestroyed(ISignalParameters parameters){};
+	private void OnClickableDestroyed(ISignalParameters parameters)
+	{
+		int xpFromClickable = (int)parameters.GetParameter("Experience");
+		
+		_currentExperience += xpFromClickable;
+		_experienceView.UpdateView(_currentExperience);
+	}
 }

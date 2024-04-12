@@ -36,6 +36,11 @@ public class Clickable : MonoBehaviour
 		_lootTable.SpawnLoot(_dropPosition);
 		PlayDestroyFeedbacks();
 		
+		Signal signal = GameSignals.CLICKABLE_DESTROYED;
+		signal.ClearParameters();
+		signal.AddParameter("Experience", _maxHitPoints);
+		signal.Dispatch();
+		
 		Destroy(gameObject);
 	}
 	
