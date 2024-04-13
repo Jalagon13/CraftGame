@@ -10,6 +10,7 @@ public class SpawnFloor : MonoBehaviour
 
 	private Tilemap _spawnTilemap;
 	private List<Vector2> _spawnPositions = new();
+	private Stack<string> _clearedClickables = new();
 	
 	[Serializable]
 	public class RscSpawnSetting
@@ -35,17 +36,53 @@ public class SpawnFloor : MonoBehaviour
 		}
 		
 		RefreshResources();
+		StartCoroutine(ResourceSpawner());
+		
+		GameSignals.CLICKABLE_DESTROYED.AddListener(RegisterClearedClickable);
 	}
 	
 	private void OnDisable()
 	{
 		StopAllCoroutines();
+		
+		GameSignals.CLICKABLE_DESTROYED.RemoveListener(RegisterClearedClickable);
+	}
+	
+	private void RegisterClearedClickable(ISignalParameters parameters)
+	{
+		Clickable clickable = (Clickable)parameters.GetParameter("Clickable");
+		_clearedClickables.Push(clickable.Name);
 	}
 	
 	private IEnumerator ResourceSpawner()
 	{
 		yield return new WaitForSeconds(5f);
+		
+		if(_clearedClickables.Count > 0)
+			{
+				string rscToSpawnName = _clearedClickables.Peek();
+				
+				var randPos = GetRandomPosition();
+				Vector3Int pos = new Vector3Int((int)randPos.x, (int)randPos.y, 0);
+				
+				if(IsValidSpawnPosition(pos))
+				{
+					foreach(RscSpawnSetting entry in _rscSpawnSettings)
+					{
+						if(rscToSpawnName == entry.ClickableToSpawn.Name)
+						{
+							SpawnClickable(entry.ClickableToSpawn, pos);
+							_clearedClickables.Pop();
+							Debug.Log("Rsc Re-generated");
+						}
+					}
+				}
+			}
+			
+			StartCoroutine(ResourceSpawner());
 	}
+	
+	
 	
 	private void RefreshResources()
 	{

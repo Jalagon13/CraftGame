@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Clickable : MonoBehaviour
 {
+	[SerializeField] private string _clickableName;
 	[SerializeField] private int _maxHitPoints;
 	[SerializeField] private ToolType _breakType;
 	[SerializeField] private bool _canBeHit = true;
@@ -16,6 +17,8 @@ public class Clickable : MonoBehaviour
 	private bool _selected;
 	private int _currentHitPoints;
 	private Vector2 _dropPosition;
+	
+	public string Name => _clickableName;
 	
 	private void Awake()
 	{
@@ -44,6 +47,7 @@ public class Clickable : MonoBehaviour
 		Signal signal = GameSignals.CLICKABLE_DESTROYED;
 		signal.ClearParameters();
 		signal.AddParameter("Experience", _maxHitPoints);
+		signal.AddParameter("Clickable", this);
 		signal.Dispatch();
 		
 		Destroy(gameObject);
