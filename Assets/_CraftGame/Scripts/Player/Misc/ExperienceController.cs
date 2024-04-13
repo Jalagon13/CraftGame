@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class ExperienceController : MonoBehaviour
 {
+	[SerializeField] private PlayerObject _po;
 	private ExperienceView _experienceView;
 	
 	private int _currentExperience;
 	
+	public int CurrentExperience { get { return _currentExperience; } 
+		set 
+		{ 
+			_currentExperience = value; 
+			_experienceView.UpdateView(_currentExperience);
+		} 
+	} 
+	
 	private void Awake()
 	{
+		_po.PlayerExperience = this;
+		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(OnClickableDestroyed);
 	}
 	
