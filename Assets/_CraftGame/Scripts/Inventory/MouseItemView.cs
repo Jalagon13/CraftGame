@@ -12,6 +12,8 @@ public class MouseItemView : MonoBehaviour
 	
 	private void Update()
 	{
+		if(Camera.main == null) return;
+		
 		UpdatePosition();
 	}
 	

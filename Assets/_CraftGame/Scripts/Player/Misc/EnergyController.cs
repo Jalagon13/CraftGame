@@ -11,6 +11,8 @@ public class EnergyController : MonoBehaviour
 	private EnergyView _energyView;
 	private int _currentEnergy;
 	
+	public int CurrentEnergy => _currentEnergy;
+	
 	private void Awake()
 	{
 		_currentEnergy = _maxEnergy;

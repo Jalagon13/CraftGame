@@ -12,11 +12,13 @@ public class PlayerMoveInput : MonoBehaviour
 	private PlayerInput _playerInput;
 	private Vector2 _moveDirection;
 	private Camera _mainCamera;
+	private EnergyController _energyController;
 	
 	private void Awake()
 	{
 		_playerInput = new();
 		_rb = GetComponent<Rigidbody2D>();
+		_energyController = GetComponent<EnergyController>();
 	}
 	
 	private void OnEnable()
@@ -38,7 +40,16 @@ public class PlayerMoveInput : MonoBehaviour
 	
 	private void FixedUpdate()
 	{
-		_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+		if(_energyController.CurrentEnergy <= 0)
+		{
+			_rb.MovePosition(_rb.position + _moveDirection * 2.5f * Time.deltaTime);
+		}
+		else
+		{
+			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+		}
+		
+		
 		
 		_po.Position = transform.position;
 		_po.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
