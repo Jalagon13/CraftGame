@@ -6,6 +6,7 @@ using UnityEngine;
 public class Clickable : MonoBehaviour
 {
 	[SerializeField] private int _maxHitPoints;
+	[SerializeField] private ToolType _breakType;
 	[SerializeField] private bool _canBeHit = true;
 	[SerializeField] private LootTable _lootTable;
 	[Header("Feedbacks")]
@@ -22,10 +23,14 @@ public class Clickable : MonoBehaviour
 		_dropPosition = (Vector2)transform.position + (Vector2.one * 0.5f);
 	}
 	
-	public void Hit(int amount)
+	public void Hit(int amount, ToolType incomingToolType)
 	{
-		_clickFeedback?.PlayFeedbacks();
+		if(incomingToolType != _breakType) return;
+		
+		_clickFeedback?.PlayFeedbacks(_clickFeedback.transform.position, amount);
 		_currentHitPoints -= amount;
+		
+		GameSignals.CLICKABLE_CLICKED.Dispatch();
 		
 		if(_currentHitPoints <= 0)
 			Break();
@@ -49,7 +54,7 @@ public class Clickable : MonoBehaviour
 		if (_destroyFeedback != null)
 		{
 			_destroyFeedback.transform.SetParent(null);
-			_destroyFeedback?.PlayFeedbacks();
+			_destroyFeedback?.PlayFeedbacks(_clickFeedback.transform.position, _maxHitPoints);
 		}
 	}
 	

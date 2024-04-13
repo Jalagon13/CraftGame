@@ -336,8 +336,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296476367}
-  - component: {fileID: 296476368}
   - component: {fileID: 296476369}
+  - component: {fileID: 296476368}
   m_Layer: 0
   m_Name: CursorControl
   m_TagString: Untagged
@@ -374,6 +374,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
+  _damageMinParameter:
+    Parameter: {fileID: 11400000, guid: 709ade12f58b04afe9eac18a31770b70, type: 2}
+    Value: 0
+  _damageMaxParameter:
+    Parameter: {fileID: 11400000, guid: ff961ca8803bf4cfd9a2bfc25bdd82a7, type: 2}
+    Value: 0
 --- !u!58 &296476369
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -667,8 +673,8 @@ GameObject:
   - component: {fileID: 1522204153}
   - component: {fileID: 1522204155}
   - component: {fileID: 1522204154}
-  - component: {fileID: 1522204158}
   - component: {fileID: 1522204156}
+  - component: {fileID: 1522204158}
   - component: {fileID: 1522204157}
   - component: {fileID: 1522204159}
   m_Layer: 0
@@ -751,9 +757,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
-  _testItem1: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-  _testItem2: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
   _slotAmount: 36
+  _startingItems:
+  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
+    Quantity: 1
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0

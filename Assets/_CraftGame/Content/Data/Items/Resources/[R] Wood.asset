@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e62f777aedd01444895a3153ba8ff159, type: 3}
-  m_Name: '[R] Test Resource 2'
+  m_Name: '[R] Wood'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Test Resource 2
-  <UiDisplay>k__BackingField: {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  <Name>k__BackingField: Wood
+  <UiDisplay>k__BackingField: {fileID: 21300012, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
