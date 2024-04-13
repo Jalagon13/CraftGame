@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,8 @@ using UnityEngine.InputSystem;
 public class ProgressionTotem : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private MMF_Player _expandFeedbacks;
+	[Space()]
 	[SerializeField] private List<ExpandData> _expandData;
 	
 	private Canvas _selectedCanvas;
@@ -75,7 +78,7 @@ public class ProgressionTotem : MonoBehaviour
 			_expandData[_expandDataIndex].OnQuotaMet?.Invoke();
 			_expandDataIndex++;
 			_totemXp = 0;
-			
+			_expandFeedbacks?.PlayFeedbacks();
 			_selectedCanvas.gameObject.SetActive(false);
 		}
 		
