@@ -12,8 +12,8 @@ public abstract class ItemObject : ScriptableObject
 	[field: SerializeField] public string Description { get; private set; }
 	[field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 	
-	// public abstract void ExecutePrimaryAction(FocusSlotControl control);
-	// public abstract void ExecuteSecondaryAction(FocusSlotControl control);
+	public abstract void ExecutePrimaryAction(FocusItemController controller);
+	public abstract void ExecuteSecondaryAction(FocusItemController controller);
 	public abstract string GetDescription();
 }
 

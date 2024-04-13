@@ -195,4 +195,9 @@ public class InventoryController : MonoBehaviour
 	{
 		_inventoryModel.AddItem(itemToCollect);
 	}
+	
+	public void RemoveItem(ItemObject itemToRemove, int quantity)
+	{
+		_inventoryModel.RemoveItem(itemToRemove, quantity);
+	}
 }

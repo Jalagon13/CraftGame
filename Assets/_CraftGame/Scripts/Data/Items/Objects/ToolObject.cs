@@ -17,8 +17,18 @@ public class ToolObject : ItemObject
 	[SerializeField] private ToolType _type;
 	
 	public ToolType ToolType => _type;
-	
-	public override string GetDescription()
+
+    public override void ExecutePrimaryAction(FocusItemController controller)
+    {
+        
+    }
+
+    public override void ExecuteSecondaryAction(FocusItemController controller)
+    {
+        
+    }
+
+    public override string GetDescription()
 	{
 		return string.Empty;
 	}

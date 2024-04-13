@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SecondaryAction",
+                    "type": "Button",
+                    "id": "3a0239b6-59d0-4061-adf9-df1791812f2e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.01)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ToggleInventory",
                     "type": "Button",
                     "id": "b510470c-7087-4cd2-ab8c-c39b930dcc1e",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bffa4c0c-9fc0-43f5-a271-503eca93dc8a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

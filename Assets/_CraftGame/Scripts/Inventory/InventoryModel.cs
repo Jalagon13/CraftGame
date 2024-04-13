@@ -62,8 +62,28 @@ public class InventoryModel
 		itemToBeReplaced.Quantity = replaceitem.Quantity;
 	}
 	
-	public void RemoveItem()
+	public void RemoveItem(ItemObject itemToRemove, int amountToRemove)
 	{
-		
+		// Basic funationalty, need to revisit later to fix bugs
+		foreach (InventoryItem item in _inventoryItems)
+		{
+			if(item.Item == null) continue;
+			
+			if(item.Item.Name == itemToRemove.Name)
+			{
+				item.Quantity -= amountToRemove;
+				
+				if(item.Quantity <= 0)
+				{
+					// Note to future self: BUG: You are able to remove an amount of items even if it is greater than what it is in the stack. Need to fix this later
+					
+					item.Item = null;
+					item.Quantity = 0;
+				}
+				
+				OnInventoryUpdate?.Invoke(_inventoryItems);
+				return;
+			}
+		}
 	}
 }

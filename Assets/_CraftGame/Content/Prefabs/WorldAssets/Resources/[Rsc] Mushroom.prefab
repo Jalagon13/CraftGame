@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _clickableName
-      value: Log
+      value: Mushroom
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
     - target: {fileID: 6223546305075459603, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

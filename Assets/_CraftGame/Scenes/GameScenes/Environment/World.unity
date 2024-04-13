@@ -962,7 +962,7 @@ MonoBehaviour:
   - ClickableToSpawn: {fileID: 6013588384790051927, guid: 0112a601b186643ae8e16f46d4a4280a, type: 3}
     SpawnAmount: 3
     DistancePreference: 0
-  - ClickableToSpawn: {fileID: 6013588384790051927, guid: cfdfb5ebe5e5f4bb6a185296ce2ea3a9, type: 3}
+  - ClickableToSpawn: {fileID: 6013588384790051927, guid: c02a4bc8d7bb04a8d98c2cf7c7851a47, type: 3}
     SpawnAmount: 3
     DistancePreference: 0
 --- !u!483693784 &334430342

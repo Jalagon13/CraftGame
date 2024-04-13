@@ -46,6 +46,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SecondaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a0239b6-59d0-4061-adf9-df1791812f2e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.01)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ToggleInventory"",
                     ""type"": ""Button"",
                     ""id"": ""b510470c-7087-4cd2-ab8c-c39b930dcc1e"",
@@ -150,6 +159,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bffa4c0c-9fc0-43f5-a271-503eca93dc8a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -370,6 +390,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_PrimaryAction = m_Player.FindAction("PrimaryAction", throwIfNotFound: true);
+        m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // Hotbar
@@ -447,6 +468,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_PrimaryAction;
+    private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_Interact;
     public struct PlayerActions
@@ -455,6 +477,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @PrimaryAction => m_Wrapper.m_Player_PrimaryAction;
+        public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -472,6 +495,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PrimaryAction.started += instance.OnPrimaryAction;
             @PrimaryAction.performed += instance.OnPrimaryAction;
             @PrimaryAction.canceled += instance.OnPrimaryAction;
+            @SecondaryAction.started += instance.OnSecondaryAction;
+            @SecondaryAction.performed += instance.OnSecondaryAction;
+            @SecondaryAction.canceled += instance.OnSecondaryAction;
             @ToggleInventory.started += instance.OnToggleInventory;
             @ToggleInventory.performed += instance.OnToggleInventory;
             @ToggleInventory.canceled += instance.OnToggleInventory;
@@ -488,6 +514,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PrimaryAction.started -= instance.OnPrimaryAction;
             @PrimaryAction.performed -= instance.OnPrimaryAction;
             @PrimaryAction.canceled -= instance.OnPrimaryAction;
+            @SecondaryAction.started -= instance.OnSecondaryAction;
+            @SecondaryAction.performed -= instance.OnSecondaryAction;
+            @SecondaryAction.canceled -= instance.OnSecondaryAction;
             @ToggleInventory.started -= instance.OnToggleInventory;
             @ToggleInventory.performed -= instance.OnToggleInventory;
             @ToggleInventory.canceled -= instance.OnToggleInventory;
@@ -633,6 +662,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPrimaryAction(InputAction.CallbackContext context);
+        void OnSecondaryAction(InputAction.CallbackContext context);
         void OnToggleInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
     }
