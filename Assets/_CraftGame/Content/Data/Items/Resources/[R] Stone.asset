@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '[R] Stone'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Stone
-  <UiDisplay>k__BackingField: {fileID: 21300002, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  <UiDisplay>k__BackingField: {fileID: -1096778836, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []

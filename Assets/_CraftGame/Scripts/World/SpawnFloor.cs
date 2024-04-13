@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class SpawnFloor : MonoBehaviour
 {
+	[SerializeField] private float _respawnTimer;
+	[Space()]
 	[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
 
 	private Tilemap _spawnTilemap;
@@ -56,7 +58,7 @@ public class SpawnFloor : MonoBehaviour
 	
 	private IEnumerator ResourceSpawner()
 	{
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(_respawnTimer);
 		
 		if(_clearedClickables.Count > 0)
 			{

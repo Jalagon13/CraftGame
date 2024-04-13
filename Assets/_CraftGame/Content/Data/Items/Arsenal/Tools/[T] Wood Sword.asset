@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '[T] Wood Sword'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wood Sword
-  <UiDisplay>k__BackingField: {fileID: 21300014, guid: 358b5d9f23bc9413e87c9948acc67ee1, type: 3}
+  <UiDisplay>k__BackingField: {fileID: -1593785014, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:

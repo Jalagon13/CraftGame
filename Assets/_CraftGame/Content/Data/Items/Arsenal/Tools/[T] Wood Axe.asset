@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '[T] Wood Axe'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wood Axe
-  <UiDisplay>k__BackingField: {fileID: 2125737359283935466, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
+  <UiDisplay>k__BackingField: {fileID: -1858806548, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
