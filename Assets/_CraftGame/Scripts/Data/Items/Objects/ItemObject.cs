@@ -3,15 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ToolType
-{
-	None,
-	Axe,
-	Pickaxe,
-	Sword,
-	Hammer
-}
-
 public abstract class ItemObject : ScriptableObject
 {
 	[field: SerializeField] public string Name { get; private set; }

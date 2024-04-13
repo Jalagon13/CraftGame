@@ -7,14 +7,26 @@ using UnityEngine.InputSystem;
 public class CursorControl : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private ItemParameter _damageMinParameter;
+	[SerializeField] private ItemParameter _damageMaxParameter;
 	
 	private PlayerInput _playerInput;
 	private Clickable _currentClickable;
+	private InventoryItem _focusInventoryItem;
+	private int _damageMin;
+	private int _damageMax;
 	
 	private void Awake()
 	{
 		_playerInput = new();
 		_playerInput.Player.PrimaryAction.started += Hit;
+		
+		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
+	}
+	
+	private void OnDestroy()
+	{
+		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
 	}
 	
 	private void OnEnable()
@@ -34,13 +46,37 @@ public class CursorControl : MonoBehaviour
 		UpdateCurrentClickable();
 	}
 	
+	private void FocusInventoryItemUpdated(ISignalParameters parameters) 
+	{
+		_focusInventoryItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+	}
+	
 	private void Hit(InputAction.CallbackContext context)
 	{
-		if(_currentClickable != null)
+		if(_currentClickable == null || Pointer.IsOverUI() || _focusInventoryItem.Item is not ToolObject) return;
+		
+		ToolObject tool = _focusInventoryItem.Item as ToolObject;
+		
+		_damageMin = ExtractParameterValue(_damageMinParameter);
+		_damageMax = ExtractParameterValue(_damageMaxParameter);
+		
+		System.Random rnd = new System.Random();
+		var damage = rnd.Next(_damageMin, _damageMax + 1); 
+		
+		_currentClickable.Hit(damage, tool.ToolType);
+	}
+	
+	private int ExtractParameterValue(ItemParameter paramter)
+	{
+		var itemParams = _focusInventoryItem.Item.DefaultParameterList;
+
+		if (itemParams.Contains(paramter))
 		{
-			_currentClickable.Hit(1);
-			GameSignals.CLICKABLE_CLICKED.Dispatch();
+			int index = itemParams.IndexOf(paramter);
+			return (int)itemParams[index].Value;
 		}
+		
+		return 0;
 	}
 	
 	private void UpdateCurrentClickable()

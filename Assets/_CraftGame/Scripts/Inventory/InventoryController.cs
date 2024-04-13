@@ -7,9 +7,8 @@ using UnityEngine.InputSystem;
 public class InventoryController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
-	[SerializeField] private ItemObject _testItem1; // Test delete later
-	[SerializeField] private ItemObject _testItem2; // Test delete later
 	[SerializeField] private int _slotAmount;
+	[SerializeField] private List<InventoryItem> _startingItems = new();
 	
 	private InventoryModel _inventoryModel;
 	private InventoryView _inventoryView;
@@ -52,8 +51,11 @@ public class InventoryController : MonoBehaviour
 	private void Start()
 	{
 		InitializeViews();
-		CollectItem(new InventoryItem(){ Item = _testItem1, Quantity = 11}); // Test delete later
-		CollectItem(new InventoryItem(){ Item = _testItem2, Quantity = 9}); // Test delete later
+		
+		foreach(InventoryItem item in _startingItems)
+		{
+			CollectItem(item);
+		}
 	}
 	
 	private void InventorySlotRightClicked(ISignalParameters parameters)
