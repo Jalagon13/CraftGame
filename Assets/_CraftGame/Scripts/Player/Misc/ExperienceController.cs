@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class ExperienceController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private MMF_Player _expGainFeedbacks;
 	private ExperienceView _experienceView;
 	
 	private int _currentExperience;
@@ -41,6 +43,7 @@ public class ExperienceController : MonoBehaviour
 		int xpFromClickable = (int)parameters.GetParameter("Experience");
 		
 		_currentExperience += xpFromClickable;
+		_expGainFeedbacks?.PlayFeedbacks();
 		_experienceView.UpdateView(_currentExperience);
 	}
 }

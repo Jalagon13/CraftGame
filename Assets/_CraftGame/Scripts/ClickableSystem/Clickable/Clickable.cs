@@ -13,6 +13,7 @@ public class Clickable : MonoBehaviour
 	[Header("Feedbacks")]
 	[SerializeField] private MMF_Player _clickFeedback;
 	[SerializeField] private MMF_Player _destroyFeedback;
+	[SerializeField] private MMF_Player _spawnFeedback;
 	
 	private bool _selected;
 	private int _currentHitPoints;
@@ -24,6 +25,11 @@ public class Clickable : MonoBehaviour
 	{
 		_currentHitPoints = _maxHitPoints;
 		_dropPosition = (Vector2)transform.position + (Vector2.one * 0.5f);
+	}
+	
+	private void Start()
+	{
+		_spawnFeedback?.PlayFeedbacks();
 	}
 	
 	public void Hit(int amount, ToolType incomingToolType)
