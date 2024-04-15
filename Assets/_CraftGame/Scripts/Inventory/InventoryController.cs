@@ -10,7 +10,7 @@ public class InventoryController : MonoBehaviour
 	[SerializeField] private ItemObject _testItem1; // Test delete later
 	[SerializeField] private ItemObject _testItem2; // Test delete later
 	[SerializeField] private int _slotAmount;
-	
+
 	private InventoryModel _inventoryModel;
 	private InventoryView _inventoryView;
 	private MouseItemModel _mouseItemModel;
@@ -26,7 +26,7 @@ public class InventoryController : MonoBehaviour
 		_hotbarController.PlayerInventory = _inventoryModel;
 		
 		_playerInput = new PlayerInput();
-		_playerInput.Player.ToggleInventory.started += ToggleInventroy;
+		_playerInput.Player.ToggleInventory.started += ToggleInventory;
 		
 		_po.PlayerInventory = this;
 	}
@@ -184,7 +184,7 @@ public class InventoryController : MonoBehaviour
 		_mouseItemView.Initialize();
 	}
 	
-	private void ToggleInventroy(InputAction.CallbackContext context)
+	private void ToggleInventory(InputAction.CallbackContext context)
 	{
 		_inventoryView.ToggleInventory();
 	}
@@ -193,4 +193,17 @@ public class InventoryController : MonoBehaviour
 	{
 		_inventoryModel.AddItem(itemToCollect);
 	}
+
+    public InventoryItem FindItem(ItemObject itemToFind)
+	{
+		return _inventoryModel.FindItem(itemToFind);
+	}
+
+	public bool RemoveItem(ItemObject itemToRemove, int amount)
+	{
+		bool success = _inventoryModel.RemoveItem(itemToRemove, amount);
+		if (success)
+            _inventoryView.UpdateView(_inventoryModel.InventoryItems);
+		return success;
+    }
 }
