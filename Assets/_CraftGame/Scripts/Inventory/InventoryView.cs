@@ -11,6 +11,20 @@ public class InventoryView : MonoBehaviour
 	private List<InventorySlotView> _inventorySlotViews = new();
 	private bool _inventoryEnabled;
 	
+	public bool HotBarEnabled { get { return _hotbarSlotHolder.gameObject.activeInHierarchy; } 
+		set 
+		{ 
+			_hotbarSlotHolder.gameObject.SetActive(value);
+		} 
+	}
+	public bool InventoryEnabled { get { return _inventoryEnabled; } 
+		set 
+		{ 
+			_inventoryEnabled = value; 
+			_inventorySlotHolder.gameObject.SetActive(value);
+		} 
+	}
+	
 	private void Start()
 	{
 		_inventoryEnabled = false;
@@ -52,12 +66,4 @@ public class InventoryView : MonoBehaviour
 			counter++;
 		}
 	}
-	
-	public void ToggleInventory()
-	{
-		_inventoryEnabled = !_inventoryEnabled;
-		_inventorySlotHolder.gameObject.SetActive(_inventoryEnabled);
-	}
-	
-	
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ProgressionTotem : MonoBehaviour
+public class ProgressionTotem : MonoBehaviour, IInteractable
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private MMF_Player _expandFeedbacks;
@@ -16,7 +16,6 @@ public class ProgressionTotem : MonoBehaviour
 	
 	private Canvas _selectedCanvas;
 	private TextMeshProUGUI _expandText;
-	private PlayerInput _playerInput;
 	private bool _selected;
 	private int _totemXp;
 	private int _expandDataIndex;
@@ -30,21 +29,8 @@ public class ProgressionTotem : MonoBehaviour
 	
 	private void Awake()
 	{
-		_playerInput = new();
-		_playerInput.Player.Interact.started += TryToInteract;
-		
 		_selectedCanvas = transform.GetChild(1).GetComponent<Canvas>();
 		_expandText = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-	}
-	
-	private void OnEnable()
-	{
-		_playerInput.Enable();
-	}
-	
-	private void OnDisable()
-	{
-		_playerInput.Disable();
 	}
 	
 	private void Start()
@@ -54,11 +40,9 @@ public class ProgressionTotem : MonoBehaviour
 		_selectedCanvas.gameObject.SetActive(false);
 	}
 	
-	private void TryToInteract(InputAction.CallbackContext context)
-	{
-		if(!_selected) return;
-		
-		int currentPlrXp = _po.PlayerExperience.CurrentExperience;
+	public void OnInteract()
+    {
+        int currentPlrXp = _po.PlayerExperience.CurrentExperience;
 		int currentXpQuota = _expandData[_expandDataIndex].XpQuota;
 		int xpNeeded = currentXpQuota - _totemXp;
 		
@@ -83,7 +67,7 @@ public class ProgressionTotem : MonoBehaviour
 		}
 		
 		UpdateExpandText();
-	}
+    }
 	
 	private void UpdateExpandText()
 	{
@@ -129,5 +113,7 @@ public class ProgressionTotem : MonoBehaviour
 			UnSelected();
 		}
 	}
+
+	
 	#endregion
 }
