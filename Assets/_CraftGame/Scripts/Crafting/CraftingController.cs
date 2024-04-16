@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class CraftingController : MonoBehaviour
 {
-	[SerializeField] private PlayerObject _po;
-	
 	private PlayerInput _playerInput;
 	private CraftingModel _craftingModel;
 	private CraftingView _craftingView;
@@ -55,7 +53,12 @@ public class CraftingController : MonoBehaviour
 	{
 		if(_craftingModel.CanIncrementCraftAmount())
 		{
+			Debug.Log("Can Increment, Incremented Craft Amount");
 			_craftingModel.IncrementCraftAmount();
+		}
+		else
+		{
+			Debug.Log("Can NOT Increment");
 		}
 	}
 	
@@ -64,7 +67,12 @@ public class CraftingController : MonoBehaviour
 	{
 		if(_craftingModel.CanDecrementCraftAmount())
 		{
+			Debug.Log("Can Decrement, Decremented Craft Amount");
 			_craftingModel.DecrementCraftAmount();
+		}
+		else
+		{
+			Debug.Log("Can NOT Decrement");
 		}
 	}
 	
