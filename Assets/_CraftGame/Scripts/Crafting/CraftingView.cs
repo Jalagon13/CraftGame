@@ -10,6 +10,7 @@ public class CraftingView : MonoBehaviour
 	[SerializeField] private CraftNodeView _craftNodeView;
 	[SerializeField] private SelectedRecipeView _selectedRecipeView;
 	[SerializeField] private Transform _craftNodeHolder;
+	[SerializeField] private Transform _craftNodeHolderBackground;
 	[SerializeField] private TextMeshProUGUI _menuTitleText;
 	
 	private List<CraftingRecipeObject> _recipesToDisplay;
@@ -20,6 +21,11 @@ public class CraftingView : MonoBehaviour
 		{ 
 			_uiActive = value;
 			LoopThroughChildElements(value);
+			
+			if(value)
+			{
+				SetInitialLayout();
+			}
 		} 
 	}
 	
@@ -44,15 +50,32 @@ public class CraftingView : MonoBehaviour
 		}
 	}
 	
+	public void SetInitialLayout()
+	{
+		// Crafting SelectedRecipeView Disabled
+		_selectedRecipeView.gameObject.SetActive(false);
+		// Crafting NodeHolder Enabled and Centered
+		// _craftNodeHolderBackground
+	}
+	
+	public void SetSelectedRecipeLayout()
+	{
+		// Crafting NodeHolder Enabled but moved to the left
+		
+		// Crafting SelectedRecipeView Enabled
+		_selectedRecipeView.gameObject.SetActive(true);
+	}
+	
 	private void RenameMenuName(string craftTableName)
 	{
 		_menuTitleText.text = craftTableName;
 		// Add sprite next to this text later on
 	}
 	
-	public void InitializeSelectedRecipe(CraftingModel _craftingModel)
+	public void RefreshSelectedRecipe(CraftingController craftingController)
 	{
-		_selectedRecipeView.Initialize(_craftingModel);
+		_selectedRecipeView.Initialize(craftingController);
+		SetSelectedRecipeLayout();
 	}
 	
 	private void LoopThroughChildElements(bool enabled)

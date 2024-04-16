@@ -10,6 +10,8 @@ public class CraftingController : MonoBehaviour
 	private CraftingModel _craftingModel;
 	private CraftingView _craftingView;
 	
+	public CraftingModel CraftingModel => _craftingModel;
+	
 	private void Awake()
 	{
 		_playerInput = new();
@@ -40,31 +42,34 @@ public class CraftingController : MonoBehaviour
 		int recipeIndex = (int)parameters.GetParameter("RecipeIndex");
 		
 		SelectCraftingRecipe(recipeIndex);
-		_craftingView.InitializeSelectedRecipe(_craftingModel);
+		_craftingView.RefreshSelectedRecipe(this);
 	}
 	
 	[Button("Select Crafting Recipe (Only first one for now)")]
 	public void SelectCraftingRecipe(int index)
 	{
 		_craftingModel.SelectCraftingRecipe(_craftingModel.CraftingRecipes[index]); // Testing only the first element for now
+		_craftingView.RefreshSelectedRecipe(this);
 	}
 	
-	[Button("Start Crafting")]
+	// [Button("Start Crafting")]
 	public void StartCrafting()
 	{
 		if(_craftingModel.CanCraft())
 		{
 			_craftingModel.StartCrafting();
+			_craftingView.RefreshSelectedRecipe(this);
 		}
 	}
 	
-	[Button("Increment Craft Amount")]
+	// [Button("Increment Craft Amount")]
 	public void IncrementCraftAmount()
 	{
 		if(_craftingModel.CanIncrementCraftAmount())
 		{
 			Debug.Log("Can Increment, Incremented Craft Amount");
 			_craftingModel.IncrementCraftAmount();
+			_craftingView.RefreshSelectedRecipe(this);
 		}
 		else
 		{
@@ -72,13 +77,14 @@ public class CraftingController : MonoBehaviour
 		}
 	}
 	
-	[Button("Decrement Craft Amount")]
+	// [Button("Decrement Craft Amount")]
 	public void DecrementCraftAmount()
 	{
 		if(_craftingModel.CanDecrementCraftAmount())
 		{
 			Debug.Log("Can Decrement, Decremented Craft Amount");
 			_craftingModel.DecrementCraftAmount();
+			_craftingView.RefreshSelectedRecipe(this);
 		}
 		else
 		{
@@ -86,10 +92,11 @@ public class CraftingController : MonoBehaviour
 		}
 	}
 	
-	[Button("Cancel Crafting")]
+	// [Button("Cancel Crafting")]
 	public void CancelCrafting()
 	{
 		_craftingModel.CancelCrafting();
+		_craftingView.RefreshSelectedRecipe(this);
 	}
 	
 	private void TryToCloseUI(InputAction.CallbackContext context)

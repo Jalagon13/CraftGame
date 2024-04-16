@@ -59,6 +59,7 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		// Assume I have all the resources needed
 		// Take items from player's inventory for total crafting want
 		TakeItemsFromPlayer();
+		UpdateSelectedResourceList();
 		
 		// Begin a crafting timer, at the end of it, produce one ouput, and keep repeating until craftCounter == 0;
 		
