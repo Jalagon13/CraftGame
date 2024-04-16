@@ -2,23 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingModel : MonoBehaviour, IInteractable
-{
-	[SerializeField] private PlayerObject _po;
-	[SerializeField] private List<CraftingRecipeObject> _craftingRecipes;
-	
-	private Timer _craftingTimer;
-	private CraftingRecipeObject _selectedRecipe;
-	private List<SelectedResource> _selectedResources;
-	private int _craftAmount = 1;
-	private int _craftCounter;
-	private bool _canCraft;
-	
-	public List<CraftingRecipeObject> CraftingRecipes => _craftingRecipes;
-	public int CraftAmount { get { return _craftAmount; } set {_craftAmount = value; } }
-	public Timer CraftingTimer => _craftingTimer;
-	
-	private class SelectedResource
+public class SelectedResource
 	{
 		public ItemObject Resource;
 		public int InventoryAmount;
@@ -31,6 +15,26 @@ public class CraftingModel : MonoBehaviour, IInteractable
 			RequiredAmount = requiredAmount;
 		}
 	}
+
+public class CraftingModel : MonoBehaviour, IInteractable
+{
+	[SerializeField] private string _displayName;
+	[SerializeField] private PlayerObject _po;
+	[SerializeField] private List<CraftingRecipeObject> _craftingRecipes;
+	
+	private Timer _craftingTimer;
+	private CraftingRecipeObject _selectedRecipe;
+	private List<SelectedResource> _selectedResources;
+	private int _craftAmount = 1;
+	private int _craftCounter;
+	private bool _canCraft;
+	
+	public CraftingRecipeObject SelectedRecipe => _selectedRecipe;
+	public List<CraftingRecipeObject> CraftingRecipes => _craftingRecipes;
+	public Timer CraftingTimer => _craftingTimer;
+	public List<SelectedResource> SelectedResources => _selectedResources;
+	public int CraftAmount { get { return _craftAmount; } set {_craftAmount = value; } }
+	public string DisplayName => _displayName;
 	
 	private void Update()
 	{

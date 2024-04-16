@@ -18,6 +18,7 @@ public class CraftingController : MonoBehaviour
 		_playerInput.Enable();
 		
 		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(ExtractCraftingModel);
+		GameSignals.ON_CRAFT_NODE_CLICKED.AddListener(ExtractRecipeIndex);
 	}
 	
 	private void OnDisable()
@@ -25,6 +26,7 @@ public class CraftingController : MonoBehaviour
 		_playerInput.Disable();
 		
 		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(ExtractCraftingModel);
+		GameSignals.ON_CRAFT_NODE_CLICKED.RemoveListener(ExtractRecipeIndex);
 	}
 	
 	private void Start()
@@ -33,10 +35,18 @@ public class CraftingController : MonoBehaviour
 		_craftingView.UiActive = false;
 	}
 	
-	[Button("Select Crafting Recipe (Only first one for now)")]
-	public void SelectCraftingRecipe()
+	private void ExtractRecipeIndex(ISignalParameters parameters)
 	{
-		_craftingModel.SelectCraftingRecipe(_craftingModel.CraftingRecipes[0]); // Testing only the first element for now
+		int recipeIndex = (int)parameters.GetParameter("RecipeIndex");
+		
+		SelectCraftingRecipe(recipeIndex);
+		_craftingView.InitializeSelectedRecipe(_craftingModel);
+	}
+	
+	[Button("Select Crafting Recipe (Only first one for now)")]
+	public void SelectCraftingRecipe(int index)
+	{
+		_craftingModel.SelectCraftingRecipe(_craftingModel.CraftingRecipes[index]); // Testing only the first element for now
 	}
 	
 	[Button("Start Crafting")]
@@ -97,7 +107,7 @@ public class CraftingController : MonoBehaviour
 		if(_craftingView.UiActive) return;
 		
 		_craftingModel = (CraftingModel)parameters.GetParameter("CraftingModel");
-		// refresh UI display here
+		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DisplayName);
 		_craftingView.UiActive = true;
 	}
 	
@@ -105,5 +115,6 @@ public class CraftingController : MonoBehaviour
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_craftingView = FindObjectOfType<CraftingView>();
+		
 	}
 }

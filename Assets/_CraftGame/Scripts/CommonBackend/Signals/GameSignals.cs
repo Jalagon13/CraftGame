@@ -12,4 +12,5 @@ public static class GameSignals
 	public static readonly Signal ON_CONSUME = new("OnConsume");
 	public static readonly Signal ON_CRAFT_TABLE_INTERACT = new("CraftTableSelected");
 	public static readonly Signal ON_CRAFT_TABLE_UNINTERACT = new("CraftTableDeselected");
+	public static readonly Signal ON_CRAFT_NODE_CLICKED = new("CraftNodeClicked");
 }
