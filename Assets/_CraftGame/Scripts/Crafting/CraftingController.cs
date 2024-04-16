@@ -15,6 +15,7 @@ public class CraftingController : MonoBehaviour
 	{
 		_playerInput = new();
 		_playerInput.Player.Interact.started += TryToCloseUI;
+		_playerInput.Player.Esc.started += TryToCloseUI;
 		_playerInput.Enable();
 		
 		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(ExtractCraftingModel);
