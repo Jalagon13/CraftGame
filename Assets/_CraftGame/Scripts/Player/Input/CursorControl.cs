@@ -20,23 +20,21 @@ public class CursorControl : MonoBehaviour
 	{
 		_playerInput = new();
 		_playerInput.Player.PrimaryAction.started += Hit;
+		_playerInput.Player.Interact.started += TryToInteract;
+		_playerInput.Enable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
+		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
 	}
 	
 	private void OnDestroy()
 	{
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
-	}
-	
-	private void OnEnable()
-	{
-		_playerInput.Enable();
-	}
-	
-	private void OnDisable()
-	{
 		_playerInput.Disable();
+		
+		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(FocusInventoryItemUpdated);
+		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
 	}
 	
 	private void LateUpdate()
@@ -44,6 +42,30 @@ public class CursorControl : MonoBehaviour
 		transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
 		
 		UpdateCurrentClickable();
+	}
+	
+	private void DisableControl(ISignalParameters parameters)
+	{
+		_playerInput.Disable();
+	}
+	
+	private void EnableControl(ISignalParameters parameters)
+	{
+		_playerInput.Enable();
+	}
+	
+	private void TryToInteract(InputAction.CallbackContext context)
+	{
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0);
+
+		foreach(Collider2D col in colliders)
+		{
+			if(col.TryGetComponent(out IInteractable interactable)) 
+			{
+				interactable.OnInteract();
+				return;
+			}
+		}
 	}
 	
 	private void FocusInventoryItemUpdated(ISignalParameters parameters) 

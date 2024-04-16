@@ -16,6 +16,7 @@ public class InventoryController : MonoBehaviour
 	private MouseItemView _mouseItemView;
 	private HotbarController _hotbarController;
 	private PlayerInput _playerInput;
+	public InventoryModel InventoryModel => _inventoryModel;
 	
 	private void Awake()
 	{
@@ -37,6 +38,8 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.AddListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.AddListener(InventorySlotRightClicked);
+		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
 	}
 	
 	private void OnDisable()
@@ -46,6 +49,8 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.RemoveListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.RemoveListener(InventorySlotRightClicked);
+		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
 	}
 	
 	private void Start()
@@ -186,9 +191,22 @@ public class InventoryController : MonoBehaviour
 		_mouseItemView.Initialize();
 	}
 	
+	private void EnableControl(ISignalParameters parameters)
+	{
+		_inventoryView.HotBarEnabled = true;
+		_playerInput.Enable();
+	}
+	
+	private void DisableControl(ISignalParameters parameters)
+	{
+		_inventoryView.InventoryEnabled = false;
+		_inventoryView.HotBarEnabled = false;
+		_playerInput.Disable();
+	}
+	
 	private void ToggleInventroy(InputAction.CallbackContext context)
 	{
-		_inventoryView.ToggleInventory();
+		_inventoryView.InventoryEnabled = !_inventoryView.InventoryEnabled;
 	}
 	
 	public void CollectItem(InventoryItem itemToCollect)

@@ -86,4 +86,36 @@ public class InventoryModel
 			}
 		}
 	}
+	
+	public bool Contains(InventoryItem inventoryItemToCheck)
+	{
+		int amountCounter = 0;
+		
+		foreach (InventoryItem item in _inventoryItems)
+		{
+			if(item.Item.Name == inventoryItemToCheck.Item.Name)
+			{
+				amountCounter += item.Quantity;
+			}
+		}
+		
+		return amountCounter >= inventoryItemToCheck.Quantity;
+	}
+	
+	public int GetAmount(ItemObject itemToCheck)
+	{
+		int amountCounter = 0;
+		
+		foreach (InventoryItem item in _inventoryItems)
+		{
+			if(item.Item == null) continue;
+			
+			if(item.Item.Name == itemToCheck.Name)
+			{
+				amountCounter += item.Quantity;
+			}
+		}
+		
+		return amountCounter;
+	}
 }

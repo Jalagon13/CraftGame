@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f7d8084-822f-4459-b4be-4b47f64eb689"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""071925ae-88b3-4ab4-8791-079a3130815c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -393,6 +413,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         // Hotbar
         m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
         m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
@@ -471,6 +492,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Esc;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -480,6 +502,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -504,6 +527,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -523,6 +549,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -665,6 +694,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnToggleInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
     }
     public interface IHotbarActions
     {

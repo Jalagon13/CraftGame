@@ -17,24 +17,27 @@ public class PlayerMoveInput : MonoBehaviour
 	private void Awake()
 	{
 		_playerInput = new();
+		_playerInput.Player.Move.performed += MovementAction;
+		_playerInput.Player.Move.canceled += MovementAction;
+		_playerInput.Enable();
+		
 		_rb = GetComponent<Rigidbody2D>();
 		_energyController = GetComponent<EnergyController>();
+		
+		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
 	}
 	
-	private void OnEnable()
-	{
-		_playerInput.Enable();
-	}
-	
-	private void OnDisable()
+	private void OnDestroy()
 	{
 		_playerInput.Disable();
+		
+		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
+		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
 	}
 	
 	private void Start()
 	{
-		_playerInput.Player.Move.performed += MovementAction;
-		_playerInput.Player.Move.canceled += MovementAction;
 		_mainCamera = Camera.main;
 	}
 	
@@ -49,10 +52,18 @@ public class PlayerMoveInput : MonoBehaviour
 			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
 		}
 		
-		
-		
 		_po.Position = transform.position;
 		_po.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+	}
+	
+	private void DisableControl(ISignalParameters parameters)
+	{
+		_playerInput.Disable();
+	}
+	
+	private void EnableControl(ISignalParameters parameters)
+	{
+		_playerInput.Enable();
 	}
 	
 	private void MovementAction(InputAction.CallbackContext context)
