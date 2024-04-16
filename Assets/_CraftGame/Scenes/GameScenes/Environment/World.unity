@@ -89012,6 +89012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1b4579acdee4f24ab953969716e0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
   _craftingRecipes:
   - {fileID: 11400000, guid: 0a4885aaacc5d46cdaf242526b3e8ade, type: 2}
   - {fileID: 11400000, guid: 3b8a1ddf02a3244a68eb0db2f8a8e980, type: 2}

@@ -814,6 +814,12 @@ MonoBehaviour:
     Quantity: 1
   - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
     Quantity: 1
+  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+    Quantity: 50
+  - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
+    Quantity: 50
+  - Item: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
+    Quantity: 50
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0

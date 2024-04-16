@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,11 +35,51 @@ public class CraftingController : MonoBehaviour
 		_craftingView.UiActive = false;
 	}
 	
+	[Button("Select Crafting Recipe (Only first one for now)")]
+	public void SelectCraftingRecipe()
+	{
+		_craftingModel.SelectCraftingRecipe(_craftingModel.CraftingRecipes[0]); // Testing only the first element for now
+	}
+	
+	[Button("Start Crafting")]
+	public void StartCrafting()
+	{
+		if(_craftingModel.CanCraft())
+		{
+			_craftingModel.StartCrafting();
+		}
+	}
+	
+	[Button("Increment Craft Amount")]
+	public void IncrementCraftAmount()
+	{
+		if(_craftingModel.CanIncrementCraftAmount())
+		{
+			_craftingModel.IncrementCraftAmount();
+		}
+	}
+	
+	[Button("Decrement Craft Amount")]
+	public void DecrementCraftAmount()
+	{
+		if(_craftingModel.CanDecrementCraftAmount())
+		{
+			_craftingModel.DecrementCraftAmount();
+		}
+	}
+	
+	[Button("Cancel Crafting")]
+	public void CancelCrafting()
+	{
+		_craftingModel.CancelCrafting();
+	}
+	
 	private void TryToCloseUI(InputAction.CallbackContext context)
 	{
 		if(_craftingView.UiActive)
 		{
 			_craftingView.UiActive = false;
+			_craftingModel = null;
 			GameSignals.ON_CRAFT_TABLE_UNINTERACT.Dispatch();
 		}
 	}
