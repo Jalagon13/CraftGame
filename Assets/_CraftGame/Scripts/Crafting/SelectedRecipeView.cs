@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SelectedRecipeView : MonoBehaviour
 {
+	[SerializeField] private ProgressView _progressView;
 	[SerializeField] private IngredientView _ingredientView;
 	[SerializeField] private Transform _ingredientViewHolder;
 	[SerializeField] private TextMeshProUGUI _menuTileText;
@@ -39,6 +40,12 @@ public class SelectedRecipeView : MonoBehaviour
 	public void CraftButton()
 	{
 		_craftingController.StartCrafting();
+		
+		if(_craftingController.CraftingModel.CanCraft())
+		{
+			_progressView.gameObject.SetActive(true);
+			_progressView.StartProcessViewUI();
+		}
 	}
 	
 	public void IncrementButton()
@@ -54,5 +61,6 @@ public class SelectedRecipeView : MonoBehaviour
 	public void CancelCrafting()
 	{
 		_craftingController.CancelCrafting();
+		_progressView.StopProcessViewUI();
 	}
 }

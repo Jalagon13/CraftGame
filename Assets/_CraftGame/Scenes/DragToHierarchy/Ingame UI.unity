@@ -400,7 +400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 64784027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1028954456}
+        m_TargetAssemblyTypeName: SelectedRecipeView, Assembly-CSharp
+        m_MethodName: CancelCrafting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &64784027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,6 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36b64b62464147328289a8c6977ea32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _progressView: {fileID: 1272119074}
   _ingredientView: {fileID: 163722229354883142, guid: b756cf5f5ab524f689de8535216edee8, type: 3}
   _ingredientViewHolder: {fileID: 1188633332}
   _menuTileText: {fileID: 1420544027}
@@ -1877,6 +1890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1272119073}
+  - component: {fileID: 1272119074}
   m_Layer: 5
   m_Name: ProgressView
   m_TagString: Untagged
@@ -1907,6 +1921,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -274.3}
   m_SizeDelta: {x: 400, y: 175}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1272119074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272119072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0587365c0a854070a261c36e2fb0ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fillImage: {fileID: 1854924303}
+  _craftAmountText: {fileID: 1955797857}
+  _secondsLeftText: {fileID: 1533813869}
 --- !u!1 &1341568691
 GameObject:
   m_ObjectHideFlags: 0

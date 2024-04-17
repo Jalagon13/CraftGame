@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
+using UnityEngine; 
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -75,7 +75,7 @@ public class CraftingView : MonoBehaviour
 	public void RefreshSelectedRecipe(CraftingController craftingController)
 	{
 		_selectedRecipeView.Initialize(craftingController);
-		SetSelectedRecipeLayout();
+		SetSelectedRecipeLayout(); 
 	}
 	
 	private void LoopThroughChildElements(bool enabled)
