@@ -14,6 +14,7 @@ public class CraftingView : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _menuTitleText;
 	
 	private List<CraftingRecipeObject> _recipesToDisplay;
+	private List<CraftingRecipeObject> _discardedOneTimeCraftRecipes;
 	private bool _uiActive;
 	
 	public bool UiActive { get { return _uiActive; } 
@@ -29,9 +30,10 @@ public class CraftingView : MonoBehaviour
 		} 
 	}
 	
-	public void Initialize(List<CraftingRecipeObject> recipesToDisplay, string craftTableName)
+	public void Initialize(List<CraftingRecipeObject> recipesToDisplay, List<CraftingRecipeObject> discardedOneTimeCraftRecipies, string craftTableName)
 	{
 		_recipesToDisplay = recipesToDisplay;
+		_discardedOneTimeCraftRecipes = discardedOneTimeCraftRecipies;
 		
 		// Rename Menu Name
 		RenameMenuName(craftTableName);
@@ -45,6 +47,8 @@ public class CraftingView : MonoBehaviour
 		// Populate CraftNodeHolder with recipes
 		foreach (CraftingRecipeObject recipe in _recipesToDisplay)
 		{
+			if(_discardedOneTimeCraftRecipes.Contains(recipe)) continue;
+			
 			CraftNodeView craftNodeView = Instantiate(_craftNodeView, _craftNodeHolder);
 			craftNodeView.Initialize(recipe.OutputItem, _recipesToDisplay.IndexOf(recipe));
 		}
@@ -53,6 +57,7 @@ public class CraftingView : MonoBehaviour
 	public void SetInitialLayout()
 	{
 		// Crafting SelectedRecipeView Disabled
+		_selectedRecipeView.UpdateViewInfo();
 		_selectedRecipeView.gameObject.SetActive(false);
 		// Crafting NodeHolder Enabled and Centered
 		// _craftNodeHolderBackground
@@ -63,6 +68,7 @@ public class CraftingView : MonoBehaviour
 		// Crafting NodeHolder Enabled but moved to the left
 		
 		// Crafting SelectedRecipeView Enabled
+		_selectedRecipeView.UpdateViewInfo();
 		_selectedRecipeView.gameObject.SetActive(true);
 	}
 	

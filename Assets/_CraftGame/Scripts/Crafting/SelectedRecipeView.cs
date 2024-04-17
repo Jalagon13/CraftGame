@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectedRecipeView : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class SelectedRecipeView : MonoBehaviour
 	[SerializeField] private IngredientView _ingredientView;
 	[SerializeField] private Transform _ingredientViewHolder;
 	[SerializeField] private TextMeshProUGUI _menuTileText;
+	[Header("Buttons")]
+	[SerializeField] private Button _craftButton;
+	[SerializeField] private Button _incrementButton;
+	[SerializeField] private Button _decrementButton;
 	
 	private CraftingController _craftingController;
 	
@@ -32,6 +37,26 @@ public class SelectedRecipeView : MonoBehaviour
 		}
 	}
 	
+	public void UpdateViewInfo()
+	{
+		if(_craftingController == null) return;
+		
+		
+		int craftAmount = _craftingController.CraftingModel.CraftAmount;
+		int outputAmount = _craftingController.CraftingModel.SelectedRecipe.OutputAmount;
+		
+		_craftButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _craftingController.CraftingModel.SelectedRecipe.OneTimeCraftable ? 
+		$"Craft" : $"Craft {craftAmount} (x{outputAmount * craftAmount})";
+		
+		_craftButton.interactable = _craftingController.CraftingModel.CanCraft();
+		
+		_incrementButton.gameObject.SetActive(!_craftingController.CraftingModel.SelectedRecipe.OneTimeCraftable);
+		_decrementButton.gameObject.SetActive(!_craftingController.CraftingModel.SelectedRecipe.OneTimeCraftable);
+		
+		_incrementButton.interactable = _craftingController.CraftingModel.CanIncrementCraftAmount();
+		_decrementButton.interactable = _craftingController.CraftingModel.CanDecrementCraftAmount();
+	}
+	
 	private void RenameMenuName(string menuName)
 	{
 		_menuTileText.text = menuName;
@@ -39,28 +64,40 @@ public class SelectedRecipeView : MonoBehaviour
 	
 	public void CraftButton()
 	{
+		if(_craftingController.CraftingModel.IsCrafting)
+		{
+			CancelCrafting();
+		}
+		
 		_craftingController.StartCrafting();
 		
-		if(_craftingController.CraftingModel.CanCraft())
+		if(_craftingController.CraftingModel.IsCrafting)
 		{
-			_progressView.gameObject.SetActive(true);
-			_progressView.StartProcessViewUI();
+			_progressView.StartProcessViewUI(_craftingController.CraftingModel);
 		}
+		
+		UpdateViewInfo();
 	}
 	
 	public void IncrementButton()
 	{
 		_craftingController.IncrementCraftAmount();
+		
+		UpdateViewInfo();
 	}
 	
 	public void DecrementButton()
 	{
 		_craftingController.DecrementCraftAmount();
+		
+		UpdateViewInfo();
 	}
 	
 	public void CancelCrafting()
 	{
 		_craftingController.CancelCrafting();
 		_progressView.StopProcessViewUI();
+		
+		UpdateViewInfo();
 	}
 }

@@ -45,7 +45,7 @@ public class CraftingController : MonoBehaviour
 		_craftingView.RefreshSelectedRecipe(this);
 	}
 	
-	[Button("Select Crafting Recipe (Only first one for now)")]
+	// [Button("Select Crafting Recipe (Only first one for now)")]
 	public void SelectCraftingRecipe(int index)
 	{
 		_craftingModel.SelectCraftingRecipe(_craftingModel.CraftingRecipes[index]); // Testing only the first element for now
@@ -67,13 +67,8 @@ public class CraftingController : MonoBehaviour
 	{
 		if(_craftingModel.CanIncrementCraftAmount())
 		{
-			Debug.Log("Can Increment, Incremented Craft Amount");
 			_craftingModel.IncrementCraftAmount();
 			_craftingView.RefreshSelectedRecipe(this);
-		}
-		else
-		{
-			Debug.Log("Can NOT Increment");
 		}
 	}
 	
@@ -82,13 +77,8 @@ public class CraftingController : MonoBehaviour
 	{
 		if(_craftingModel.CanDecrementCraftAmount())
 		{
-			Debug.Log("Can Decrement, Decremented Craft Amount");
 			_craftingModel.DecrementCraftAmount();
 			_craftingView.RefreshSelectedRecipe(this);
-		}
-		else
-		{
-			Debug.Log("Can NOT Decrement");
 		}
 	}
 	
@@ -104,7 +94,8 @@ public class CraftingController : MonoBehaviour
 		if(_craftingView.UiActive)
 		{
 			_craftingView.UiActive = false;
-			_craftingModel = null;
+			_craftingModel.OnCraftingDone -= CheckOneTimeCraftRecipes;
+			// _craftingModel = null;
 			GameSignals.ON_CRAFT_TABLE_UNINTERACT.Dispatch();
 		}
 	}
@@ -114,14 +105,40 @@ public class CraftingController : MonoBehaviour
 		if(_craftingView.UiActive) return;
 		
 		_craftingModel = (CraftingModel)parameters.GetParameter("CraftingModel");
-		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DisplayName);
+		_craftingModel.OnCraftingDone += CheckOneTimeCraftRecipes;
+		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DiscardedOneTimeCraftRecipes, _craftingModel.DisplayName);
 		_craftingView.UiActive = true;
+		
+		if(_craftingModel.IsCrafting)
+		{
+			_craftingView.SetSelectedRecipeLayout();
+		}
+		else
+		{
+			_craftingView.SetInitialLayout();
+		}
+	}
+	
+	private void CheckOneTimeCraftRecipes()
+	{
+		if(_craftingModel.CurrentCraftingRecipe.OneTimeCraftable)
+		{
+			_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DiscardedOneTimeCraftRecipes, _craftingModel.DisplayName);
+		}
+		
+		if(_craftingModel.IsCrafting)
+		{
+			_craftingView.SetSelectedRecipeLayout();
+		}
+		else
+		{
+			_craftingView.SetInitialLayout();
+		}
 	}
 	
 	private void InitializeView()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_craftingView = FindObjectOfType<CraftingView>();
-		
 	}
 }

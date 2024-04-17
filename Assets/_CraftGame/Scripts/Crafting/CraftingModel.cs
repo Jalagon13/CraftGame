@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,23 +19,32 @@ public class SelectedResource
 
 public class CraftingModel : MonoBehaviour, IInteractable
 {
+	public event Action OnCraftingDone;
+	public event Action OnIterationDone;
+	
 	[SerializeField] private string _displayName;
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private List<CraftingRecipeObject> _craftingRecipes;
 	
 	private Timer _craftingTimer;
 	private CraftingRecipeObject _selectedRecipe;
+	private CraftingRecipeObject _currentCraftingRecipe;
 	private List<SelectedResource> _selectedResources;
+	private List<CraftingRecipeObject> _discardedOneTimeCraftRecipes = new();
 	private int _craftAmount = 1;
 	private int _craftCounter;
-	private bool _canCraft;
+	private bool _isCrafting;
 	
 	public CraftingRecipeObject SelectedRecipe => _selectedRecipe;
+	public CraftingRecipeObject CurrentCraftingRecipe => _currentCraftingRecipe;
 	public List<CraftingRecipeObject> CraftingRecipes => _craftingRecipes;
+	public List<CraftingRecipeObject> DiscardedOneTimeCraftRecipes => _discardedOneTimeCraftRecipes;
 	public Timer CraftingTimer => _craftingTimer;
 	public List<SelectedResource> SelectedResources => _selectedResources;
-	public int CraftAmount { get { return _craftAmount; } set {_craftAmount = value; } }
+	public int CraftCounter { get { return _craftCounter; } } // Counter for when actually crafting
+	public int CraftAmount { get { return _craftAmount; } } // Counter for when before crafting
 	public string DisplayName => _displayName;
+	public bool IsCrafting => _isCrafting;
 	
 	private void Update()
 	{
@@ -43,35 +53,26 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		if(_craftingTimer.RemainingSeconds > 0)
 		{
 			_craftingTimer.Tick(Time.deltaTime);
-			if(_craftingTimer != null)
-				Debug.Log($"Crafting Seconds Remaining: {_craftingTimer.RemainingSeconds}");
 		}
 	}
 	
 	// When I get back need to add debugs to everything and test it before starting the view
 	public void StartCrafting()
 	{
-		Debug.Log("Crafting Started");
-		
 		_craftCounter = _craftAmount;
+		_currentCraftingRecipe = _selectedRecipe;
 		_craftAmount = 1;
+		_isCrafting = true;
 		
-		// Assume I have all the resources needed
-		// Take items from player's inventory for total crafting want
 		TakeItemsFromPlayer();
 		UpdateSelectedResourceList();
 		
-		// Begin a crafting timer, at the end of it, produce one ouput, and keep repeating until craftCounter == 0;
-		
-		Debug.Log($"Selected Recipe Craft Timer: {_selectedRecipe.CraftingTimer}");
 		_craftingTimer = new(_selectedRecipe.CraftingTimer);
 		_craftingTimer.OnTimerEnd += CraftOneOutput;
 	}
 	
 	private void TakeItemsFromPlayer()
 	{
-		Debug.Log("Items taken from player");
-		
 		for (int i = 0; i < _craftCounter; i++)
 		{
 			foreach (InventoryItem item in _selectedRecipe.ResourceList)
@@ -86,16 +87,21 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		// Spawn one output here
 		SpawnOneOutput();
 		
-		_craftingTimer.OnTimerEnd -= CraftOneOutput;
-		_craftingTimer = null;
+		// If a Recipe is a one time craftable, put it in the discarded pile
+		if(_currentCraftingRecipe.OneTimeCraftable)
+		{
+			_discardedOneTimeCraftRecipes.Add(_selectedRecipe);
+		}
 		
 		if(_craftCounter > 0)
 		{
-			Debug.Log("Continuing to next crafting counter");
-			
-			_craftCounter--;
-			_craftingTimer = new(_selectedRecipe.CraftingTimer);
-			_craftingTimer.OnTimerEnd += CraftOneOutput;
+			_craftingTimer.RemainingSeconds = _selectedRecipe.CraftingTimer;
+			OnIterationDone?.Invoke();
+		}
+		else
+		{
+			_isCrafting = false;
+			OnCraftingDone?.Invoke();
 		}
 	}
 	
@@ -107,7 +113,6 @@ public class CraftingModel : MonoBehaviour, IInteractable
 			Quantity = _selectedRecipe.OutputAmount	
 		};
 		
-		Debug.Log("Spawn One Output");
 		GameManager.Instance.SpawnItem(transform.position, output);
 		
 		_craftCounter--;
@@ -115,12 +120,13 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	
 	public void CancelCrafting()
 	{
-		_craftingTimer.OnTimerEnd -= CraftOneOutput;
-		_craftingTimer = null;
-		_craftCounter = 1;
-		
 		// Returns items based on how many iterations have gone through and are left
 		ReturnItemsToPlayer();
+		
+		_craftingTimer.OnTimerEnd -= CraftOneOutput;
+		_craftCounter = 1;
+		_craftAmount = 1;
+		_isCrafting = false;
 	}
 	
 	private void ReturnItemsToPlayer()
@@ -174,19 +180,15 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	
 	public void IncrementCraftAmount()
 	{
-		// Increment Craft Amount
 		_craftAmount++;
 		
-		// Update Selected Resources
 		UpdateSelectedResourceList();
 	}
 	
 	public void DecrementCraftAmount()
 	{
-		// Decrement Craft Amount
 		_craftAmount--;
 		
-		// Updated Selected Resources
 		UpdateSelectedResourceList();
 	}
 	

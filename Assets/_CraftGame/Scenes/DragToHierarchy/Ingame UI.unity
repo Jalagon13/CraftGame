@@ -1720,6 +1720,9 @@ MonoBehaviour:
   _ingredientView: {fileID: 163722229354883142, guid: b756cf5f5ab524f689de8535216edee8, type: 3}
   _ingredientViewHolder: {fileID: 1188633332}
   _menuTileText: {fileID: 1420544027}
+  _craftButton: {fileID: 2109086636}
+  _incrementButton: {fileID: 1418988653}
+  _decrementButton: {fileID: 734875593}
 --- !u!1 &1188633331
 GameObject:
   m_ObjectHideFlags: 0
