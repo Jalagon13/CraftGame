@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectedResource
+{
+	public ItemObject Resource;
+	public int InventoryAmount;
+	public int RequiredAmount;
+	
+	public SelectedResource(ItemObject resource, int inventoryAmount, int requiredAmount)
 	{
-		public ItemObject Resource;
-		public int InventoryAmount;
-		public int RequiredAmount;
-		
-		public SelectedResource(ItemObject resource, int inventoryAmount, int requiredAmount)
-		{
-			Resource = resource;
-			InventoryAmount = inventoryAmount;
-			RequiredAmount = requiredAmount;
-		}
+		Resource = resource;
+		InventoryAmount = inventoryAmount;
+		RequiredAmount = requiredAmount;
 	}
+}
 
 public class CraftingModel : MonoBehaviour, IInteractable
 {
@@ -31,6 +31,7 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	private CraftingRecipeObject _currentCraftingRecipe;
 	private List<SelectedResource> _selectedResources;
 	private List<CraftingRecipeObject> _discardedOneTimeCraftRecipes = new();
+	private Canvas _selectedCanvas;
 	private int _craftAmount = 1;
 	private int _craftCounter;
 	private bool _isCrafting;
@@ -45,6 +46,11 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	public int CraftAmount { get { return _craftAmount; } } // Counter for when before crafting
 	public string DisplayName => _displayName;
 	public bool IsCrafting => _isCrafting;
+	
+	private void Awake()
+	{
+		_selectedCanvas = transform.GetChild(1).GetComponent<Canvas>();
+	}
 	
 	private void Update()
 	{
@@ -113,7 +119,7 @@ public class CraftingModel : MonoBehaviour, IInteractable
 			Quantity = _selectedRecipe.OutputAmount	
 		};
 		
-		GameManager.Instance.SpawnItem(transform.position, output);
+		GameManager.Instance.SpawnItem(transform.position + new Vector3(0.5f, 0.5f), output);
 		
 		_craftCounter--;
 	}
@@ -226,11 +232,13 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	private void Selected()
 	{
 		_selected = true;
+		_selectedCanvas.gameObject.SetActive(true);
 	}
 	
 	private void UnSelected()
 	{
 		_selected = false;
+		_selectedCanvas.gameObject.SetActive(false);
 	}
 	
 	

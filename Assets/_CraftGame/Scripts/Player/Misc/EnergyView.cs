@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class EnergyView : MonoBehaviour
 {
 	[SerializeField] private Image _fillImage;
-	[SerializeField] private TextMeshProUGUI _counter;
+	// [SerializeField] private TextMeshProUGUI _counter;
 	
 	public void UpdateEnergy(int maxEnergy, int currentEnergy)
 	{
 		_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, currentEnergy, maxEnergy));
-		_counter.text = currentEnergy.ToString();
+		// Debug.Log(_counter == null);
+		// _counter.text = currentEnergy.ToString();
 		
 		// Test this next time you open this up and then make the XP stuff too
 	}

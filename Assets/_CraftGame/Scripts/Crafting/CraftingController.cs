@@ -95,7 +95,6 @@ public class CraftingController : MonoBehaviour
 		{
 			_craftingView.UiActive = false;
 			_craftingModel.OnCraftingDone -= CheckOneTimeCraftRecipes;
-			// _craftingModel = null;
 			GameSignals.ON_CRAFT_TABLE_UNINTERACT.Dispatch();
 		}
 	}
@@ -103,7 +102,6 @@ public class CraftingController : MonoBehaviour
 	private void ExtractCraftingModel(ISignalParameters parameters)
 	{
 		if(_craftingView.UiActive) return;
-		
 		_craftingModel = (CraftingModel)parameters.GetParameter("CraftingModel");
 		_craftingModel.OnCraftingDone += CheckOneTimeCraftRecipes;
 		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DiscardedOneTimeCraftRecipes, _craftingModel.DisplayName);
