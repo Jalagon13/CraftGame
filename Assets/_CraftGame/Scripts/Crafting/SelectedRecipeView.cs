@@ -9,6 +9,7 @@ public class SelectedRecipeView : MonoBehaviour
 	[SerializeField] private ProgressView _progressView;
 	[SerializeField] private IngredientView _ingredientView;
 	[SerializeField] private Transform _ingredientViewHolder;
+	[SerializeField] private Image _outputImage;
 	[SerializeField] private TextMeshProUGUI _menuTileText;
 	[Header("Buttons")]
 	[SerializeField] private Button _craftButton;
@@ -21,7 +22,7 @@ public class SelectedRecipeView : MonoBehaviour
 	{
 		_craftingController = craftingController;
 		
-		RenameMenuName(_craftingController.CraftingModel.SelectedRecipe.OutputItem.Name);
+		DisplaySelectedRecipe();
 		
 		// Clear all Ingredient Views
 		foreach (Transform child in _ingredientViewHolder)
@@ -57,9 +58,10 @@ public class SelectedRecipeView : MonoBehaviour
 		_decrementButton.interactable = _craftingController.CraftingModel.CanDecrementCraftAmount();
 	}
 	
-	private void RenameMenuName(string menuName)
+	private void DisplaySelectedRecipe()
 	{
-		_menuTileText.text = menuName;
+		_menuTileText.text = _craftingController.CraftingModel.SelectedRecipe.OutputItem.Name;
+		_outputImage.sprite = _craftingController.CraftingModel.SelectedRecipe.OutputItem.UiDisplay;
 	}
 	
 	public void CraftButton()

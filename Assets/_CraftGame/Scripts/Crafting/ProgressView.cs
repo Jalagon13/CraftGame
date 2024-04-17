@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ProgressView : MonoBehaviour
 {
 	[SerializeField] private Image _fillImage;
+	[SerializeField] private Image _outputImage;
 	[SerializeField] private TextMeshProUGUI _craftAmountText;
 	[SerializeField] private TextMeshProUGUI _secondsLeftText;
 	
@@ -56,6 +57,7 @@ public class ProgressView : MonoBehaviour
 		if(_craftingModel == null) return;
 		
 		_craftAmountText.text = $"x{_craftingModel.CraftCounter}";
+		_outputImage.sprite = _craftingModel.CurrentCraftingRecipe.OutputItem.UiDisplay;
 	}
 	
 	public void StopProcessViewUI()
