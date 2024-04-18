@@ -8,6 +8,7 @@ public class InventoryView : MonoBehaviour
 	[SerializeField] private InventorySlotView _inventorySlotView;
 	[SerializeField] private Transform _hotbarSlotHolder;
 	[SerializeField] private Transform _inventorySlotHolder;
+	[SerializeField] private Transform _playerCraftViewHolder;
 	private List<InventorySlotView> _inventorySlotViews = new();
 	private bool _inventoryEnabled;
 	
@@ -22,6 +23,7 @@ public class InventoryView : MonoBehaviour
 		{ 
 			_inventoryEnabled = value; 
 			_inventorySlotHolder.gameObject.SetActive(value);
+			_playerCraftViewHolder.gameObject.SetActive(value);
 		} 
 	}
 	
@@ -29,6 +31,7 @@ public class InventoryView : MonoBehaviour
 	{
 		_inventoryEnabled = false;
 		_inventorySlotHolder.gameObject.SetActive(_inventoryEnabled);
+		_playerCraftViewHolder.gameObject.SetActive(_inventoryEnabled);
 	}
 	
 	public void Initialize(List<InventoryItem> inventoryItems)

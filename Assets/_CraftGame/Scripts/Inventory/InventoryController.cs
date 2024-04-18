@@ -16,7 +16,10 @@ public class InventoryController : MonoBehaviour
 	private MouseItemView _mouseItemView;
 	private HotbarController _hotbarController;
 	private PlayerInput _playerInput;
+	
 	public InventoryModel InventoryModel => _inventoryModel;
+	public MouseItemModel MouseItem => _mouseItemModel;
+	public MouseItemView MouseItemView => _mouseItemView;
 	
 	private void Awake()
 	{

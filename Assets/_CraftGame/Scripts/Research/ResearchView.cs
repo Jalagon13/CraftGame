@@ -15,7 +15,7 @@ public class ResearchView : MonoBehaviour
 		_selectedResearchView.gameObject.SetActive(false);
 		
 		// Find all Research Nodes and give them the right to populate the _selectedResearchView
-		ResearchNode[] researchNodes = GetComponentsInChildren<ResearchNode>();
+		ResearchNode[] researchNodes = GetComponentsInChildren<ResearchNode>(true);
 		
 		foreach (ResearchNode rn in researchNodes)
 		{
