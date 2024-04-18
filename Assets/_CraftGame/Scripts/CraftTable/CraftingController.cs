@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class CraftingController : MonoBehaviour
 {
+	[SerializeField] private PlayerObject _po;
+	
 	private PlayerInput _playerInput;
 	private CraftingModel _craftingModel;
 	private CraftingView _craftingView;
@@ -19,7 +21,7 @@ public class CraftingController : MonoBehaviour
 		_playerInput.Player.Esc.started += TryToCloseUI;
 		_playerInput.Enable();
 		
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(ExtractCraftingModel);
+		GameSignals.ON_UI_ACTIVATED.AddListener(ExtractCraftingModel);
 		GameSignals.ON_CRAFT_NODE_CLICKED.AddListener(ExtractRecipeIndex);
 	}
 	
@@ -27,7 +29,7 @@ public class CraftingController : MonoBehaviour
 	{
 		_playerInput.Disable();
 		
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(ExtractCraftingModel);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(ExtractCraftingModel);
 		GameSignals.ON_CRAFT_NODE_CLICKED.RemoveListener(ExtractRecipeIndex);
 	}
 	
@@ -95,13 +97,14 @@ public class CraftingController : MonoBehaviour
 		{
 			_craftingView.UiActive = false;
 			_craftingModel.OnCraftingDone -= CheckOneTimeCraftRecipes;
-			GameSignals.ON_CRAFT_TABLE_UNINTERACT.Dispatch();
+			GameSignals.ON_UI_UNACTIVED.Dispatch();
 		}
 	}
 	
 	private void ExtractCraftingModel(ISignalParameters parameters)
 	{
-		if(_craftingView.UiActive) return;
+		if(_craftingView.UiActive || !parameters.HasParameter("CraftingModel")) return;
+		
 		_craftingModel = (CraftingModel)parameters.GetParameter("CraftingModel");
 		_craftingModel.OnCraftingDone += CheckOneTimeCraftRecipes;
 		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DiscardedOneTimeCraftRecipes, _craftingModel.DisplayName);

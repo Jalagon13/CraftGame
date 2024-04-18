@@ -221,7 +221,7 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	
 	public void OnInteract()
 	{
-		Signal signal = GameSignals.ON_CRAFT_TABLE_INTERACT;
+		Signal signal = GameSignals.ON_UI_ACTIVATED;
 		signal.ClearParameters();
 		signal.AddParameter("CraftingModel", this);
 		signal.Dispatch();

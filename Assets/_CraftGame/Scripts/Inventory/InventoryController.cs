@@ -38,8 +38,8 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.AddListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.AddListener(InventorySlotRightClicked);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
 	
 	private void OnDisable()
@@ -49,8 +49,8 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.RemoveListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.RemoveListener(InventorySlotRightClicked);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
 	private void Start()

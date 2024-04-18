@@ -24,8 +24,8 @@ public class CursorControl : MonoBehaviour
 		_playerInput.Enable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
 	
 	private void OnDestroy()
@@ -33,8 +33,8 @@ public class CursorControl : MonoBehaviour
 		_playerInput.Disable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(FocusInventoryItemUpdated);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
 	private void LateUpdate()
@@ -56,6 +56,8 @@ public class CursorControl : MonoBehaviour
 	
 	private void TryToInteract(InputAction.CallbackContext context)
 	{
+		if(_po.SomeUiActive) return;
+		
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0);
 
 		foreach(Collider2D col in colliders)

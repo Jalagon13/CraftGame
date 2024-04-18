@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CraftingView : MonoBehaviour
 {
+	[SerializeField] private PlayerObject _po;
 	[SerializeField] private CraftNodeView _craftNodeView;
 	[SerializeField] private SelectedRecipeView _selectedRecipeView;
 	[SerializeField] private Transform _craftNodeHolder;
@@ -21,6 +22,8 @@ public class CraftingView : MonoBehaviour
 		set 
 		{ 
 			_uiActive = value;
+			_po.SomeUiActive = value;
+			
 			LoopThroughChildElements(value);
 			
 			if(value)

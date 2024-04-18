@@ -24,16 +24,16 @@ public class PlayerMoveInput : MonoBehaviour
 		_rb = GetComponent<Rigidbody2D>();
 		_energyController = GetComponent<EnergyController>();
 		
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
 	
 	private void OnDestroy()
 	{
 		_playerInput.Disable();
 		
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
 	private void Start()
