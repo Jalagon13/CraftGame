@@ -20,6 +20,7 @@ public class CursorControl : MonoBehaviour
 	{
 		_playerInput = new();
 		_playerInput.Player.PrimaryAction.started += Hit;
+		_playerInput.Player.SecondaryAction.started += TryToPlace;
 		_playerInput.Player.Interact.started += TryToInteract;
 		_playerInput.Enable();
 		
@@ -52,6 +53,12 @@ public class CursorControl : MonoBehaviour
 	private void EnableControl(ISignalParameters parameters)
 	{
 		_playerInput.Enable();
+	}
+	
+	private void TryToPlace(InputAction.CallbackContext context)
+	{
+		if(_po.SomeUiActive) return;
+		
 	}
 	
 	private void TryToInteract(InputAction.CallbackContext context)
