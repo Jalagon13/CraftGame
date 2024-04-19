@@ -58,7 +58,7 @@ public class HotbarController : MonoBehaviour
 		_unHighlightedColor = _inventorySlotViews[0].GetComponent<Image>().color;
 		
 		HighlightSelectedSlot();
-		GetFocusItem();
+		SetFocusItem();
 	}
 	
 	private void SelectSlot(InputAction.CallbackContext context)
@@ -66,7 +66,7 @@ public class HotbarController : MonoBehaviour
 		_selectedSlotIndex = Int32.Parse(context.action.name) - 1;
 		
 		HighlightSelectedSlot();
-		GetFocusItem();
+		SetFocusItem();
 	}
 	
 	private void SelectSlotScroll(InputAction.CallbackContext context)
@@ -89,10 +89,10 @@ public class HotbarController : MonoBehaviour
 		}
 		
 		HighlightSelectedSlot();
-		GetFocusItem();
+		SetFocusItem();
 	}
 	
-	private void GetFocusItem()
+	public void SetFocusItem()
 	{
 		_focusInventoryItem = _playerInventory.InventoryItems[_selectedSlotIndex];
 		

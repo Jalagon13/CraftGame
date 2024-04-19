@@ -248,13 +248,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Rsc] WorkBench'
       objectReference: {fileID: 0}
+    - target: {fileID: 4231091392320477771, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: managedReferences[6315671958325821440].Sfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _breakType
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _maxHitPoints
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _clickableName
@@ -312,6 +316,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7406065402448151495, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: managedReferences[1619343171848765462].Sfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
     - target: {fileID: 9041307564153774519, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: m_Sprite
       value: 

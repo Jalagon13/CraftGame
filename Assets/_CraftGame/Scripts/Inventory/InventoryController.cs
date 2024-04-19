@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private int _slotAmount;
+	[SerializeField] private UnityEvent _onInventoryUpdate;
 	[SerializeField] private List<InventoryItem> _startingItems = new();
 	
 	private InventoryModel _inventoryModel;
@@ -215,10 +217,12 @@ public class InventoryController : MonoBehaviour
 	public void CollectItem(InventoryItem itemToCollect)
 	{
 		_inventoryModel.AddItem(itemToCollect);
+		_onInventoryUpdate?.Invoke();
 	}
 	
 	public void RemoveItem(ItemObject itemToRemove, int quantity)
 	{
 		_inventoryModel.RemoveItem(itemToRemove, quantity);
+		_onInventoryUpdate?.Invoke();
 	}
 }

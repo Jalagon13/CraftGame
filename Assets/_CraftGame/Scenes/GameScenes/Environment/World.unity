@@ -88845,18 +88845,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1857470771925580248, guid: c6ff5c7da3c414304a409ab7b5e48fed, type: 3}
-      propertyPath: managedReferences[6315671958325821440].Sfx
-      value: 
-      objectReference: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
     - target: {fileID: 2838190645906719289, guid: c6ff5c7da3c414304a409ab7b5e48fed, type: 3}
       propertyPath: m_Name
       value: '[Rsc] WorkBench'
       objectReference: {fileID: 0}
-    - target: {fileID: 5023613487545933908, guid: c6ff5c7da3c414304a409ab7b5e48fed, type: 3}
-      propertyPath: managedReferences[1619343171848765462].Sfx
-      value: 
-      objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
     - target: {fileID: 8443878230557283712, guid: c6ff5c7da3c414304a409ab7b5e48fed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
