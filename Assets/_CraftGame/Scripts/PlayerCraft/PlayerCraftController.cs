@@ -41,6 +41,11 @@ public class PlayerCraftController : MonoBehaviour
 		InitializeView();
 	}
 	
+	public void UpdateView()
+	{
+		_playerCraftView.Initialize(_playerCraftModel.PlayerRecipes);
+	}
+	
 	private void OnRecipeResearched(ISignalParameters parameters)
 	{
 		ItemObject researchItem = (ItemObject)parameters.GetParameter("ResearchItem");

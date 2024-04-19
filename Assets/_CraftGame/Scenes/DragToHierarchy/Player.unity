@@ -925,6 +925,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1522204163}
+        m_TargetAssemblyTypeName: PlayerCraftController, Assembly-CSharp
+        m_MethodName: UpdateView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onInventoryOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1522204163}
+        m_TargetAssemblyTypeName: PlayerCraftController, Assembly-CSharp
+        m_MethodName: UpdateView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _startingItems:
   - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
     Quantity: 1
@@ -934,14 +961,6 @@ MonoBehaviour:
     Quantity: 1
   - Item: {fileID: 11400000, guid: bfaa971bbfd6f415a871865b4e586733, type: 2}
     Quantity: 1
-  - Item: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-    Quantity: 4
-  - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
-    Quantity: 4
-  - Item: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
-    Quantity: 4
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,9 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerRecipes:
   - Recipe: {fileID: 11400000, guid: 0a4885aaacc5d46cdaf242526b3e8ade, type: 2}
-    Discovered: 0
-  - Recipe: {fileID: 11400000, guid: 3b8a1ddf02a3244a68eb0db2f8a8e980, type: 2}
-    Discovered: 0
+    Discovered: 1
 --- !u!1 &1643723598
 GameObject:
   m_ObjectHideFlags: 0

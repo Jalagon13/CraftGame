@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
-  m_Name: '[REC] Test 2'
+  m_Name: '[REC] Work Bench'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-  OutputAmount: 2
-  CraftingTimer: 4
-  OneTimeCraftable: 1
+  OutputItem: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}
+  OutputAmount: 1
+  CraftingTimer: 5
+  OneTimeCraftable: 0
   ResourceList:
-  - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
-    Quantity: 2
-  - Item: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
-    Quantity: 4
+  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+    Quantity: 8

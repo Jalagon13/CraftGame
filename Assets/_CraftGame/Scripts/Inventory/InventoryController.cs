@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private int _slotAmount;
 	[SerializeField] private UnityEvent _onInventoryUpdate;
+	[SerializeField] private UnityEvent _onInventoryOpen;
 	[SerializeField] private List<InventoryItem> _startingItems = new();
 	
 	private InventoryModel _inventoryModel;
@@ -58,9 +59,11 @@ public class InventoryController : MonoBehaviour
 		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
-	private void Start()
+	private IEnumerator Start()
 	{
 		InitializeViews();
+		
+		yield return new WaitForEndOfFrame();
 		
 		foreach(InventoryItem item in _startingItems)
 		{
@@ -212,6 +215,11 @@ public class InventoryController : MonoBehaviour
 	private void ToggleInventroy(InputAction.CallbackContext context)
 	{
 		_inventoryView.InventoryEnabled = !_inventoryView.InventoryEnabled;
+		
+		if(_inventoryView.InventoryEnabled)
+		{
+			_onInventoryOpen?.Invoke();	
+		}
 	}
 	
 	public void CollectItem(InventoryItem itemToCollect)

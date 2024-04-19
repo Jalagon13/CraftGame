@@ -114,7 +114,28 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3518eb3a455b14da7b0365f6bef0a260
+      internalID: -96700645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dply_furnace
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -124,8 +145,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3518eb3a455b14da7b0365f6bef0a260
-      internalID: -96700645
+      spriteID: 5096ba895bcdc427a9a38e44aa4283ab
+      internalID: -309715764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dply_campfire
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4ef17349413b455f96f610dc639e0e7
+      internalID: -1611157296
       vertices: []
       indices: 
       edges: []
@@ -141,6 +183,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      dply_campfire: -1611157296
+      dply_furnace: -309715764
       dply_work_bench: -96700645
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

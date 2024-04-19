@@ -137,7 +137,7 @@ public class SpawnFloor : MonoBehaviour
 
 		foreach(Collider2D col in colliders)
 		{
-			if(col.CompareTag("Clickable")/*  || col.TryGetComponent(out FeetTag ft) */) 
+			if(col.CompareTag("Clickable") || col.TryGetComponent(out IInteractable interactable)) 
 			{
 				return false;
 			}

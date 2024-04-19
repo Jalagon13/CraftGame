@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -135,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -156,7 +156,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -240,6 +240,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b37b7ab8d9d4a5cb86c1e8f680bd58
+      internalID: -1571514942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_sword
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -250,8 +271,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24b37b7ab8d9d4a5cb86c1e8f680bd58
-      internalID: -1571514942
+      spriteID: 9df0f99e5011f44b3ac7287c9a35f3ba
+      internalID: -1805061650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_pickaxe
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93e9124b230e4babb6712b869ae4617
+      internalID: 1009719350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_axe
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d14cd26eb0948e7ae5f02ec04f6ebf
+      internalID: 1411200348
       vertices: []
       indices: 
       edges: []
@@ -269,6 +332,9 @@ TextureImporter:
     nameFileIdTable:
       item_mushroom: -1464366705
       item_stone: -1096778836
+      item_stone_axe: 1411200348
+      item_stone_pickaxe: 1009719350
+      item_stone_sword: -1805061650
       item_wood: -395863171
       item_wood_axe: -1858806548
       item_wood_hammer: -1571514942
