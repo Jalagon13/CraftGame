@@ -333,6 +333,9 @@ MonoBehaviour:
   _damageMaxParameter:
     Parameter: {fileID: 11400000, guid: ff961ca8803bf4cfd9a2bfc25bdd82a7, type: 2}
     Value: 0
+  _clickDistanceParameter:
+    Parameter: {fileID: 11400000, guid: a0d2002d0fba144569fa3b3ea0fcbe8b, type: 2}
+    Value: 0
 --- !u!58 &296476369
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -992,6 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8c6a1f4acef4c0fb987e10c8b6cfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnFloorTilemap: {fileID: 11400000, guid: 92fdcfa673bb44428b75cbb30f7e1edd, type: 2}
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
   _cursorControl: {fileID: 296476368}
 --- !u!114 &1522204161

@@ -13,8 +13,9 @@ public class DeployObject : ItemObject
 	public override void ExecutePrimaryAction(FocusItemController controller)
 	{
 		Vector2 pos = controller.CursorControl.transform.position;
+		bool onSpawnFloor = controller.SpawnFloorTilemap.Tilemap.HasTile(Vector3Int.FloorToInt(pos));
 		
-		if(controller.IsClear(pos))
+		if(controller.IsClear(pos) && onSpawnFloor)
 		{
 			PlaceDownPrefab(pos);
 			controller.PlayerObject.PlayerInventory.RemoveItem(this, 1); // Note to future self: This implementation is bugged and will need fixing later

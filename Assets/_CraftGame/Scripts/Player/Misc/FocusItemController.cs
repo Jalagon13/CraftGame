@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class FocusItemController : MonoBehaviour
 {
+	[SerializeField] private TilemapObject _spawnFloorTilemap;
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private CursorControl _cursorControl;
 	
@@ -14,6 +15,7 @@ public class FocusItemController : MonoBehaviour
 	public CursorControl CursorControl => _cursorControl;	
 	public InventoryItem FocusItem => _focusItem;
 	public PlayerObject PlayerObject => _po;
+	public TilemapObject SpawnFloorTilemap => _spawnFloorTilemap;
 	
 	private void Awake()
 	{

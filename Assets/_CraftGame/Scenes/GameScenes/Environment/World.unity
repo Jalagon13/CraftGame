@@ -1113,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e64d3660a3428c969f442b663599b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilemapObject: {fileID: 11400000, guid: 92fdcfa673bb44428b75cbb30f7e1edd, type: 2}
   _respawnTimer: 2.5
   _rscSpawnSettings:
   - ClickableToSpawn: {fileID: 6013588384790051927, guid: 0112a601b186643ae8e16f46d4a4280a, type: 3}
@@ -3271,6 +3272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e64d3660a3428c969f442b663599b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilemapObject: {fileID: 11400000, guid: 92fdcfa673bb44428b75cbb30f7e1edd, type: 2}
   _respawnTimer: 2.5
   _rscSpawnSettings:
   - ClickableToSpawn: {fileID: 6013588384790051927, guid: 0112a601b186643ae8e16f46d4a4280a, type: 3}
@@ -89379,6 +89381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e64d3660a3428c969f442b663599b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilemapObject: {fileID: 11400000, guid: 92fdcfa673bb44428b75cbb30f7e1edd, type: 2}
   _respawnTimer: 2.5
   _rscSpawnSettings:
   - ClickableToSpawn: {fileID: 6013588384790051927, guid: 0112a601b186643ae8e16f46d4a4280a, type: 3}

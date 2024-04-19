@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class SpawnFloor : MonoBehaviour
 {
+	[SerializeField] private TilemapObject _tilemapObject;
 	[SerializeField] private float _respawnTimer;
 	[Space()]
 	[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
@@ -25,6 +26,7 @@ public class SpawnFloor : MonoBehaviour
 	private void OnEnable()
 	{
 		_spawnTilemap = GetComponent<Tilemap>();
+		_tilemapObject.Tilemap = _spawnTilemap;
 		
 		// Gather all spawn tile positions
 		BoundsInt bounds = _spawnTilemap.cellBounds;
