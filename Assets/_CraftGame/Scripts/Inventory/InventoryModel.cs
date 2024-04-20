@@ -93,6 +93,8 @@ public class InventoryModel
 		
 		foreach (InventoryItem item in _inventoryItems)
 		{
+			if(item.Item == null) continue;
+			
 			if(item.Item.Name == inventoryItemToCheck.Item.Name)
 			{
 				amountCounter += item.Quantity;
