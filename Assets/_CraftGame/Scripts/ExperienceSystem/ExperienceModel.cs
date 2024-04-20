@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceModel : MonoBehaviour
+public class ExperienceModel
 {
 	public event Action ValueIncreased;
 	public event Action ValueDecreased;

@@ -20,7 +20,6 @@ public class SpawnFloor : MonoBehaviour
 	{
 		public Clickable ClickableToSpawn;
 		public int SpawnAmount;
-		public float DistancePreference;
 	}
 	
 	private void OnEnable()
@@ -63,25 +62,24 @@ public class SpawnFloor : MonoBehaviour
 		yield return new WaitForSeconds(_respawnTimer);
 		
 		if(_clearedClickables.Count > 0)
+		{
+			string rscToSpawnName = _clearedClickables.Peek();
+			
+			var randPos = GetRandomPosition();
+			Vector3Int pos = new Vector3Int((int)randPos.x, (int)randPos.y, 0);
+			
+			if(IsValidSpawnPosition(pos))
 			{
-				string rscToSpawnName = _clearedClickables.Peek();
-				
-				var randPos = GetRandomPosition();
-				Vector3Int pos = new Vector3Int((int)randPos.x, (int)randPos.y, 0);
-				
-				if(IsValidSpawnPosition(pos))
+				foreach(RscSpawnSetting entry in _rscSpawnSettings)
 				{
-					foreach(RscSpawnSetting entry in _rscSpawnSettings)
+					if(rscToSpawnName == entry.ClickableToSpawn.Name)
 					{
-						if(rscToSpawnName == entry.ClickableToSpawn.Name)
-						{
-							SpawnClickable(entry.ClickableToSpawn, pos);
-							_clearedClickables.Pop();
-							Debug.Log("Rsc Re-generated");
-						}
+						SpawnClickable(entry.ClickableToSpawn, pos);
+						_clearedClickables.Pop();
 					}
 				}
 			}
+		}
 			
 			StartCoroutine(ResourceSpawner());
 	}
@@ -101,15 +99,17 @@ public class SpawnFloor : MonoBehaviour
 		{
 			for (int i = 0; i < entry.SpawnAmount; i++)
 			{
+				tryAgain:
 				var randPos = GetRandomPosition();
 				Vector3Int pos = new Vector3Int((int)randPos.x, (int)randPos.y, 0);
-				
-				if(IsNearbyResources(new Vector2(pos.x, pos.y), entry.DistancePreference)) 
-					continue;
 				
 				if(IsValidSpawnPosition(pos))
 				{
 					SpawnClickable(entry.ClickableToSpawn, pos);
+				}
+				else
+				{
+					goto tryAgain;
 				}
 			}
 		}
@@ -144,21 +144,6 @@ public class SpawnFloor : MonoBehaviour
 		}
 
 		return true;
-	}
-	
-	private bool IsNearbyResources(Vector2 pos, float radiusToCheck)
-	{
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(pos + new Vector2(0.5f, 0.5f), radiusToCheck);
-		
-		foreach(Collider2D col in colliders)
-		{
-			if(/* col.gameObject.layer == 3 ||  */col.CompareTag("Clickable")/*  || col.TryGetComponent(out FeetTag ft) */) 
-			{
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	private Vector2 GetRandomPosition()

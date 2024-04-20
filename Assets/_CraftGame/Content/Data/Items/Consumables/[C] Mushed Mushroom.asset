@@ -17,5 +17,5 @@ MonoBehaviour:
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
-  _energyValue: 50
+  _energyValue: 120
   _consumeSound: {fileID: 8300000, guid: 8e1c936e926ce1f408a69e176d4ed9f0, type: 3}

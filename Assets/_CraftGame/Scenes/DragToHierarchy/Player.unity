@@ -957,20 +957,12 @@ MonoBehaviour:
     Quantity: 1
   - Item: {fileID: 11400000, guid: ee38e59807a994ce7a61d9c873c50e8e, type: 2}
     Quantity: 1
-  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
-    Quantity: 1
   - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
     Quantity: 1
   - Item: {fileID: 11400000, guid: bfaa971bbfd6f415a871865b4e586733, type: 2}
     Quantity: 1
-  - Item: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-    Quantity: 99
-  - Item: {fileID: 11400000, guid: 22e4bfd2065704320b30b6a975a4d37d, type: 2}
-    Quantity: 99
-  - Item: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
-    Quantity: 99
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,7 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
-  _maxEnergy: 200
+  _maxEnergy: 300
 --- !u!114 &1522204159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,7 +1261,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 60437175
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_Sprite: {fileID: -3168733581550749585, guid: f7043b7291f49844b9671b3d3dedcbb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
