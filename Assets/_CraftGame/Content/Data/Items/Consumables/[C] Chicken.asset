@@ -18,4 +18,4 @@ MonoBehaviour:
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
   _energyValue: 10
-  _consumeSound: {fileID: 8300000, guid: 6f62a508e74d948aa9cfb41013fb7545, type: 3}
+  _consumeSound: {fileID: 8300000, guid: 943b650842f7b445ea00ce19cc0249f6, type: 3}

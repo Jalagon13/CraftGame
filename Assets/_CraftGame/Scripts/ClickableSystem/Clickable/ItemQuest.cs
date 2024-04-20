@@ -32,7 +32,7 @@ public class ItemQuest : MonoBehaviour
         {
             _errorText.text = "You already completed this.";
         }
-        else if (_inventory.FindItem(_item).Quantity >= _itemAmount)
+        else if (_inventory.InventoryModel.GetAmount(_item) >= _itemAmount)
         {
             _errorText.text = "Hooray, thank you!";
             Completed = true;

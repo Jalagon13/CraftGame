@@ -34,7 +34,7 @@ public class SelectedRecipeView : MonoBehaviour
 		foreach (SelectedResource ingredient in _craftingController.CraftingModel.SelectedResources)
 		{
 			IngredientView ingredientView = Instantiate(_ingredientView, _ingredientViewHolder);
-			ingredientView.Initialize(ingredient.Resource, ingredient.InventoryAmount, ingredient.RequiredAmount);
+			ingredientView.Initialize(ingredient.Resource, ingredient.InventoryAmount, ingredient.RequiredAmount * _craftingController.CraftingModel.CraftAmount);
 		}
 	}
 	

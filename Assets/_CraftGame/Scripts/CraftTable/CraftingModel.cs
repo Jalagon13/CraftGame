@@ -179,7 +179,7 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		foreach (InventoryItem resource in _selectedRecipe.ResourceList)
 		{
 			int inventoryAmount = _po.PlayerInventory.InventoryModel.GetAmount(resource.Item);
-			SelectedResource rsc = new(resource.Item, inventoryAmount, resource.Quantity * _craftAmount);
+			SelectedResource rsc = new(resource.Item, inventoryAmount, resource.Quantity);
 			_selectedResources.Add(rsc);
 		}
 	}
@@ -204,7 +204,8 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		{
 			int inventoryAmount = sr.InventoryAmount;
 			int requiredTestAmount = sr.RequiredAmount * (_craftAmount + 1);
-			
+			Debug.Log($"Base Required Amount: {sr.RequiredAmount}");
+			Debug.Log($"Required Test Amount: {requiredTestAmount}");
 			if(requiredTestAmount > inventoryAmount)
 			{
 				return false;
