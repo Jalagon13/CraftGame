@@ -32,7 +32,7 @@ public class InventoryController : MonoBehaviour
 		_hotbarController.PlayerInventory = _inventoryModel;
 		
 		_playerInput = new PlayerInput();
-		_playerInput.Player.ToggleInventory.started += ToggleInventroy;
+		_playerInput.Player.ToggleInventory.started += ToggleInventory;
 		
 		_po.PlayerInventory = this;
 	}
