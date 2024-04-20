@@ -3278,6 +3278,12 @@ MonoBehaviour:
   - ClickableToSpawn: {fileID: 6013588384790051927, guid: 0112a601b186643ae8e16f46d4a4280a, type: 3}
     SpawnAmount: 3
     DistancePreference: 0
+  - ClickableToSpawn: {fileID: 5986929086866913530, guid: 7270a148ec9e14795ae2d48d556498f7, type: 3}
+    SpawnAmount: 2
+    DistancePreference: 0
+  - ClickableToSpawn: {fileID: 7940830027225874446, guid: 54403546ec77440458d677376af4b432, type: 3}
+    SpawnAmount: 2
+    DistancePreference: 0
 --- !u!1 &629571881
 GameObject:
   m_ObjectHideFlags: 0
@@ -88428,6 +88434,87 @@ Transform:
   - {fileID: 629571882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1409913840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1087336989984755091, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_Name
+      value: '[Rsc] LootBox'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _breakType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _maxHitPoints
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _clickableName
+      value: Loot Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5106293812064502547, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
 --- !u!1 &1481998798
 GameObject:
   m_ObjectHideFlags: 0
@@ -91145,3 +91232,4 @@ SceneRoots:
   - {fileID: 1711457181}
   - {fileID: 1317285675}
   - {fileID: 261760879}
+  - {fileID: 1409913840}

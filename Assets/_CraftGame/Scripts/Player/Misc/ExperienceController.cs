@@ -40,6 +40,8 @@ public class ExperienceController : MonoBehaviour
 	
 	private void OnClickableDestroyed(ISignalParameters parameters)
 	{
+		if(!parameters.HasParameter("Experience")) return;
+		
 		int xpFromClickable = (int)parameters.GetParameter("Experience");
 		
 		_currentExperience += xpFromClickable;

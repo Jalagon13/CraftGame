@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
+  m_Name: '[REC] Work Bench'
+  m_EditorClassIdentifier: 
+  OutputItem: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}
+  OutputAmount: 1
+  CraftingTimer: 0
+  OneTimeCraftable: 0
+  ResourceList:
+  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+    Quantity: 10
+  - Item: {fileID: 11400000, guid: 22e4bfd2065704320b30b6a975a4d37d, type: 2}
+    Quantity: 2

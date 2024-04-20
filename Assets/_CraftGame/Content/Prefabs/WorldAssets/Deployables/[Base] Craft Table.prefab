@@ -11825,6 +11825,7 @@ MonoBehaviour:
   _maxHitPoints: 1
   _breakType: 4
   _canBeHit: 1
+  _canGiveXp: 1
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}

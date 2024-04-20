@@ -48,6 +48,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _displayName
+      value: Furnace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fa5e814bd20824e999f7d28c7fe7fbbe, type: 2}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8747e165a8bcf4adcb5e5562ad719868, type: 2}
     - target: {fileID: 6011008728559735559, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: m_Sprite
       value: 

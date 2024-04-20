@@ -50,20 +50,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a96be2c73e3694cbc874c55e458dfe7c, type: 2}
+      objectReference: {fileID: 11400000, guid: 389d9b255bac345309d45e9de5c5c2f8, type: 2}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 86512775bdb794802932c417ed0687e2, type: 2}
+      objectReference: {fileID: 11400000, guid: 92b4e7cb6e49b410094e822117e6c07d, type: 2}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.data[2]
       value: 
+      objectReference: {fileID: 11400000, guid: a96be2c73e3694cbc874c55e458dfe7c, type: 2}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 86512775bdb794802932c417ed0687e2, type: 2}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.data[4]
+      value: 
       objectReference: {fileID: 11400000, guid: 3b8a1ddf02a3244a68eb0db2f8a8e980, type: 2}
+    - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _craftingRecipes.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: c510f580208b74373b22c1aab459a1ea, type: 2}
     - target: {fileID: 8660643476792677032, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: m_Name
       value: '[Rsc] Work Bench'

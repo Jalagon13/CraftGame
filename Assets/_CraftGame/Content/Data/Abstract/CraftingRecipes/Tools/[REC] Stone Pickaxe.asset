@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
-  m_Name: '[REC] Stone Sword'
+  m_Name: '[REC] Stone Pickaxe'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: 5f77b7c501eaa45c1b86be76a652759d, type: 2}
+  OutputItem: {fileID: 11400000, guid: 7017b8c4fad0e47329e814b8ccb90d08, type: 2}
   OutputAmount: 1
   CraftingTimer: 10
   OneTimeCraftable: 1
   ResourceList:
   - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
-    Quantity: 10
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-    Quantity: 5
-  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
+    Quantity: 8
+  - Item: {fileID: 11400000, guid: 4dcbbf88c41e04ae2a2d519764b163bc, type: 2}
+    Quantity: 3
+  - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
     Quantity: 1

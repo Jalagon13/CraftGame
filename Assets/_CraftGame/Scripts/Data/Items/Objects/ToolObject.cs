@@ -8,6 +8,7 @@ public enum ToolType
 	Axe,
 	Pickaxe,
 	Sword,
+	Shovel,
 	Hammer
 }
 
@@ -18,17 +19,17 @@ public class ToolObject : ItemObject
 	
 	public ToolType ToolType => _type;
 
-    public override void ExecutePrimaryAction(FocusItemController controller)
-    {
-        
-    }
+	public override void ExecutePrimaryAction(FocusItemController controller)
+	{
+		
+	}
 
-    public override void ExecuteSecondaryAction(FocusItemController controller)
-    {
-        
-    }
+	public override void ExecuteSecondaryAction(FocusItemController controller)
+	{
+		
+	}
 
-    public override string GetDescription()
+	public override string GetDescription()
 	{
 		return string.Empty;
 	}

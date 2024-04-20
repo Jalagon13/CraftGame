@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Deployables
     originalName: 
-    pivot: {x: 1.032258, y: 0}
+    pivot: {x: 0.65957445, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 31
-      height: 47
+      width: 47
+      height: 16
     spriteID: 4c9617d9416e54f819cd4408481038aa
     spriteBone: []
     spriteOutline: []
@@ -151,14 +151,14 @@ ScriptedImporter:
     - name: Deployables
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 1
         y: 0
-        width: 31
-        height: 47
+        width: 47
+        height: 16
       spriteId: 4c9617d9416e54f819cd4408481038aa
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 48}
+  canvasSize: {x: 64, y: 16}

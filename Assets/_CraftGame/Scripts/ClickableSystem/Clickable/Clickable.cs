@@ -9,6 +9,7 @@ public class Clickable : MonoBehaviour
 	[SerializeField] private int _maxHitPoints;
 	[SerializeField] private ToolType _breakType;
 	[SerializeField] private bool _canBeHit = true;
+	[SerializeField] private bool _canGiveXp = true;
 	[SerializeField] private LootTable _lootTable;
 	[Header("Feedbacks")]
 	[SerializeField] private MMF_Player _clickFeedback;
@@ -34,7 +35,10 @@ public class Clickable : MonoBehaviour
 	
 	public void Hit(int amount, ToolType incomingToolType)
 	{
+		if(_breakType == ToolType.None)
+			goto byPass;
 		if(incomingToolType != _breakType) return;
+		byPass:
 		
 		_clickFeedback?.PlayFeedbacks(_clickFeedback.transform.position, amount);
 		_currentHitPoints -= amount;
@@ -52,7 +56,10 @@ public class Clickable : MonoBehaviour
 		
 		Signal signal = GameSignals.CLICKABLE_DESTROYED;
 		signal.ClearParameters();
-		signal.AddParameter("Experience", _maxHitPoints);
+		if(_canGiveXp)
+		{
+			signal.AddParameter("Experience", _maxHitPoints);
+		}
 		signal.AddParameter("Clickable", this);
 		signal.Dispatch();
 		

@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
-  m_Name: '[REC] Stone Pickaxe'
+  m_Name: '[REC] Iron Ingot'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: 7017b8c4fad0e47329e814b8ccb90d08, type: 2}
+  OutputItem: {fileID: 11400000, guid: 50b025ca958e54af3b41c5095838d0fd, type: 2}
   OutputAmount: 1
-  CraftingTimer: 10
-  OneTimeCraftable: 1
+  CraftingTimer: 3
+  OneTimeCraftable: 0
   ResourceList:
-  - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
-    Quantity: 10
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-    Quantity: 5
-  - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
+  - Item: {fileID: 11400000, guid: 1f8500c0491aa48f2bc7dae2a6360196, type: 2}
     Quantity: 1
+  - Item: {fileID: 11400000, guid: 38c4e319e73b0428895ae0ac3f6838fe, type: 2}
+    Quantity: 2

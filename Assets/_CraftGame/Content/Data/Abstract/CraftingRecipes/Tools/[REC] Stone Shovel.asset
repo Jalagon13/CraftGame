@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
-  m_Name: '[REC] Work Bench'
+  m_Name: '[REC] Stone Shovel'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: 5a7a3320c275d45f885268b09faa3757, type: 2}
+  OutputItem: {fileID: 11400000, guid: 611cb2dfabb93498f8db54bc545082fa, type: 2}
   OutputAmount: 1
-  CraftingTimer: 5
-  OneTimeCraftable: 0
+  CraftingTimer: 10
+  OneTimeCraftable: 1
   ResourceList:
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+  - Item: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
     Quantity: 8
+  - Item: {fileID: 11400000, guid: 4dcbbf88c41e04ae2a2d519764b163bc, type: 2}
+    Quantity: 3
+  - Item: {fileID: 11400000, guid: ee38e59807a994ce7a61d9c873c50e8e, type: 2}
+    Quantity: 1
