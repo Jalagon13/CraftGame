@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,8 @@ public class OfferTotem : MonoBehaviour, IInteractable
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private ItemObject _itemNeeded;
 	[SerializeField] private int _quantityQuota;
-	[SerializeField] private UnityEvent _onComplete;
+	[SerializeField] private int _xpReward;
+	[SerializeField] private MMF_Player _rewardFeedback;
 	
 	private SpriteRenderer _itemDisplaySr;
 	private Canvas _selectedCanvas;
@@ -63,9 +65,9 @@ public class OfferTotem : MonoBehaviour, IInteractable
 			
 			if(_currentAmount <= 0)
 			{
-				_onComplete?.Invoke();
 				_complete = true;
-				Debug.Log("Quota Complete");
+				_po.PlayerExperience.AddExperience(_xpReward);
+				_rewardFeedback?.PlayFeedbacks();
 			}
 		}
 	}

@@ -7,20 +7,16 @@ public class ExperienceController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private MMF_Player _expGainFeedbacks;
+	private ExperienceModel _experienceModel = new();
 	private ExperienceView _experienceView;
 	
-	private int _currentExperience;
-	
-	public int CurrentExperience { get { return _currentExperience; } 
-		set 
-		{ 
-			_currentExperience = value; 
-			_experienceView.UpdateView(_currentExperience);
-		} 
-	} 
+	public ExperienceModel ExperienceModel => _experienceModel;
 	
 	private void Awake()
 	{
+		_experienceModel = new();
+		_experienceModel.ValueIncreased += UpdateView;
+		_experienceModel.ValueDecreased += UpdateView;
 		_po.PlayerExperience = this;
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(OnClickableDestroyed);
@@ -28,6 +24,9 @@ public class ExperienceController : MonoBehaviour
 	
 	private void OnDestroy()
 	{
+		_experienceModel.ValueIncreased -= UpdateView;
+		_experienceModel.ValueDecreased -= UpdateView;
+		
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(OnClickableDestroyed);
 	}
 	
@@ -38,14 +37,28 @@ public class ExperienceController : MonoBehaviour
 		_experienceView.UpdateView(0);
 	}
 	
+	private void UpdateView()
+	{
+		_experienceView.UpdateView(_experienceModel.CurrentValue);
+	}
+	
+	public void AddExperience(int amount)
+	{
+		PopupMessage.Create(transform.position, $"+{amount}xp", Color.white, Vector2.up, 1f);
+		_expGainFeedbacks?.PlayFeedbacks();
+		_experienceModel?.Increment(amount);
+	}
+	
+	public void SubtractExperience(int amount)
+	{
+		_experienceModel?.Decrement(amount);
+	}
+	
 	private void OnClickableDestroyed(ISignalParameters parameters)
 	{
 		if(!parameters.HasParameter("Experience")) return;
 		
 		int xpFromClickable = (int)parameters.GetParameter("Experience");
-		
-		_currentExperience += xpFromClickable;
-		_expGainFeedbacks?.PlayFeedbacks();
-		_experienceView.UpdateView(_currentExperience);
+		AddExperience(xpFromClickable);
 	}
 }

@@ -33,7 +33,7 @@ public class SelectedResearchView : MonoBehaviour
 		
 		
 		// Write XP Check Functionality to determine if the button is interactable
-		_researchButton.interactable = _po.PlayerExperience.CurrentExperience >= _xpCost;
+		_researchButton.interactable = _po.PlayerExperience.ExperienceModel.CurrentValue >= _xpCost;
 		_researchButton.gameObject.SetActive(!_selectedResearchNode.IsComplete);
 	}
 	
@@ -47,7 +47,7 @@ public class SelectedResearchView : MonoBehaviour
 		
 		// Complete Selected Research Node
 		_selectedResearchNode.CompleteNode();
-		_po.PlayerExperience.CurrentExperience -= _xpCost;
+		_po.PlayerExperience.SubtractExperience(_xpCost);
 		
 		UpdateView();
 		

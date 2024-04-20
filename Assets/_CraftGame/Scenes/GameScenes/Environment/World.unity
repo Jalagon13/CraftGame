@@ -4159,9 +4159,8 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
   _itemNeeded: {fileID: 11400000, guid: 641fd2c6fe2524188bbcaee5f9045ff4, type: 2}
   _quantityQuota: 3
-  _onComplete:
-    m_PersistentCalls:
-      m_Calls: []
+  _xpReward: 1000
+  _rewardFeedback: {fileID: 1752727023}
 --- !u!61 &964635475
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4216,7 +4215,7 @@ Transform:
   m_GameObject: {fileID: 964635473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalPosition: {x: 4, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89130,11 +89129,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
     - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6726995630510643754, guid: 64fe7686a6bcb45bc82733506ff80ea0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -89680,7 +89679,7 @@ GameObject:
   - component: {fileID: 1752727022}
   - component: {fileID: 1752727023}
   m_Layer: 0
-  m_Name: ExpandFeedbacks
+  m_Name: CompleteFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89791,6 +89790,7 @@ MonoBehaviour:
   DebugActive: 0
   FeedbacksList:
   - rid: 6315672068539023360
+  - rid: 6315672226140258304
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -89972,6 +89972,77 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
+    - rid: 6315672226140258304
+      type: {class: MMF_Destroy, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: 1789321286
+        Label: Destroy
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 1
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 1752727023}
+        DebugActive: 0
+        TargetGameObject: {fileID: 964635473}
+        ExtraTargetGameObjects: []
+        Mode: 0
 --- !u!1 &1855155074
 GameObject:
   m_ObjectHideFlags: 0
