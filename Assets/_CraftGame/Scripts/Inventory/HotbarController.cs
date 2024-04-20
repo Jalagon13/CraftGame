@@ -47,8 +47,10 @@ public class HotbarController : MonoBehaviour
 		_playerInput.Disable();
 	}
 	
-	private void Start()
+	private IEnumerator Start()
 	{
+		yield return new WaitForEndOfFrame();
+		
 		foreach (Transform inventorySlotView in _hotbarView.transform)
 		{
 			var isv = inventorySlotView.GetComponent<InventorySlotView>();

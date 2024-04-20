@@ -48,11 +48,13 @@ public class PlaceDownIndicator : MonoBehaviour
 	
 	private void ShowIndicator()
 	{
+		_sr = GetComponent<SpriteRenderer>();
 		_sr.enabled = true;
 	}
 	
 	private void HideIndicator()
 	{
+		_sr = GetComponent<SpriteRenderer>();
 		_sr.enabled = false;
 	}
 }

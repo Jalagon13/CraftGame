@@ -27,7 +27,6 @@ public class PlayerCraftController : MonoBehaviour
 	private void Awake()
 	{
 		_playerCraftModel = new(_playerRecipes);
-		
 		GameSignals.ON_RECIPE_RESEARCHED.AddListener(OnRecipeResearched);
 	}
 	
@@ -36,8 +35,9 @@ public class PlayerCraftController : MonoBehaviour
 		GameSignals.ON_RECIPE_RESEARCHED.RemoveListener(OnRecipeResearched);
 	}
 	
-	private void Start()
+	private IEnumerator Start()
 	{
+		yield return new WaitForEndOfFrame();
 		InitializeView();
 	}
 	
@@ -57,7 +57,7 @@ public class PlayerCraftController : MonoBehaviour
 	private void InitializeView()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
-		_playerCraftView = FindObjectOfType<PlayerCraftView>();
+		_playerCraftView = FindObjectOfType<PlayerCraftView>(true);
 		_playerCraftView.Initialize(_playerCraftModel.PlayerRecipes);
 	}
 }
