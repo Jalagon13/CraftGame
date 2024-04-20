@@ -18,7 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 7cfa68c857dd9f845b2237403d153416, type: 3}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _breakType
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _maxHitPoints
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _clickableName

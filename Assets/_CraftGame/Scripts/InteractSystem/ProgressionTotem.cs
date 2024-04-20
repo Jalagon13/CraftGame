@@ -42,19 +42,19 @@ public class ProgressionTotem : MonoBehaviour, IInteractable
 	
 	public void OnInteract()
     {
-        int currentPlrXp = _po.PlayerExperience.CurrentExperience;
+        int currentPlrXp = _po.PlayerExperience.ExperienceModel.CurrentValue;
 		int currentXpQuota = _expandData[_expandDataIndex].XpQuota;
 		int xpNeeded = currentXpQuota - _totemXp;
 		
 		if(currentPlrXp >= xpNeeded)
 		{
 			_totemXp += xpNeeded;
-			_po.PlayerExperience.CurrentExperience -= xpNeeded;
+			_po.PlayerExperience.SubtractExperience(xpNeeded);
 		}
 		else
 		{
 			_totemXp += currentPlrXp;
-			_po.PlayerExperience.CurrentExperience = 0;
+			_po.PlayerExperience.ExperienceModel.CurrentValue = 0;
 		}
 		
 		if(_totemXp >= _expandData[_expandDataIndex].XpQuota)

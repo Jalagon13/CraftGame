@@ -9,12 +9,14 @@ public class CursorControl : MonoBehaviour
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private ItemParameter _damageMinParameter;
 	[SerializeField] private ItemParameter _damageMaxParameter;
+	[SerializeField] private ItemParameter _clickDistanceParameter;
 	
 	private PlayerInput _playerInput;
 	private Clickable _currentClickable;
 	private InventoryItem _focusInventoryItem;
 	private int _damageMin;
 	private int _damageMax;
+	private int _clickDistance = 1;
 	
 	private void Awake()
 	{
@@ -24,8 +26,8 @@ public class CursorControl : MonoBehaviour
 		_playerInput.Enable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
 	
 	private void OnDestroy()
@@ -33,8 +35,8 @@ public class CursorControl : MonoBehaviour
 		_playerInput.Disable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(FocusInventoryItemUpdated);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
 	private void LateUpdate()
@@ -56,6 +58,8 @@ public class CursorControl : MonoBehaviour
 	
 	private void TryToInteract(InputAction.CallbackContext context)
 	{
+		if(_po.SomeUiActive) return;
+		
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0);
 
 		foreach(Collider2D col in colliders)
@@ -71,6 +75,9 @@ public class CursorControl : MonoBehaviour
 	private void FocusInventoryItemUpdated(ISignalParameters parameters) 
 	{
 		_focusInventoryItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+		
+		int clickDistance = ExtractParameterValue(_clickDistanceParameter);
+		_clickDistance = clickDistance > 0 ? clickDistance : 1;
 	}
 	
 	private void Hit(InputAction.CallbackContext context)
@@ -90,6 +97,8 @@ public class CursorControl : MonoBehaviour
 	
 	private int ExtractParameterValue(ItemParameter paramter)
 	{
+		if(_focusInventoryItem.Item == null) return 0;
+		
 		var itemParams = _focusInventoryItem.Item.DefaultParameterList;
 
 		if (itemParams.Contains(paramter))
@@ -143,7 +152,7 @@ public class CursorControl : MonoBehaviour
 		Vector2 playerPos = transform.root.transform.localPosition + new Vector3(0, -0.3f, 0);
 		Vector2 direction = (_po.MousePosition - playerPos).normalized;
 
-		taPosition = Vector2.Distance(playerPos, _po.MousePosition) > 1 ? (playerPos += new Vector2(0, 0.25f)) + (direction * 1) : _po.MousePosition;
+		taPosition = Vector2.Distance(playerPos, _po.MousePosition) > _clickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _clickDistance) : _po.MousePosition;
 
 		return taPosition;
 	}

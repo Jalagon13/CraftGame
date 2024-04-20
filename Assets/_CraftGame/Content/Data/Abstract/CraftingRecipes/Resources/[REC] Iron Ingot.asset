@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de87428b9a1324e2fa0ff579eed0900e, type: 3}
+  m_Name: '[REC] Iron Ingot'
+  m_EditorClassIdentifier: 
+  OutputItem: {fileID: 11400000, guid: 50b025ca958e54af3b41c5095838d0fd, type: 2}
+  OutputAmount: 1
+  CraftingTimer: 3
+  OneTimeCraftable: 0
+  ResourceList:
+  - Item: {fileID: 11400000, guid: 1f8500c0491aa48f2bc7dae2a6360196, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 38c4e319e73b0428895ae0ac3f6838fe, type: 2}
+    Quantity: 2

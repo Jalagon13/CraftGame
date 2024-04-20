@@ -96,6 +96,7 @@ MonoBehaviour:
   _maxHitPoints: 15
   _breakType: 1
   _canBeHit: 1
+  _canGiveXp: 1
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
@@ -1141,7 +1142,7 @@ MonoBehaviour:
     - rid: 6315672068470079488
       type: {class: MMF_FloatingText, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -2091806050
         Label: Floating Text
         ChannelMode: 0

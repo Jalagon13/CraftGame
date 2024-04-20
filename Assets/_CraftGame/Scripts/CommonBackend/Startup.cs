@@ -13,6 +13,7 @@ public class Startup : MonoBehaviour
 	private IEnumerator LoadScenes()
 	{
 		yield return StartCoroutine(LoadSceneAdd("Ingame UI")); 
+		yield return new WaitForEndOfFrame();
 		yield return StartCoroutine(LoadSceneAdd("Player")); 
 		yield return StartCoroutine(LoadSceneAdd("World")); 
 		

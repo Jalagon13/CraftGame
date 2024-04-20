@@ -5,30 +5,39 @@ using UnityEngine.InputSystem;
 
 public class FocusItemController : MonoBehaviour
 {
+	[SerializeField] private TilemapObject _spawnFloorTilemap;
+	[SerializeField] private PlayerObject _po;
+	[SerializeField] private CursorControl _cursorControl;
+	
 	private InventoryItem _focusItem;
 	private PlayerInput _playerInput;
+	
+	public CursorControl CursorControl => _cursorControl;	
+	public InventoryItem FocusItem => _focusItem;
+	public PlayerObject PlayerObject => _po;
+	public TilemapObject SpawnFloorTilemap => _spawnFloorTilemap;
 	
 	private void Awake()
 	{
 		_playerInput = new();
 		_playerInput.Player.SecondaryAction.started += ExecuteSecondaryAction;
+		_playerInput.Player.PrimaryAction.started += ExecutePrimaryAction;
+		_playerInput.Enable();
 		
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
 	}
 	
-	private void OnEnable()
-	{
-		_playerInput.Enable();
-	}
-	
-	private void OnDisable()
-	{
-		_playerInput.Disable();
-	}
-	
 	private void OnDestroy()
 	{
+		_playerInput.Disable();
 		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
+	}
+	
+	private void ExecutePrimaryAction(InputAction.CallbackContext context)
+	{
+		if(_focusItem.Item == null || Pointer.IsOverUI()) return;
+		
+		_focusItem.Item.ExecutePrimaryAction(this);
 	}
 	
 	private void ExecuteSecondaryAction(InputAction.CallbackContext context)
@@ -41,5 +50,19 @@ public class FocusItemController : MonoBehaviour
 	private void OnFocusInventoryItemUpdated(ISignalParameters parameters)
 	{
 		_focusItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+	}
+	
+	public bool IsClear(Vector2 position)
+	{
+		Vector2 positionCheck = new(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
+		var colliders = Physics2D.OverlapBoxAll(positionCheck + new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), 0);
+
+		foreach(Collider2D col in colliders)
+		{
+			if(col.TryGetComponent(out Clickable clickable)) 
+				return false;
+		}
+
+		return true;
 	}
 }

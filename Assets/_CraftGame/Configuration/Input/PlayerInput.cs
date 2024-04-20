@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResearchMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffbe704b-6a45-47d8-a653-5d15a4bb39d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -190,6 +199,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ed04e1d-5661-4084-a15c-3534f4db8803"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResearchMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -414,6 +434,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
+        m_Player_ResearchMenu = m_Player.FindAction("ResearchMenu", throwIfNotFound: true);
         // Hotbar
         m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
         m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
@@ -493,6 +514,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Esc;
+    private readonly InputAction m_Player_ResearchMenu;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -503,6 +525,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
+        public InputAction @ResearchMenu => m_Wrapper.m_Player_ResearchMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -530,6 +553,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
+            @ResearchMenu.started += instance.OnResearchMenu;
+            @ResearchMenu.performed += instance.OnResearchMenu;
+            @ResearchMenu.canceled += instance.OnResearchMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -552,6 +578,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
+            @ResearchMenu.started -= instance.OnResearchMenu;
+            @ResearchMenu.performed -= instance.OnResearchMenu;
+            @ResearchMenu.canceled -= instance.OnResearchMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -695,6 +724,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnToggleInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
+        void OnResearchMenu(InputAction.CallbackContext context);
     }
     public interface IHotbarActions
     {

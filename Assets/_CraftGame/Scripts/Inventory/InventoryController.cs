@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private int _slotAmount;
+	[SerializeField] private UnityEvent _onInventoryUpdate;
+	[SerializeField] private UnityEvent _onInventoryOpen;
 	[SerializeField] private List<InventoryItem> _startingItems = new();
 	
 	private InventoryModel _inventoryModel;
@@ -16,7 +19,10 @@ public class InventoryController : MonoBehaviour
 	private MouseItemView _mouseItemView;
 	private HotbarController _hotbarController;
 	private PlayerInput _playerInput;
+	
 	public InventoryModel InventoryModel => _inventoryModel;
+	public MouseItemModel MouseItem => _mouseItemModel;
+	public MouseItemView MouseItemView => _mouseItemView;
 	
 	private void Awake()
 	{
@@ -38,8 +44,8 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.AddListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.AddListener(InventorySlotRightClicked);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.AddListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.AddListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
 	
 	private void OnDisable()
@@ -49,13 +55,15 @@ public class InventoryController : MonoBehaviour
 		
 		GameSignals.ON_SLOT_LEFT_CLICKED.RemoveListener(InventorySlotLeftClicked);
 		GameSignals.ON_SLOT_RIGHT_CLICKED.RemoveListener(InventorySlotRightClicked);
-		GameSignals.ON_CRAFT_TABLE_INTERACT.RemoveListener(DisableControl);
-		GameSignals.ON_CRAFT_TABLE_UNINTERACT.RemoveListener(EnableControl);
+		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
+		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
 	
-	private void Start()
+	private IEnumerator Start()
 	{
 		InitializeViews();
+		
+		yield return new WaitForEndOfFrame();
 		
 		foreach(InventoryItem item in _startingItems)
 		{
@@ -207,15 +215,22 @@ public class InventoryController : MonoBehaviour
 	private void ToggleInventroy(InputAction.CallbackContext context)
 	{
 		_inventoryView.InventoryEnabled = !_inventoryView.InventoryEnabled;
+		
+		if(_inventoryView.InventoryEnabled)
+		{
+			_onInventoryOpen?.Invoke();	
+		}
 	}
 	
 	public void CollectItem(InventoryItem itemToCollect)
 	{
 		_inventoryModel.AddItem(itemToCollect);
+		_onInventoryUpdate?.Invoke();
 	}
 	
 	public void RemoveItem(ItemObject itemToRemove, int quantity)
 	{
 		_inventoryModel.RemoveItem(itemToRemove, quantity);
+		_onInventoryUpdate?.Invoke();
 	}
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43a1626547764275ae706825dbce792, type: 3}
+  m_Name: '[T] Wood Pickaxe'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Wood Pickaxe
+  <UiDisplay>k__BackingField: {fileID: 521086555, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
+  <Stackable>k__BackingField: 0
+  <Description>k__BackingField: 
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: 709ade12f58b04afe9eac18a31770b70, type: 2}
+    Value: 1
+  - Parameter: {fileID: 11400000, guid: ff961ca8803bf4cfd9a2bfc25bdd82a7, type: 2}
+    Value: 2
+  _type: 2
