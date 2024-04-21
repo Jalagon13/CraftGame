@@ -35,9 +35,8 @@ public class PlayerCraftController : MonoBehaviour
 		GameSignals.ON_RECIPE_RESEARCHED.RemoveListener(OnRecipeResearched);
 	}
 	
-	private IEnumerator Start()
+	private void Start()
 	{
-		yield return new WaitForEndOfFrame();
 		InitializeView();
 	}
 	

@@ -16,7 +16,7 @@ public class PlaceDownIndicator : MonoBehaviour
 	
 	private void OnDestroy()
 	{
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
+		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(OnFocusInventoryItemUpdated);
 	}
 	
 	private void Update()
