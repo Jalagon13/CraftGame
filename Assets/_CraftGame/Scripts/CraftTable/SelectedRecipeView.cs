@@ -40,7 +40,7 @@ public class SelectedRecipeView : MonoBehaviour
 	
 	public void UpdateViewInfo()
 	{
-		if(_craftingController == null) return;
+		if(_craftingController == null || _craftingController.CraftingModel.SelectedRecipe == null) return;
 		
 		
 		int craftAmount = _craftingController.CraftingModel.CraftAmount;
@@ -56,6 +56,10 @@ public class SelectedRecipeView : MonoBehaviour
 		
 		_incrementButton.interactable = _craftingController.CraftingModel.CanIncrementCraftAmount();
 		_decrementButton.interactable = _craftingController.CraftingModel.CanDecrementCraftAmount();
+		
+		_progressView.Initialize(_craftingController.CraftingModel);
+		_progressView.UpdateProgressView();
+		_progressView.EnableProgressViewUI(_craftingController.CraftingModel.IsCrafting);
 	}
 	
 	private void DisplaySelectedRecipe()

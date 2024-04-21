@@ -22,7 +22,7 @@ public class ProgressView : MonoBehaviour
 	
 	private void Update()
 	{
-		if(_craftingModel == null) return;
+		if(_craftingModel == null || _craftingModel.CraftingTimer == null) return;
 		
 		if(_craftingModel.CraftingTimer.RemainingSeconds > 0)
 		{
@@ -42,6 +42,11 @@ public class ProgressView : MonoBehaviour
 		_secondsLeftText.text = $"{f}s";
 	}
 	
+	public void Initialize(CraftingModel craftingModel)
+	{
+		_craftingModel = craftingModel;
+	}
+	
 	public void StartProcessViewUI(CraftingModel craftingModel)
 	{
 		_craftingModel = craftingModel;
@@ -52,9 +57,9 @@ public class ProgressView : MonoBehaviour
 		LoopThroughChildElements(true);
 	}
 	
-	private void UpdateProgressView()
+	public void UpdateProgressView()
 	{
-		if(_craftingModel == null) return;
+		if(_craftingModel == null || _craftingModel.CurrentCraftingRecipe == null) return;
 		
 		_craftAmountText.text = $"x{_craftingModel.CraftCounter}";
 		_outputImage.sprite = _craftingModel.CurrentCraftingRecipe.OutputItem.UiDisplay;
@@ -66,6 +71,14 @@ public class ProgressView : MonoBehaviour
 		_craftingModel.OnIterationDone -= UpdateProgressView;
 		
 		LoopThroughChildElements(false);
+	}
+	
+	public void EnableProgressViewUI(bool enabled)
+	{
+		if(enabled)
+			UpdateProgressView();
+			
+		LoopThroughChildElements(enabled);
 	}
 	
 	private void LoopThroughChildElements(bool enabled)

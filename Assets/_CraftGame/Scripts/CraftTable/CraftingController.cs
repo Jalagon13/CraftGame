@@ -108,6 +108,12 @@ public class CraftingController : MonoBehaviour
 		_craftingModel = (CraftingModel)parameters.GetParameter("CraftingModel");
 		_craftingModel.OnCraftingDone += CheckOneTimeCraftRecipes;
 		_craftingView.Initialize(_craftingModel.CraftingRecipes, _craftingModel.DiscardedOneTimeCraftRecipes, _craftingModel.DisplayName);
+		
+		if(_craftingModel.SelectedRecipe != null)
+		{
+			_craftingView.RefreshSelectedRecipe(this);
+		}
+		
 		_craftingView.UiActive = true;
 		
 		if(_craftingModel.IsCrafting)

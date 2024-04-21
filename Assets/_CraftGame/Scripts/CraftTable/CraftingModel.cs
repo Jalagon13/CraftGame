@@ -204,8 +204,6 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		{
 			int inventoryAmount = sr.InventoryAmount;
 			int requiredTestAmount = sr.RequiredAmount * (_craftAmount + 1);
-			Debug.Log($"Base Required Amount: {sr.RequiredAmount}");
-			Debug.Log($"Required Test Amount: {requiredTestAmount}");
 			if(requiredTestAmount > inventoryAmount)
 			{
 				return false;
