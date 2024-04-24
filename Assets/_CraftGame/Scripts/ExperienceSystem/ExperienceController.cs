@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class ExperienceController : MonoBehaviour
+public class ExperienceController : SerializedMonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private MMF_Player _expGainFeedbacks;
-	[SerializeField] private List<int> _expandXpQuotas = new();
+	[SerializeField] private Dictionary<int, int> _xpRp = new();
 	
 	private ExperienceModel _experienceModel = new();
 	private ExperienceView _experienceView;
 	private int _expandIndex = 0;
+	private int _currentRp;
 	
 	public ExperienceModel ExperienceModel => _experienceModel;
 	
@@ -24,6 +27,7 @@ public class ExperienceController : MonoBehaviour
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(OnClickableDestroyed);
 		GameSignals.ON_EXPAND.AddListener(OnExpand);
+		GameSignals.ON_QUEST_COMPLETE.AddListener(OnQuestComplete);
 	}
 	
 	private void OnDestroy()
@@ -33,18 +37,20 @@ public class ExperienceController : MonoBehaviour
 		
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(OnClickableDestroyed);
 		GameSignals.ON_EXPAND.RemoveListener(OnExpand);
+		GameSignals.ON_QUEST_COMPLETE.RemoveListener(OnQuestComplete);
 	}
 	
 	private void Start()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_experienceView = FindObjectOfType<ExperienceView>();
-		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
+		_experienceView.UpdateFriendship(_currentRp, _xpRp.ElementAt(_expandIndex).Value);
 	}
 	
 	private void UpdateView()
 	{
-		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
 	}
 	
 	public void AddExperience(int amount)
@@ -59,11 +65,19 @@ public class ExperienceController : MonoBehaviour
 		_experienceModel?.Decrement(amount);
 	}
 	
+	private void OnQuestComplete(ISignalParameters parameters)
+	{
+		_currentRp++;
+		_experienceView.UpdateFriendship(_currentRp, _xpRp.ElementAt(_expandIndex).Value);
+	}
+	
 	private void OnExpand(ISignalParameters parameters)
 	{
-		SubtractExperience(_expandXpQuotas[_expandIndex]);
+		SubtractExperience(_xpRp.ElementAt(_expandIndex).Key);
 		_expandIndex++;
-		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
+		_currentRp = 0;
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
+		_experienceView.UpdateFriendship(0, _xpRp.ElementAt(_expandIndex).Value);
 		
 		// Make add fancy game feel here!
 	}
