@@ -14,4 +14,6 @@ public static class GameSignals
 	public static readonly Signal ON_UI_UNACTIVED = new("OnUiUnActived");
 	public static readonly Signal ON_CRAFT_NODE_CLICKED = new("CraftNodeClicked");
 	public static readonly Signal ON_RECIPE_RESEARCHED = new("OnRecipeResearched");
+	public static readonly Signal ON_EXPAND = new("OnExpand");
+	public static readonly Signal ON_QUEST_COMPLETE = new("OnQuestComplete");
 }

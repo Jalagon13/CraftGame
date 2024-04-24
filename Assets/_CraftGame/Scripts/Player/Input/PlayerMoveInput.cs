@@ -67,9 +67,9 @@ public class PlayerMoveInput : MonoBehaviour
 	}
 	
 	private void MovementAction(InputAction.CallbackContext context)
-		{
-			// if(!_canMove) return;
-			
-			_moveDirection = context.ReadValue<Vector2>();
-		}
+	{
+		// if(!_canMove) return;
+		
+		_moveDirection = context.ReadValue<Vector2>();
+	}
 }

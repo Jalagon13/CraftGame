@@ -7,8 +7,11 @@ public class ExperienceController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private MMF_Player _expGainFeedbacks;
+	[SerializeField] private List<int> _expandXpQuotas = new();
+	
 	private ExperienceModel _experienceModel = new();
 	private ExperienceView _experienceView;
+	private int _expandIndex = 0;
 	
 	public ExperienceModel ExperienceModel => _experienceModel;
 	
@@ -20,6 +23,7 @@ public class ExperienceController : MonoBehaviour
 		_po.PlayerExperience = this;
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(OnClickableDestroyed);
+		GameSignals.ON_EXPAND.AddListener(OnExpand);
 	}
 	
 	private void OnDestroy()
@@ -28,18 +32,19 @@ public class ExperienceController : MonoBehaviour
 		_experienceModel.ValueDecreased -= UpdateView;
 		
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(OnClickableDestroyed);
+		GameSignals.ON_EXPAND.RemoveListener(OnExpand);
 	}
 	
 	private void Start()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_experienceView = FindObjectOfType<ExperienceView>();
-		_experienceView.UpdateView(0);
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
 	}
 	
 	private void UpdateView()
 	{
-		_experienceView.UpdateView(_experienceModel.CurrentValue);
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
 	}
 	
 	public void AddExperience(int amount)
@@ -52,6 +57,15 @@ public class ExperienceController : MonoBehaviour
 	public void SubtractExperience(int amount)
 	{
 		_experienceModel?.Decrement(amount);
+	}
+	
+	private void OnExpand(ISignalParameters parameters)
+	{
+		SubtractExperience(_expandXpQuotas[_expandIndex]);
+		_expandIndex++;
+		_experienceView.UpdateView(_experienceModel.CurrentValue, _expandXpQuotas[_expandIndex]);
+		
+		// Make add fancy game feel here!
 	}
 	
 	private void OnClickableDestroyed(ISignalParameters parameters)

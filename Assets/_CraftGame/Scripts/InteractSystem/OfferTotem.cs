@@ -21,7 +21,6 @@ public class OfferTotem : MonoBehaviour, IInteractable
 	private bool _complete;
 	private int _currentAmount;
 
-
 	private void Awake()
 	{
 		_itemDisplaySr = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
@@ -68,6 +67,8 @@ public class OfferTotem : MonoBehaviour, IInteractable
 				_complete = true;
 				_po.PlayerExperience.AddExperience(_xpReward);
 				_rewardFeedback?.PlayFeedbacks();
+				
+				GameSignals.ON_QUEST_COMPLETE.Dispatch();
 			}
 		}
 	}
