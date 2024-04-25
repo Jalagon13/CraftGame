@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class Settler : MonoBehaviour, IInteractable
 {
 	[SerializeField] private PlayerObject _po;
-	[SerializeField] List<QuestObject> _questList = new(); // Index = expansion index
 	[SerializeField] private MMF_Player _rewardFeedback;
+	[SerializeField] List<QuestObject> _questList = new(); // Index = expansion index
 	
 	private Image _itemDisplaySr;
 	private Canvas _selectedCanvas;
@@ -106,7 +106,6 @@ public class Settler : MonoBehaviour, IInteractable
 	
 	private void UpdateHoverText()
 	{
-		Debug.Log(_currentQuest == null);
 		_questText.text = $"[R] Give Item: <br><color=orange>{_currentQuest.ItemNeeded.Name}";
 	}
 	
