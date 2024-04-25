@@ -6,12 +6,11 @@ using UnityEngine.Tilemaps;
 
 public class SpawnFloor : MonoBehaviour
 {
-	[SerializeField] private TilemapObject _tilemapObject;
+	[SerializeField] private TilemapObject _spawnFloorTm;
 	[SerializeField] private float _respawnTimer;
 	[Space()]
 	[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
 
-	private Tilemap _spawnTilemap;
 	private List<Vector2> _spawnPositions = new();
 	private Stack<string> _clearedClickables = new();
 	
@@ -24,15 +23,14 @@ public class SpawnFloor : MonoBehaviour
 	
 	private void OnEnable()
 	{
-		_spawnTilemap = GetComponent<Tilemap>();
-		_tilemapObject.Tilemap = _spawnTilemap;
+		_spawnFloorTm.DynamicTilemap.Tilemap = GetComponent<Tilemap>();
 		
 		// Gather all spawn tile positions
-		BoundsInt bounds = _spawnTilemap.cellBounds;
+		BoundsInt bounds = _spawnFloorTm.Tilemap.cellBounds;
 		
 		foreach (var position in bounds.allPositionsWithin)
 		{
-			if(_spawnTilemap.HasTile(position))
+			if(_spawnFloorTm.Tilemap.HasTile(position))
 			{
 				_spawnPositions.Add(new Vector2(position.x, position.y));
 			}

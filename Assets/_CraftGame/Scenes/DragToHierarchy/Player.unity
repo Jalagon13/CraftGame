@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
+  _floorTm: {fileID: 11400000, guid: 1340be6b31e8642d39361f033884b034, type: 2}
+  _wallTm: {fileID: 11400000, guid: 2c59a5b4020b14fe2ad4157b0320ad37, type: 2}
   _damageMinParameter:
     Parameter: {fileID: 11400000, guid: 709ade12f58b04afe9eac18a31770b70, type: 2}
     Value: 0
@@ -963,6 +965,8 @@ MonoBehaviour:
     Quantity: 1
   - Item: {fileID: 11400000, guid: bfaa971bbfd6f415a871865b4e586733, type: 2}
     Quantity: 1
+  - Item: {fileID: 11400000, guid: 5e0f8d7d5c1b34b998bf7dd039420952, type: 2}
+    Quantity: 99
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,8 +1085,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8c6a1f4acef4c0fb987e10c8b6cfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnFloorTilemap: {fileID: 11400000, guid: 92fdcfa673bb44428b75cbb30f7e1edd, type: 2}
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
+  _wallTm: {fileID: 11400000, guid: 2c59a5b4020b14fe2ad4157b0320ad37, type: 2}
+  _floorTm: {fileID: 11400000, guid: 1340be6b31e8642d39361f033884b034, type: 2}
+  _spawnFloorTilemap: {fileID: 11400000, guid: 780ba9be707214456973c4cb9954dc15, type: 2}
   _cursorControl: {fileID: 296476368}
 --- !u!114 &1522204161
 MonoBehaviour:

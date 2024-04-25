@@ -21,9 +21,6 @@ public class HotbarController : MonoBehaviour
 	
 	private void Awake()
 	{
-		// Future note to self: This may cause some issues when creating a scene loading bootstrap
-		_hotbarView = FindObjectOfType<HotbarView>();
-		
 		_playerInput = new();
 		_playerInput.Hotbar.Scroll.performed += SelectSlotScroll;
 		_playerInput.Hotbar._1.started += SelectSlot;
@@ -49,6 +46,9 @@ public class HotbarController : MonoBehaviour
 	
 	private IEnumerator Start()
 	{
+		// Future note to self: This may cause some issues when creating a scene loading bootstrap
+		_hotbarView = FindObjectOfType<HotbarView>();
+		
 		yield return new WaitForEndOfFrame();
 		
 		foreach (Transform inventorySlotView in _hotbarView.transform)

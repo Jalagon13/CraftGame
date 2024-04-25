@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class CursorControl : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private TilemapObject _floorTm;
+	[SerializeField] private TilemapObject _wallTm;
 	[SerializeField] private ItemParameter _damageMinParameter;
 	[SerializeField] private ItemParameter _damageMaxParameter;
 	[SerializeField] private ItemParameter _clickDistanceParameter;
@@ -82,17 +84,34 @@ public class CursorControl : MonoBehaviour
 	
 	private void Hit(InputAction.CallbackContext context)
 	{
-		if(_currentClickable == null || Pointer.IsOverUI() || _focusInventoryItem.Item is not ToolObject) return;
+		if(Pointer.IsOverUI() || _focusInventoryItem.Item is not ToolObject) return;
 		
-		ToolObject tool = _focusInventoryItem.Item as ToolObject;
+		if(_currentClickable != null)
+		{
+			ToolObject tool = _focusInventoryItem.Item as ToolObject;
 		
-		_damageMin = ExtractParameterValue(_damageMinParameter);
-		_damageMax = ExtractParameterValue(_damageMaxParameter);
+			_damageMin = ExtractParameterValue(_damageMinParameter);
+			_damageMax = ExtractParameterValue(_damageMaxParameter);
+			
+			System.Random rnd = new System.Random();
+			var damage = rnd.Next(_damageMin, _damageMax + 1); 
+			
+			_currentClickable.Hit(damage, tool.ToolType);
+		}
+		else
+		{
+			HitTilemap();
+		}
+	}
+	
+	private void HitTilemap()
+	{
+		var pos = Vector3Int.FloorToInt(transform.position);
 		
-		System.Random rnd = new System.Random();
-		var damage = rnd.Next(_damageMin, _damageMax + 1); 
-		
-		_currentClickable.Hit(damage, tool.ToolType);
+		if(_wallTm.Tilemap.HasTile(pos))
+			_wallTm.DynamicTilemap.Hit(pos, ToolType.Hammer);
+		else if(_floorTm.Tilemap.HasTile(pos))
+			_floorTm.DynamicTilemap.Hit(pos, ToolType.Hammer);
 	}
 	
 	private int ExtractParameterValue(ItemParameter paramter)

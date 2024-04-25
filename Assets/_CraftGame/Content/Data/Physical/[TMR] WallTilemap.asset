@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e87d7569a3f64b1baa37f7ff61e75fa, type: 3}
-  m_Name: '[TM] SpawnFloor'
+  m_Name: '[TMR] WallTilemap'
   m_EditorClassIdentifier: 
-  _tilemap: {fileID: 0}
+  _dynamicTm: {fileID: 0}

@@ -36,7 +36,7 @@ public class PlaceDownIndicator : MonoBehaviour
 			return;
 		}
 		
-		if(_focusItem.Item is DeployObject)
+		if(_focusItem.Item is DeployObject || _focusItem.Item is BuildObject)
 		{
 			ShowIndicator();
 		}
