@@ -67,4 +67,11 @@ public class FocusItemController : MonoBehaviour
 
 		return true;
 	}
+	
+	public bool InValidHouse()
+	{
+		// Do this after you have the NPC walking
+		
+		return true;
+	}
 }

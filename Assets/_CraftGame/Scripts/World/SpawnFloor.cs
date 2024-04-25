@@ -8,6 +8,8 @@ public class SpawnFloor : MonoBehaviour
 {
 	[SerializeField] private TilemapObject _spawnFloorTm;
 	[SerializeField] private float _respawnTimer;
+	[SerializeField] private Clickable _lootBox;
+	[SerializeField] private LootTable _lootBoxContent;
 	[Space()]
 	[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
 
@@ -38,6 +40,7 @@ public class SpawnFloor : MonoBehaviour
 		
 		RefreshResources();
 		StartCoroutine(ResourceSpawner());
+		SpawnLootBox();
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(RegisterClearedClickable);
 	}
@@ -47,6 +50,23 @@ public class SpawnFloor : MonoBehaviour
 		StopAllCoroutines();
 		
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(RegisterClearedClickable);
+	}
+	
+	private void SpawnLootBox()
+	{
+		tryAgain:
+		var randPos = GetRandomPosition();
+		Vector3Int pos = new Vector3Int((int)randPos.x, (int)randPos.y, 0);
+		
+		if(IsValidSpawnPosition(pos))
+		{
+			var clickable = SpawnClickable(_lootBox, pos);
+			clickable.OverrideLootTable(_lootBoxContent);
+		}
+		else
+		{
+			goto tryAgain;
+		}
 	}
 	
 	private void RegisterClearedClickable(ISignalParameters parameters)
@@ -113,10 +133,13 @@ public class SpawnFloor : MonoBehaviour
 		}
 	}
 	
-	private void SpawnClickable(Clickable clickable, Vector3Int spawnPos)
+	private Clickable SpawnClickable(Clickable clickable, Vector3Int spawnPos)
 	{
 		var r = Instantiate(clickable, spawnPos, Quaternion.identity);
+		
 		r.transform.SetParent(transform);
+			
+		return r;
 	}
 	
 	private bool IsValidSpawnPosition(Vector3Int pos)

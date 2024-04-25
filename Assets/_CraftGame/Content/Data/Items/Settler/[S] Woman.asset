@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfa7fbd7e9a24ad2b7cb0094415bda1, type: 3}
-  m_Name: '[D] Furnace'
+  m_Script: {fileID: 11500000, guid: b211d643c72c64745a67c895889312af, type: 3}
+  m_Name: '[S] Woman'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Furnace
-  <UiDisplay>k__BackingField: {fileID: -1644608659, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
+  <Name>k__BackingField: Woman
+  <UiDisplay>k__BackingField: {fileID: 193280306, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: a0d2002d0fba144569fa3b3ea0fcbe8b, type: 2}
     Value: 2
-  _prefabToDeploy: {fileID: 1023051791260563374, guid: 5cac9b3b276304f7f8c436f89f5050f1, type: 3}
+  _settlerToDelpoy: {fileID: 5449169745205532215, guid: 6ff492ff87f0545649a03615611557db, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}

@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class LootTable
 {
-	[field:SerializeField] public List<Loot> Table { get; private set; }
+	public List<Loot> Table;
 	
 	public void SpawnLoot(Vector2 spawnPos)
 	{

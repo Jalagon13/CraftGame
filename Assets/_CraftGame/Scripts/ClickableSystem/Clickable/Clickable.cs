@@ -33,6 +33,11 @@ public class Clickable : MonoBehaviour
 		_spawnFeedback?.PlayFeedbacks();
 	}
 	
+	public void OverrideLootTable(LootTable lootTable)
+	{
+		_lootTable = lootTable;
+	}
+	
 	public void Hit(int amount, ToolType incomingToolType)
 	{
 		if(_breakType == ToolType.None)

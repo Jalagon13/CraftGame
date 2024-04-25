@@ -7,6 +7,25 @@ public class GameManager : Singleton<GameManager>
 {
 	[SerializeField] private GameObject _itemBasePrefab;
 	
+	private int _currentExpansionIndex = 0;
+	
+	public int CurrentExpansionIndex => _currentExpansionIndex;
+	
+	private void Start()
+	{
+		GameSignals.ON_EXPAND.AddListener(OnExpansion);
+	}
+	
+	private void OnDestroy()
+	{
+		GameSignals.ON_EXPAND.RemoveListener(OnExpansion);
+	}
+	
+	private void OnExpansion(ISignalParameters parameters)
+	{
+		_currentExpansionIndex++;
+	}
+	
 	public void SpawnItem(Vector2 worldPos, InventoryItem inventoryItem, bool playAudio = true)
 	{
 		GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
