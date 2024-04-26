@@ -18,14 +18,14 @@ public class Clickable : MonoBehaviour
 	
 	private bool _selected;
 	private int _currentHitPoints;
-	private Vector2 _dropPosition;
+	private Vector2 _dropPosOffset;
 	
 	public string Name => _clickableName;
 	
 	private void Awake()
 	{
 		_currentHitPoints = _maxHitPoints;
-		_dropPosition = (Vector2)transform.position + (Vector2.one * 0.5f);
+		_dropPosOffset = Vector2.one * 0.5f;
 	}
 	
 	private void Start()
@@ -56,7 +56,7 @@ public class Clickable : MonoBehaviour
 	
 	public void Break()
 	{
-		_lootTable.SpawnLoot(_dropPosition);
+		_lootTable.SpawnLoot((Vector2)transform.position + _dropPosOffset);
 		PlayDestroyFeedbacks();
 		
 		Signal signal = GameSignals.CLICKABLE_DESTROYED;
