@@ -15,7 +15,7 @@ public class CursorControl : MonoBehaviour
 	
 	private PlayerInput _playerInput;
 	private Clickable _currentClickable;
-	private InventoryItem _focusInventoryItem;
+	private InventoryItem _focusItem = new();
 	private int _damageMin;
 	private int _damageMax;
 	private int _clickDistance = 1;
@@ -27,7 +27,7 @@ public class CursorControl : MonoBehaviour
 		_playerInput.Player.Interact.started += TryToInteract;
 		_playerInput.Enable();
 		
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
+		GameSignals.FOCUS_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
 		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
 		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
 	}
@@ -36,7 +36,7 @@ public class CursorControl : MonoBehaviour
 	{
 		_playerInput.Disable();
 		
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(FocusInventoryItemUpdated);
+		GameSignals.FOCUS_ITEM_UPDATED.RemoveListener(FocusInventoryItemUpdated);
 		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
 		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
 	}
@@ -76,7 +76,7 @@ public class CursorControl : MonoBehaviour
 	
 	private void FocusInventoryItemUpdated(ISignalParameters parameters) 
 	{
-		_focusInventoryItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+		_focusItem = (InventoryItem)parameters.GetParameter("FocusItem");
 		
 		int clickDistance = ExtractParameterValue(_clickDistanceParameter);
 		_clickDistance = clickDistance > 0 ? clickDistance : 1;
@@ -84,11 +84,11 @@ public class CursorControl : MonoBehaviour
 	
 	private void Hit(InputAction.CallbackContext context)
 	{
-		if(Pointer.IsOverUI() || _focusInventoryItem.Item is not ToolObject) return;
+		if(Pointer.IsOverUI() || _focusItem.Item is not ToolObject) return;
 		
 		if(_currentClickable != null)
 		{
-			ToolObject tool = _focusInventoryItem.Item as ToolObject;
+			ToolObject tool = _focusItem.Item as ToolObject;
 		
 			_damageMin = ExtractParameterValue(_damageMinParameter);
 			_damageMax = ExtractParameterValue(_damageMaxParameter);
@@ -116,9 +116,9 @@ public class CursorControl : MonoBehaviour
 	
 	private int ExtractParameterValue(ItemParameter paramter)
 	{
-		if(_focusInventoryItem.Item == null) return 0;
+		if(_focusItem == null || _focusItem.Item == null) return 0;
 		
-		var itemParams = _focusInventoryItem.Item.DefaultParameterList;
+		var itemParams = _focusItem.Item.DefaultParameterList;
 
 		if (itemParams.Contains(paramter))
 		{

@@ -19,6 +19,7 @@ public class InventoryController : MonoBehaviour
 	private MouseItemView _mouseItemView;
 	private HotbarController _hotbarController;
 	private PlayerInput _playerInput;
+	private bool _gotItemThisFrame, _gaveItemThisFrame;
 	
 	public InventoryModel InventoryModel => _inventoryModel;
 	public MouseItemModel MouseItem => _mouseItemModel;
@@ -68,6 +69,35 @@ public class InventoryController : MonoBehaviour
 		foreach(InventoryItem item in _startingItems)
 		{
 			CollectItem(item);
+		}
+	}
+	
+	private void Update()
+	{
+		DispatchHandle();
+	}
+	
+	// note refactor this later 
+	private void DispatchHandle()
+	{
+		if (_mouseItemModel.MouseInventoryItem.HasItem())
+		{
+			if (_gotItemThisFrame) return;
+
+			Signal signal = GameSignals.MOUSE_GOT_ITEM;
+			signal.ClearParameters();
+			signal.AddParameter("MouseItem", _mouseItemModel.MouseInventoryItem);
+			signal.Dispatch();
+			_gotItemThisFrame = true;
+			_gaveItemThisFrame = false;
+		}
+		else
+		{
+			if (_gaveItemThisFrame) return;
+
+			GameSignals.MOUSE_GAVE_ITEM.Dispatch();
+			_gaveItemThisFrame = true;
+			_gotItemThisFrame = false;
 		}
 	}
 	

@@ -11,12 +11,12 @@ public class PlaceDownIndicator : MonoBehaviour
 	{
 		_sr = GetComponent<SpriteRenderer>();
 		
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
+		GameSignals.FOCUS_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
 	}
 	
 	private void OnDestroy()
 	{
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.RemoveListener(OnFocusInventoryItemUpdated);
+		GameSignals.FOCUS_ITEM_UPDATED.RemoveListener(OnFocusInventoryItemUpdated);
 	}
 	
 	private void Update()
@@ -28,9 +28,14 @@ public class PlaceDownIndicator : MonoBehaviour
 	
 	private void OnFocusInventoryItemUpdated(ISignalParameters parameters)
 	{
-		_focusItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+		if(!parameters.HasParameter("FocusItem")) return;
 		
-		if(_focusItem.Item == null)
+		_focusItem = (InventoryItem)parameters.GetParameter("FocusItem");
+		
+		if(_focusItem == null) return;
+		
+		
+		if(_focusItem.Item == null || _focusItem == null)
 		{
 			HideIndicator();
 			return;

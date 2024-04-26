@@ -9,8 +9,9 @@ public class FocusItemController : MonoBehaviour
 	[SerializeField] private TilemapObject _wallTm, _floorTm, _spawnFloorTilemap;
 	[SerializeField] private CursorControl _cursorControl;
 	
-	private InventoryItem _focusItem;
+	private InventoryItem _focusItem, _hotbarItem, _mouseItem;
 	private PlayerInput _playerInput;
+	private bool _mouseSlotHasitem;
 	
 	public CursorControl CursorControl => _cursorControl;	
 	public InventoryItem FocusItem => _focusItem;
@@ -26,13 +27,18 @@ public class FocusItemController : MonoBehaviour
 		_playerInput.Player.PrimaryAction.started += ExecutePrimaryAction;
 		_playerInput.Enable();
 		
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
+		GameSignals.HOTBAT_SLOT_UPDATED.AddListener(OnHotbarItemUpdated);
+		GameSignals.MOUSE_GOT_ITEM.AddListener(OnMouseGotItem);
+		GameSignals.MOUSE_GAVE_ITEM.AddListener(OnMouseGaveItem);
 	}
 	
 	private void OnDestroy()
 	{
 		_playerInput.Disable();
-		GameSignals.FOCUS_INVENTORY_ITEM_UPDATED.AddListener(OnFocusInventoryItemUpdated);
+		
+		GameSignals.HOTBAT_SLOT_UPDATED.RemoveListener(OnHotbarItemUpdated);
+		GameSignals.MOUSE_GOT_ITEM.RemoveListener(OnMouseGotItem);
+		GameSignals.MOUSE_GAVE_ITEM.RemoveListener(OnMouseGaveItem);
 	}
 	
 	private void ExecutePrimaryAction(InputAction.CallbackContext context)
@@ -49,9 +55,38 @@ public class FocusItemController : MonoBehaviour
 		_focusItem.Item.ExecuteSecondaryAction(this);
 	}
 	
-	private void OnFocusInventoryItemUpdated(ISignalParameters parameters)
+	private void OnHotbarItemUpdated(ISignalParameters parameters)
 	{
-		_focusItem = (InventoryItem)parameters.GetParameter("FocusInventoryItem");
+		_hotbarItem = (InventoryItem)parameters.GetParameter("HotbarInventoryItem");
+		
+		SetFocusItem();
+	}
+	
+	private void OnMouseGotItem(ISignalParameters parameters)
+	{
+		if (parameters.HasParameter("MouseItem"))
+		{
+			_mouseItem = (InventoryItem)parameters.GetParameter("MouseItem");
+			_mouseSlotHasitem = true;
+			SetFocusItem();
+		}
+	}
+	
+	private void OnMouseGaveItem(ISignalParameters parameters)
+	{
+		_mouseSlotHasitem = false;
+
+		SetFocusItem();
+	}
+	
+	private void SetFocusItem()
+	{
+		_focusItem = _mouseSlotHasitem ? _mouseItem : _hotbarItem;
+
+		Signal signal = GameSignals.FOCUS_ITEM_UPDATED;
+		signal.ClearParameters();
+		signal.AddParameter("FocusItem", _focusItem);
+		signal.Dispatch();
 	}
 	
 	public bool IsClear(Vector2 position)

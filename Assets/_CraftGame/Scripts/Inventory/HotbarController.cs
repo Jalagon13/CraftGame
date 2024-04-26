@@ -98,9 +98,9 @@ public class HotbarController : MonoBehaviour
 	{
 		_focusInventoryItem = _playerInventory.InventoryItems[_selectedSlotIndex];
 		
-		Signal signal = GameSignals.FOCUS_INVENTORY_ITEM_UPDATED;
+		Signal signal = GameSignals.HOTBAT_SLOT_UPDATED;
 		signal.ClearParameters();
-		signal.AddParameter("FocusInventoryItem", _focusInventoryItem);
+		signal.AddParameter("HotbarInventoryItem", _focusInventoryItem);
 		signal.Dispatch();
 	}
 	
