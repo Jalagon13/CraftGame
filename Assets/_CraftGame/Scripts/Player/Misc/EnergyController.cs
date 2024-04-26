@@ -52,6 +52,8 @@ public class EnergyController : MonoBehaviour
 	private void DrainEnergy(ISignalParameters parameters)
 	{
 		_currentEnergy--;
+		if(_currentEnergy <= 0)
+			_currentEnergy = 0;
 		UpdateView();
 	}
 	

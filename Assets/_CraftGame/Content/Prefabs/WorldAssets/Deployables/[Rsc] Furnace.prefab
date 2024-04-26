@@ -76,6 +76,26 @@ PrefabInstance:
       propertyPath: _clickableName
       value: Furnace
       objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _lootTable.Table.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cc731f44855f47b8ac49626e2437358, type: 2}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Chance
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

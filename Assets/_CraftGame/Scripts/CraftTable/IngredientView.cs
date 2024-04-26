@@ -12,6 +12,14 @@ public class IngredientView : MonoBehaviour
 	public void Initialize(ItemObject ingredientItem, int inventoryAmount, int requiredAmount)
 	{
 		_ingredientImage.sprite = ingredientItem.UiDisplay;
-		_ingredientText.text = $"{ingredientItem.Name} [{inventoryAmount}/{requiredAmount}]";
+		
+		if(inventoryAmount < requiredAmount)
+		{
+			_ingredientText.text = $"<color=red>{ingredientItem.Name} [{inventoryAmount}/{requiredAmount}]";
+		}
+		else
+		{
+			_ingredientText.text = $"<color=white>{ingredientItem.Name} [{inventoryAmount}/{requiredAmount}]";
+		}
 	}
 }
