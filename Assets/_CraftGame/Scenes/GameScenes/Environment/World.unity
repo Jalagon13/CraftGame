@@ -89995,6 +89995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Rsc] BlacksmithTied'
       objectReference: {fileID: 0}
+    - target: {fileID: 5026041918913890838, guid: 2381911515b194da6bc40ee3c86acc0d, type: 3}
+      propertyPath: _canGiveXp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6793173950949331759, guid: 2381911515b194da6bc40ee3c86acc0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3

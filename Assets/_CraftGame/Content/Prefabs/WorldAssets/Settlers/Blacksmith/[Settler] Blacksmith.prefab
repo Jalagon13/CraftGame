@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _clickableName
       value: Blacksmith
       objectReference: {fileID: 0}
+    - target: {fileID: 2758714755426349651, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: dd245037ff6f348a787aa227cbd6b94e, type: 2}
     - target: {fileID: 3529360163108764406, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
       propertyPath: m_SortingOrder
       value: 4
@@ -20,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Settler] Blacksmith'
       objectReference: {fileID: 0}
+    - target: {fileID: 8222130909400441939, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: _settlerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 728a23b88be3344d9850979b6a87cfdd, type: 2}
     - target: {fileID: 8222130909400441939, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
       propertyPath: _questList.Array.size
       value: 2

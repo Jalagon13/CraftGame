@@ -76,6 +76,8 @@ public class ExperienceController : SerializedMonoBehaviour
 		SubtractExperience(_xpRp.ElementAt(_expandIndex).Key);
 		_expandIndex++;
 		_currentRp = 0;
+		Debug.Log(_expandIndex);
+		Debug.Log(_xpRp.ElementAt(_expandIndex).Key);
 		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
 		_experienceView.UpdateFriendship(0, _xpRp.ElementAt(_expandIndex).Value);
 		

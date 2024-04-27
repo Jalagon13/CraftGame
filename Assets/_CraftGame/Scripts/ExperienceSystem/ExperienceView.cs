@@ -22,11 +22,11 @@ public class ExperienceView : MonoBehaviour
 		
 		if(_currentExperience < _quotaExperience)
 		{
-			_xpText.text = $"<color=white>XP: {_currentExperience} / {_quotaExperience}";
+			_xpText.text = $"<color=white>• XP: {_currentExperience} / {_quotaExperience}";
 		}
 		else
 		{
-			_xpText.text = $"<color=green>XP: {_currentExperience} / {_quotaExperience}";
+			_xpText.text = $"<color=green>• XP: {_currentExperience} / {_quotaExperience}";
 		}
 		
 		_expandButton.interactable = (_currentExperience >= _quotaExperience) && (_currentFriendship >= _quotaFriendship);
@@ -40,11 +40,11 @@ public class ExperienceView : MonoBehaviour
 		
 		if(_currentFriendship < _quotaFriendship)
 		{
-			_friendshipText.text = $"<color=white><3: {_currentFriendship} / {_quotaFriendship}";
+			_friendshipText.text = $"<color=white>• Quests: {_currentFriendship} / {_quotaFriendship}";
 		}
 		else
 		{
-			_friendshipText.text = $"<color=green><3: {_currentFriendship} / {_quotaFriendship}";
+			_friendshipText.text = $"<color=green>• Quests: {_currentFriendship} / {_quotaFriendship}";
 		}
 		
 		_expandButton.interactable = (_currentExperience >= _quotaExperience) && (_currentFriendship >= _quotaFriendship);

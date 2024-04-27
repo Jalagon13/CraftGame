@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 7cfa68c857dd9f845b2237403d153416, type: 3}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _breakType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _clickableName
@@ -41,6 +41,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _lootTable.Table.Array.data[0].Item
       value: 
       objectReference: {fileID: 11400000, guid: dd245037ff6f348a787aa227cbd6b94e, type: 2}
@@ -50,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223546305075459603, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6223546305075459603, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6223546305075459603, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: m_LocalPosition.z

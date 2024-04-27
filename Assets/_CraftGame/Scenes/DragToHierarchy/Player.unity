@@ -957,6 +957,10 @@ MonoBehaviour:
   _startingItems:
   - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
     Quantity: 1
+  - Item: {fileID: 11400000, guid: 4dcbbf88c41e04ae2a2d519764b163bc, type: 2}
+    Quantity: 3
+  - Item: {fileID: 11400000, guid: dd245037ff6f348a787aa227cbd6b94e, type: 2}
+    Quantity: 1
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,7 +1040,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2000
+      Data: 800
     - Name: $v
       Entry: 3
       Data: 1
@@ -1048,7 +1052,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 800
+      Data: 2000
     - Name: $v
       Entry: 3
       Data: 1
@@ -1184,7 +1188,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1676,7 +1680,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1522204153}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12
+    OrthographicSize: 9
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1761,6 +1765,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4587369404804561659, guid: e84945e0ebb394a479668e6420c285cd, type: 3}
+      propertyPath: _settlerInfos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587369404804561659, guid: e84945e0ebb394a479668e6420c285cd, type: 3}
+      propertyPath: _settlerInfos.Array.data[0].SetterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 728a23b88be3344d9850979b6a87cfdd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

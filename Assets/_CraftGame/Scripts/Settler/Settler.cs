@@ -9,17 +9,18 @@ using UnityEngine.UI;
 public class Settler : MonoBehaviour, IInteractable
 {
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private SettlerDataObject _settlerData;
 	[SerializeField] private MMF_Player _rewardFeedback;
 	[SerializeField] List<QuestObject> _questList = new(); // Index = expansion index
 	
 	private Image _itemDisplaySr;
 	private Canvas _selectedCanvas;
-	private TextMeshProUGUI _questText;
-	private TextMeshProUGUI _quotaText;
+	private TextMeshProUGUI _questText, _quotaText;
 	private QuestObject _currentQuest;
-	private bool _selected;
-	private bool _complete;
+	private bool _selected, _complete;
 	private int _currentAmount, _questIndex = 0;
+	
+	public int QuestIndex { get { return _questIndex; } set { _questIndex = value; } }
 
 	private void Awake()
 	{
@@ -27,33 +28,30 @@ public class Settler : MonoBehaviour, IInteractable
 		_selectedCanvas = transform.GetChild(1).GetComponent<Canvas>();
 		_questText = transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 		_quotaText = transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+		_settlerData.Setter = this;
 		
-		GameSignals.ON_EXPAND.AddListener(SetCurrentQuest);
+		GameSignals.ON_EXPAND.AddListener(InjectQuestIndex);
 	}
 	
 	private void OnDestroy()
 	{
-		GameSignals.ON_EXPAND.RemoveListener(SetCurrentQuest);
+		GameSignals.ON_EXPAND.RemoveListener(InjectQuestIndex);
 	}
 	
-	private IEnumerator Start()
+	private void Start()
 	{
-		yield return StartCoroutine(Delay());
-		UpdateHoverText();
-		UpdateQuotaText();
+		InjectQuestIndex(null);
 	}
 	
-	private void SetCurrentQuest(ISignalParameters parameters)
+	private void InjectQuestIndex(ISignalParameters parameters)
 	{
-		StartCoroutine(Delay());
-	}
-	private IEnumerator Delay()
-	{
-		yield return new WaitForEndOfFrame();
-		// Note to future self: quest index is statically set to 0 index for now
+		_questIndex = GameManager.Instance.GetQuestIndex(_settlerData);
 		_currentQuest = _questList[_questIndex];
 		_itemDisplaySr.sprite = _currentQuest.ItemNeeded.UiDisplay;
 		_currentAmount = 0;
+		
+		UpdateHoverText();
+		UpdateQuotaText();
 	}
 	
 	public void OnInteract()
@@ -74,7 +72,6 @@ public class Settler : MonoBehaviour, IInteractable
 			
 			if(inventoryAmount > amountNeeded)
 			{
-				// Take away _current Amount from inventory
 				addAmount = amountNeeded;
 			}
 			
@@ -88,7 +85,10 @@ public class Settler : MonoBehaviour, IInteractable
 				_po.PlayerExperience.AddExperience(_currentQuest.XpReward);
 				_rewardFeedback?.PlayFeedbacks();
 				
-				GameSignals.ON_QUEST_COMPLETE.Dispatch();
+				Signal signal = GameSignals.ON_QUEST_COMPLETE;
+				signal.ClearParameters();
+				signal.AddParameter("SettlerData", _settlerData);
+				signal.Dispatch();
 			}
 		}
 	}
