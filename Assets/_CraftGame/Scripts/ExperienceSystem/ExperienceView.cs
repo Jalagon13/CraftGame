@@ -30,6 +30,7 @@ public class ExperienceView : MonoBehaviour
 		}
 		
 		_expandButton.interactable = (_currentExperience >= _quotaExperience) && (_currentFriendship >= _quotaFriendship);
+		_expandButton.image.color = _expandButton.IsInteractable() ? Color.green : Color.white;
 	}
 	
 	public void UpdateFriendship(int currentFriendship, int quotaFriendship)
@@ -46,8 +47,8 @@ public class ExperienceView : MonoBehaviour
 		{
 			_friendshipText.text = $"<color=green>• Quests: {_currentFriendship} / {_quotaFriendship}";
 		}
-		
 		_expandButton.interactable = (_currentExperience >= _quotaExperience) && (_currentFriendship >= _quotaFriendship);
+		_expandButton.image.color = _expandButton.IsInteractable() ? Color.green : Color.white;
 	}
 	
 	public void OnExpandButtonClicked()

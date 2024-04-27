@@ -19,8 +19,6 @@ public class Settler : MonoBehaviour, IInteractable
 	private QuestObject _currentQuest;
 	private bool _selected, _complete;
 	private int _currentAmount, _questIndex = 0;
-	
-	public int QuestIndex { get { return _questIndex; } set { _questIndex = value; } }
 
 	private void Awake()
 	{
@@ -35,6 +33,7 @@ public class Settler : MonoBehaviour, IInteractable
 	
 	private void OnDestroy()
 	{
+		GameManager.Instance.UpdateSettlerCurrentAmount(_settlerData, _currentAmount);
 		GameSignals.ON_EXPAND.RemoveListener(InjectQuestIndex);
 	}
 	
@@ -46,9 +45,10 @@ public class Settler : MonoBehaviour, IInteractable
 	private void InjectQuestIndex(ISignalParameters parameters)
 	{
 		_questIndex = GameManager.Instance.GetQuestIndex(_settlerData);
+		Debug.Log("Quest Index: " + _questIndex);
 		_currentQuest = _questList[_questIndex];
 		_itemDisplaySr.sprite = _currentQuest.ItemNeeded.UiDisplay;
-		_currentAmount = 0;
+		_currentAmount = GameManager.Instance.GetQuestCurrentAmount(_settlerData);
 		
 		UpdateHoverText();
 		UpdateQuotaText();
@@ -84,6 +84,8 @@ public class Settler : MonoBehaviour, IInteractable
 				_complete = true;
 				_po.PlayerExperience.AddExperience(_currentQuest.XpReward);
 				_rewardFeedback?.PlayFeedbacks();
+				
+				GameManager.Instance.UpdateSettlerCurrentAmount(_settlerData, _currentAmount);
 				
 				Signal signal = GameSignals.ON_QUEST_COMPLETE;
 				signal.ClearParameters();

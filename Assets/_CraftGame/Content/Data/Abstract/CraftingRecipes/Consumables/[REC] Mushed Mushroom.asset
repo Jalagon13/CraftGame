@@ -19,5 +19,5 @@ MonoBehaviour:
   ResourceList:
   - Item: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
     Quantity: 2
-  - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
+  - Item: {fileID: 11400000, guid: 5e0f8d7d5c1b34b998bf7dd039420952, type: 2}
     Quantity: 1

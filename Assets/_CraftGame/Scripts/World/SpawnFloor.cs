@@ -39,7 +39,7 @@ public class SpawnFloor : MonoBehaviour
 			}
 		}
 		
-		RefreshResources();
+		StartCoroutine(RefreshResources());
 		StartCoroutine(ResourceSpawner());
 		StartCoroutine(Delay());
 		
@@ -114,8 +114,10 @@ public class SpawnFloor : MonoBehaviour
 	
 	
 	
-	private void RefreshResources()
+	private IEnumerator RefreshResources()
 	{
+		yield return new WaitForSeconds(1f);
+		
 		// Destroy all resources
 		foreach (Transform child in transform)
 		{
@@ -139,6 +141,8 @@ public class SpawnFloor : MonoBehaviour
 				{
 					goto tryAgain;
 				}
+				
+				yield return new WaitForSeconds(0.1f);
 			}
 		}
 	}

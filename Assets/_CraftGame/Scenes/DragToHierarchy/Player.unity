@@ -957,10 +957,6 @@ MonoBehaviour:
   _startingItems:
   - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
     Quantity: 1
-  - Item: {fileID: 11400000, guid: 4dcbbf88c41e04ae2a2d519764b163bc, type: 2}
-    Quantity: 3
-  - Item: {fileID: 11400000, guid: dd245037ff6f348a787aa227cbd6b94e, type: 2}
-    Quantity: 1
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0

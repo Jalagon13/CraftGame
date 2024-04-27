@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2623981421001906471, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _craftingRecipes.Array.data[0]

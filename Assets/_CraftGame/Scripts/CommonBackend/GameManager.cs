@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		public SettlerDataObject SetterData;
 		public int QuestIndex;
+		public int CurrentAmount;
 	}
 	
 	private void Start()
@@ -63,6 +64,31 @@ public class GameManager : Singleton<GameManager>
 		return -1;
 	}
 	
+	public int GetQuestCurrentAmount(SettlerDataObject settlerData)
+	{
+		foreach (var item in _settlerInfos)
+		{
+			if(item.SetterData == settlerData)
+			{
+				return item.CurrentAmount;
+			}
+		}
+		
+		return -1;
+	}
+	
+	public void UpdateSettlerCurrentAmount(SettlerDataObject settlerData, int currentAmount)
+	{
+		foreach (var item in _settlerInfos)
+		{
+			if(item.SetterData == settlerData)
+			{
+				item.CurrentAmount = currentAmount;
+				return ;
+			}
+		}
+	}
+	
 	private void TryToIncrementSettlerQuestIndex(SettlerDataObject settlerData)
 	{
 		foreach (var item in _settlerInfos)
@@ -70,6 +96,7 @@ public class GameManager : Singleton<GameManager>
 			if(item.SetterData == settlerData)
 			{
 				item.QuestIndex++;
+				item.CurrentAmount = 0;
 				return;
 			}
 		}
