@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: settler_woman
+      name: settler_blacksmith
       rect:
         serializedVersion: 2
-        x: 17
+        x: 50
         y: 1
-        width: 13
+        width: 11
         height: 23
       alignment: 6
       pivot: {x: 0, y: 0}
@@ -126,6 +126,27 @@ TextureImporter:
       bones: []
       spriteID: b9e5004f60215421b94df1944db39f54
       internalID: 1039617234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: settler_blacksmith_tied
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 2
+        width: 14
+        height: 19
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a0d88ceff9f485b87fa662e355b52d
+      internalID: 1900172068
       vertices: []
       indices: 
       edges: []
@@ -141,7 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      settler_woman: 1039617234
+      settler_blacksmith: 1039617234
+      settler_blacksmith_tied: 1900172068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -957,18 +957,6 @@ MonoBehaviour:
   _startingItems:
   - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
     Quantity: 1
-  - Item: {fileID: 11400000, guid: ee38e59807a994ce7a61d9c873c50e8e, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: bfaa971bbfd6f415a871865b4e586733, type: 2}
-    Quantity: 1
-  - Item: {fileID: 11400000, guid: 5e0f8d7d5c1b34b998bf7dd039420952, type: 2}
-    Quantity: 99
-  - Item: {fileID: 11400000, guid: dd245037ff6f348a787aa227cbd6b94e, type: 2}
-    Quantity: 1
 --- !u!114 &1522204157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,7 +1024,19 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 10
+      Data: 60
+    - Name: $v
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2000
     - Name: $v
       Entry: 3
       Data: 1
@@ -1048,22 +1048,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 900
+      Data: 800
     - Name: $v
       Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2700
-    - Name: $v
-      Entry: 3
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -1131,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerRecipes:
   - Recipe: {fileID: 11400000, guid: 0a4885aaacc5d46cdaf242526b3e8ade, type: 2}
-    Discovered: 0
+    Discovered: 1
   - Recipe: {fileID: 11400000, guid: 45acf2b1180f84f2998a33c58629ae70, type: 2}
     Discovered: 0
 --- !u!1 &1643723598
@@ -1196,7 +1184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1688,7 +1676,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1522204153}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 11.5
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

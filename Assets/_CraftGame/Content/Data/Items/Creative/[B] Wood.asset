@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77facc81e718545ba925047ce48242b1, type: 3}
   m_Name: '[B] Wood'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Wood Build Object Test
+  <Name>k__BackingField: 'Wood '
   <UiDisplay>k__BackingField: {fileID: -395863171, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 

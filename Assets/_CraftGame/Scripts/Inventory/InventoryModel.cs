@@ -7,13 +7,15 @@ public class InventoryModel
 {
 	public event Action<List<InventoryItem>> OnInventoryUpdate;
 	private List<InventoryItem> _inventoryItems = new();
+	private InventoryItem _mouseItem;
 	private int _slotAmount;
 
 	public List<InventoryItem> InventoryItems => _inventoryItems;
 
-	public InventoryModel(int slotAmount)
+	public InventoryModel(int slotAmount, InventoryItem mouseItem)
 	{
 		_slotAmount = slotAmount;
+		_mouseItem = mouseItem;
 
 		for (int i = 0; i < _slotAmount; ++i)
 		{
@@ -65,6 +67,24 @@ public class InventoryModel
 	public void RemoveItem(ItemObject itemToRemove, int amountToRemove)
 	{
 		// Basic funationalty, need to revisit later to fix bugs
+		if(_mouseItem.Item != null)
+		{
+			if(_mouseItem.Item.Name == itemToRemove.Name)
+			{
+				_mouseItem.Quantity -= amountToRemove;
+				
+				if(_mouseItem.Quantity <= 0)
+				{
+					// Note to future self: BUG: You are able to remove an amount of items even if it is greater than what it is in the stack. Need to fix this later
+					
+					_mouseItem.Item = null;
+					_mouseItem.Quantity = 0;
+				}
+				
+				
+			}
+		}
+		
 		foreach (InventoryItem item in _inventoryItems)
 		{
 			if(item.Item == null) continue;
@@ -81,10 +101,11 @@ public class InventoryModel
 					item.Quantity = 0;
 				}
 				
-				OnInventoryUpdate?.Invoke(_inventoryItems);
-				return;
+				break;
 			}
 		}
+		
+		OnInventoryUpdate?.Invoke(_inventoryItems);
 	}
 	
 	public bool Contains(InventoryItem inventoryItemToCheck)

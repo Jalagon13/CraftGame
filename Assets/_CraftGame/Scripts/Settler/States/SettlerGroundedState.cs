@@ -12,7 +12,7 @@ public class SettlerGroundedState : SettlerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Gounrded");
+        
     }
 
     public override void UpdateState()

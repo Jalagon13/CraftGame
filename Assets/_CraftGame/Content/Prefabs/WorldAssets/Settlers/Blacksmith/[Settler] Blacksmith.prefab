@@ -8,10 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2758714755426349651, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: _clickableName
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529360163108764406, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7800291512446926903, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
       propertyPath: m_Name
-      value: '[Base] Settler'
+      value: '[Settler] Blacksmith'
       objectReference: {fileID: 0}
+    - target: {fileID: 8222130909400441939, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: _questList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222130909400441939, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+      propertyPath: _questList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 737877b3d12b048ada9f542c9f8dbd7b, type: 2}
     - target: {fileID: 8231972136270397580, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

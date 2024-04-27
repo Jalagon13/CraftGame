@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4a24237369f54fb78aba3754fa9939e, type: 3}
-  m_Name: '[QST] Woman1'
+  m_Name: '[QST] Blacksmith2'
   m_EditorClassIdentifier: 
-  ItemNeeded: {fileID: 11400000, guid: 2f4f5ea978b06454cb632bc2a3565963, type: 2}
+  ItemNeeded: {fileID: 11400000, guid: 50b025ca958e54af3b41c5095838d0fd, type: 2}
   QuantityQuota: 3
-  XpReward: 100
+  XpReward: 1500

@@ -109,4 +109,9 @@ public class FocusItemController : MonoBehaviour
 		
 		return true;
 	}
+	
+	public void RemoveItem()
+	{
+		
+	}
 }

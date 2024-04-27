@@ -73,6 +73,18 @@ PrefabInstance:
       value: '[Rsc] Furnace'
       objectReference: {fileID: 0}
     - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _breakType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _canGiveXp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: _maxHitPoints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731954187995869430, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: _clickableName
       value: Furnace
       objectReference: {fileID: 0}

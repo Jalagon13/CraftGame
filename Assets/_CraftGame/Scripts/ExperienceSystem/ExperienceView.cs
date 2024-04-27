@@ -36,6 +36,7 @@ public class ExperienceView : MonoBehaviour
 	{
 		_currentFriendship = currentFriendship;
 		_quotaFriendship = quotaFriendship;
+		_friendshipText.enabled = _quotaFriendship > 0;
 		
 		if(_currentFriendship < _quotaFriendship)
 		{

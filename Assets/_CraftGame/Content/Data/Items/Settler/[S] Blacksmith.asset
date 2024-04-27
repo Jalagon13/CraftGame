@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b211d643c72c64745a67c895889312af, type: 3}
-  m_Name: '[S] Woman'
+  m_Name: '[S] Blacksmith'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Woman
+  <Name>k__BackingField: Blacksmith
   <UiDisplay>k__BackingField: {fileID: 193280306, guid: f8368a1fbfce54d21a2c15f756ba8e59, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: a0d2002d0fba144569fa3b3ea0fcbe8b, type: 2}
     Value: 2
-  _settlerToDelpoy: {fileID: 7800291512446926903, guid: e1cb349a44695496c82414d7421cd4d0, type: 3}
+  _settlerToDelpoy: {fileID: 1217673971141562840, guid: afadb90b2fe434f4a8fc273ca0ee8de5, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}

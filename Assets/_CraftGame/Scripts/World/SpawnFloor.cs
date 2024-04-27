@@ -9,10 +9,11 @@ public class SpawnFloor : MonoBehaviour
 	[SerializeField] private TilemapObject _spawnFloorTm;
 	[SerializeField] private float _respawnTimer;
 	[SerializeField] private Clickable _lootBox;
-	[SerializeField] private LootTable _lootBoxContent;
+	[SerializeField] private bool _spawnLootBox = true;
+ 	[SerializeField] private LootTable _lootBoxContent;
 	[Space()]
 	[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
-
+	
 	private List<Vector2> _spawnPositions = new();
 	private Stack<string> _clearedClickables = new();
 	
@@ -40,9 +41,18 @@ public class SpawnFloor : MonoBehaviour
 		
 		RefreshResources();
 		StartCoroutine(ResourceSpawner());
-		SpawnLootBox();
+		StartCoroutine(Delay());
+		
+		if(_spawnLootBox)
+			SpawnLootBox();
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(RegisterClearedClickable);
+	}
+	
+	private IEnumerator Delay()
+	{
+		yield return new WaitForEndOfFrame();
+		AstarPath.active.Scan();
 	}
 	
 	private void OnDisable()
@@ -60,7 +70,7 @@ public class SpawnFloor : MonoBehaviour
 		
 		if(IsValidSpawnPosition(pos))
 		{
-			var clickable = SpawnClickable(_lootBox, pos);
+			var clickable = SpawnClickable(_lootBox, pos, false);
 			clickable.OverrideLootTable(_lootBoxContent);
 		}
 		else
@@ -133,11 +143,12 @@ public class SpawnFloor : MonoBehaviour
 		}
 	}
 	
-	private Clickable SpawnClickable(Clickable clickable, Vector3Int spawnPos)
+	private Clickable SpawnClickable(Clickable clickable, Vector3Int spawnPos, bool appendToLevel = true)
 	{
 		var r = Instantiate(clickable, spawnPos, Quaternion.identity);
 		
-		r.transform.SetParent(transform);
+		if(appendToLevel)
+			r.transform.SetParent(transform);
 			
 		return r;
 	}

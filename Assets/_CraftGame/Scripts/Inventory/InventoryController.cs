@@ -27,8 +27,8 @@ public class InventoryController : MonoBehaviour
 	
 	private void Awake()
 	{
-		_inventoryModel = new(_slotAmount);
 		_mouseItemModel = new();
+		_inventoryModel = new(_slotAmount, _mouseItemModel.MouseInventoryItem);
 		_hotbarController = GetComponent<HotbarController>();
 		_hotbarController.PlayerInventory = _inventoryModel;
 		
@@ -256,11 +256,17 @@ public class InventoryController : MonoBehaviour
 	{
 		_inventoryModel.AddItem(itemToCollect);
 		_onInventoryUpdate?.Invoke();
+		
+		_inventoryView.UpdateView(_inventoryModel.InventoryItems);
+		_mouseItemView.UpdateView(_mouseItemModel.MouseInventoryItem);
 	}
 	
 	public void RemoveItem(ItemObject itemToRemove, int quantity)
 	{
 		_inventoryModel.RemoveItem(itemToRemove, quantity);
 		_onInventoryUpdate?.Invoke();
+		
+		_inventoryView.UpdateView(_inventoryModel.InventoryItems);
+		_mouseItemView.UpdateView(_mouseItemModel.MouseInventoryItem);
 	}
 }

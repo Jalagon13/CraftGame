@@ -25,6 +25,22 @@ PrefabInstance:
       value: Stone
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.Table.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _lootTable.Table.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 05702fda291824a53a70c64a8a2a5f91, type: 2}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
       value: 2
       objectReference: {fileID: 0}

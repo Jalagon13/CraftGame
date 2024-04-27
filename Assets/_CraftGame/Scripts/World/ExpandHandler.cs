@@ -32,7 +32,6 @@ public class ExpandHandler : MonoBehaviour
 		if(_currentLevelIndex < transform.childCount)
 		{
 			SetLevel(_currentLevelIndex);
-			Debug.Log("Expanding");
 		}
 	}
 	

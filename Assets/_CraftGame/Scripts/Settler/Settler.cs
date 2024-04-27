@@ -19,7 +19,7 @@ public class Settler : MonoBehaviour, IInteractable
 	private QuestObject _currentQuest;
 	private bool _selected;
 	private bool _complete;
-	private int _currentAmount;
+	private int _currentAmount, _questIndex = 0;
 
 	private void Awake()
 	{
@@ -50,7 +50,8 @@ public class Settler : MonoBehaviour, IInteractable
 	private IEnumerator Delay()
 	{
 		yield return new WaitForEndOfFrame();
-		_currentQuest = _questList[GameManager.Instance.CurrentExpansionIndex];
+		// Note to future self: quest index is statically set to 0 index for now
+		_currentQuest = _questList[_questIndex];
 		_itemDisplaySr.sprite = _currentQuest.ItemNeeded.UiDisplay;
 		_currentAmount = 0;
 	}
