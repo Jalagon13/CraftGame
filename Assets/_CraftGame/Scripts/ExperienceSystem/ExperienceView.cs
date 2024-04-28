@@ -53,6 +53,7 @@ public class ExperienceView : MonoBehaviour
 	
 	public void OnExpandButtonClicked()
 	{
+		Debug.Log("Click");
 		GameSignals.ON_EXPAND.Dispatch();
 	}
 }

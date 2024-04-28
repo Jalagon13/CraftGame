@@ -46,10 +46,16 @@ public class Settler : MonoBehaviour, IInteractable
 	{
 		_questIndex = GameManager.Instance.GetQuestIndex(_settlerData);
 		Debug.Log("Quest Index: " + _questIndex);
+		if(_questIndex > _questList.Count - 1)
+		{
+			// Debug.LogError("QuestIndex not found");
+			return;
+		}
+		
 		_currentQuest = _questList[_questIndex];
 		_itemDisplaySr.sprite = _currentQuest.ItemNeeded.UiDisplay;
 		_currentAmount = GameManager.Instance.GetQuestCurrentAmount(_settlerData);
-		
+		_complete = false;
 		UpdateHoverText();
 		UpdateQuotaText();
 	}

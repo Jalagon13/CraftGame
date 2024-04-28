@@ -48,6 +48,12 @@ public class ExperienceController : SerializedMonoBehaviour
 		_experienceView.UpdateFriendship(_currentRp, _xpRp.ElementAt(_expandIndex).Value);
 	}
 	
+	[Button("Give 10000 XP")]
+	public void GiveXP()
+	{
+		AddExperience(10000);
+	}
+	
 	private void UpdateView()
 	{
 		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
@@ -77,6 +83,10 @@ public class ExperienceController : SerializedMonoBehaviour
 		_expandIndex++;
 		_currentRp = 0;
 		Debug.Log(_expandIndex);
+		if(_expandIndex > _xpRp.Count - 1)
+		{
+			return;
+		}
 		Debug.Log(_xpRp.ElementAt(_expandIndex).Key);
 		_experienceView.UpdateView(_experienceModel.CurrentValue, _xpRp.ElementAt(_expandIndex).Key);
 		_experienceView.UpdateFriendship(0, _xpRp.ElementAt(_expandIndex).Value);
