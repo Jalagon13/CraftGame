@@ -93,6 +93,11 @@ public class CraftingController : MonoBehaviour
 	
 	private void TryToCloseUI(InputAction.CallbackContext context)
 	{
+		TryToCloseUI();
+	}
+	
+	public void TryToCloseUI()
+	{
 		if(_craftingView.UiActive)
 		{
 			_craftingView.UiActive = false;

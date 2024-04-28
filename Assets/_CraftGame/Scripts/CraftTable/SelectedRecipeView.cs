@@ -83,6 +83,14 @@ public class SelectedRecipeView : MonoBehaviour
 		}
 		
 		UpdateViewInfo();
+		StartCoroutine(Delay());
+	}
+	
+	private IEnumerator Delay()
+	{
+		yield return new WaitForSeconds(1f);
+		
+		_craftingController.TryToCloseUI();
 	}
 	
 	public void IncrementButton()

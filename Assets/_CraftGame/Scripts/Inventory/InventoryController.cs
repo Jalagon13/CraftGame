@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class InventoryController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private int _slotAmount;
+	[SerializeField] private MMF_Player _slotClickFeedbacks;
 	[SerializeField] private UnityEvent _onInventoryUpdate;
 	[SerializeField] private UnityEvent _onInventoryOpen;
 	[SerializeField] private List<InventoryItem> _startingItems = new();
@@ -116,6 +118,7 @@ public class InventoryController : MonoBehaviour
 					inventoryItem.Quantity += mouseItem.Quantity;
 					mouseItem.Item = null;
 					mouseItem.Quantity = 0;
+					PlayClickFeedbacks();
 				}
 				else
 				{
@@ -128,6 +131,7 @@ public class InventoryController : MonoBehaviour
 					
 					mouseItem.Item = tempItem;
 					mouseItem.Quantity = tempQuantity;
+					PlayClickFeedbacks();
 				}
 			}
 			else
@@ -145,6 +149,7 @@ public class InventoryController : MonoBehaviour
 				{
 					inventoryItem.Item = null;
 				}
+				PlayClickFeedbacks();
 			}
 		}
 		else
@@ -175,6 +180,7 @@ public class InventoryController : MonoBehaviour
 					inventoryItem.Quantity += mouseItem.Quantity;
 					mouseItem.Item = null;
 					mouseItem.Quantity = 0;
+					PlayClickFeedbacks();
 				}
 				else
 				{
@@ -187,6 +193,7 @@ public class InventoryController : MonoBehaviour
 					
 					mouseItem.Item = tempItem;
 					mouseItem.Quantity = tempQuantity;
+					PlayClickFeedbacks();
 				}
 			}
 			else
@@ -196,6 +203,7 @@ public class InventoryController : MonoBehaviour
 				
 				inventoryItem.Item = null;
 				inventoryItem.Quantity = 0;
+				PlayClickFeedbacks();
 			}
 		}
 		else
@@ -207,12 +215,18 @@ public class InventoryController : MonoBehaviour
 				
 				mouseItem.Item = null;
 				mouseItem.Quantity = 0;
+				PlayClickFeedbacks();
 			}
 		}
 		
 		// update views
 		_inventoryView.UpdateView(_inventoryModel.InventoryItems);
 		_mouseItemView.UpdateView(_mouseItemModel.MouseInventoryItem);
+	}
+	
+	private void PlayClickFeedbacks()
+	{
+		_slotClickFeedbacks?.PlayFeedbacks();
 	}
 	
 	private void OnInventoryUpdate(List<InventoryItem> updatedInventory)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using UnityEngine;
 
 public class InventoryView : MonoBehaviour
@@ -9,6 +10,8 @@ public class InventoryView : MonoBehaviour
 	[SerializeField] private Transform _hotbarSlotHolder;
 	[SerializeField] private Transform _inventorySlotHolder;
 	[SerializeField] private Transform _playerCraftViewHolder;
+	[SerializeField] private AudioClip _inventoryEnabledClip;
+	[SerializeField] private AudioClip _inventoryDisabledClip;
 	private List<InventorySlotView> _inventorySlotViews = new();
 	private bool _inventoryEnabled;
 	
@@ -24,6 +27,12 @@ public class InventoryView : MonoBehaviour
 			_inventoryEnabled = value; 
 			_inventorySlotHolder.gameObject.SetActive(value);
 			_playerCraftViewHolder.gameObject.SetActive(value);
+			
+			if(value)
+				MMSoundManagerSoundPlayEvent.Trigger(_inventoryEnabledClip, MMSoundManager.MMSoundManagerTracks.UI, default);
+			else
+				MMSoundManagerSoundPlayEvent.Trigger(_inventoryDisabledClip, MMSoundManager.MMSoundManagerTracks.UI, default);
+
 		} 
 	}
 	

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class SelectedResearchView : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _xpText;
 	[SerializeField] private Image _outputImage;
 	[SerializeField] private Button _researchButton;
+	[SerializeField] private AudioClip _researchClip;
 	
 	private ItemObject _researchItem;
 	private ResearchNode _selectedResearchNode;
@@ -52,5 +54,6 @@ public class SelectedResearchView : MonoBehaviour
 		UpdateView();
 		
 		// Play Research Game Feel
+		MMSoundManagerSoundPlayEvent.Trigger(_researchClip, MMSoundManager.MMSoundManagerTracks.UI, default);
 	}
 }

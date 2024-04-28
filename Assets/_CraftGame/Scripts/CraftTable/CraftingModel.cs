@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class SelectedResource
@@ -24,6 +25,8 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	
 	[SerializeField] private string _displayName;
 	[SerializeField] private PlayerObject _po;
+	[SerializeField] private MMF_Player _craftingFeedbacks;
+	[SerializeField] private MMF_Player _craftOutputFeedbacks;
 	[SerializeField] private List<CraftingRecipeObject> _craftingRecipes;
 	
 	private Timer _craftingTimer;
@@ -65,6 +68,8 @@ public class CraftingModel : MonoBehaviour, IInteractable
 	// When I get back need to add debugs to everything and test it before starting the view
 	public void StartCrafting()
 	{
+		_craftingFeedbacks?.PlayFeedbacks();
+		
 		_craftCounter = _craftAmount;
 		_currentCraftingRecipe = _selectedRecipe;
 		_craftAmount = 1;
@@ -93,6 +98,8 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		// Spawn one output here
 		SpawnOneOutput();
 		
+		_craftOutputFeedbacks?.PlayFeedbacks();
+		
 		// If a Recipe is a one time craftable, put it in the discarded pile
 		if(_currentCraftingRecipe.OneTimeCraftable)
 		{
@@ -107,6 +114,8 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		else
 		{
 			_isCrafting = false;
+			_craftingFeedbacks?.StopFeedbacks();
+			_craftingFeedbacks?.RestoreInitialValues();
 			OnCraftingDone?.Invoke();
 		}
 	}
@@ -133,6 +142,9 @@ public class CraftingModel : MonoBehaviour, IInteractable
 		_craftCounter = 1;
 		_craftAmount = 1;
 		_isCrafting = false;
+		
+		_craftingFeedbacks?.StopFeedbacks();
+		_craftingFeedbacks?.RestoreInitialValues();
 	}
 	
 	private void ReturnItemsToPlayer()

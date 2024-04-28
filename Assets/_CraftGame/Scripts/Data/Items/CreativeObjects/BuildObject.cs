@@ -11,6 +11,8 @@ public class BuildObject : ItemObject
 	
 	public override void ExecutePrimaryAction(FocusItemController controller)
 	{
+		return;
+		
 		var pos = Vector3Int.FloorToInt(controller.CursorControl.gameObject.transform.position);
 		
 		bool wallTmHasTile = controller.WallTm.Tilemap.HasTile(Vector3Int.FloorToInt(controller.CursorControl.gameObject.transform.position));
@@ -25,6 +27,8 @@ public class BuildObject : ItemObject
 
 	public override void ExecuteSecondaryAction(FocusItemController controller)
 	{
+		return;
+		
 		var pos = Vector3Int.FloorToInt(controller.CursorControl.gameObject.transform.position);
 		
 		bool floorTmHasTile = controller.FloorTm.Tilemap.HasTile(Vector3Int.FloorToInt(controller.CursorControl.gameObject.transform.position));

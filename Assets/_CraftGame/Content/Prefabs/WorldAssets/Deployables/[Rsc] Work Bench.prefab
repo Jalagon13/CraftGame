@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: _craftingRecipes.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: c510f580208b74373b22c1aab459a1ea, type: 2}
+    - target: {fileID: 6180037214559240878, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
+      propertyPath: managedReferences[6315672385735622662].Sfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 30bb8e6c32354154cbb71ee2aebcfbe8, type: 3}
     - target: {fileID: 8660643476792677032, guid: f65fd31cd103a44058a38800dbe386da, type: 3}
       propertyPath: m_Name
       value: '[Rsc] Work Bench'
