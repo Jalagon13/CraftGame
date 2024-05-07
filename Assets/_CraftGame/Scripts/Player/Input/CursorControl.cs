@@ -15,17 +15,21 @@ public class CursorControl : MonoBehaviour
 	
 	private PlayerInput _playerInput;
 	private Clickable _currentClickable;
+	private Timer _clickTimer;
 	private InventoryItem _focusItem = new();
-	private int _damageMin;
-	private int _damageMax;
-	private int _clickDistance = 1;
+	private int _damageMin, _damageMax, _clickDistance = 1;
+	private bool _heldDown;
 	
 	private void Awake()
 	{
 		_playerInput = new();
-		_playerInput.Player.PrimaryAction.started += Hit;
+		_playerInput.Player.PrimaryAction.started += ctx => {ExecuteHit();};
+		_playerInput.Player.PrimaryAction.performed += Hold;
+		_playerInput.Player.PrimaryAction.canceled += Hold;
 		_playerInput.Player.Interact.started += TryToInteract;
 		_playerInput.Enable();
+		
+		_clickTimer = new(0);
 		
 		GameSignals.FOCUS_ITEM_UPDATED.AddListener(FocusInventoryItemUpdated);
 		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
@@ -44,8 +48,38 @@ public class CursorControl : MonoBehaviour
 	private void LateUpdate()
 	{
 		transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
+		_clickTimer.Tick(Time.deltaTime);
 		
+		if (_heldDown)
+		{
+			ExecuteHit();
+		}
+			
 		UpdateCurrentClickable();
+	}
+	
+	private void ExecuteHit()
+	{
+		if(Pointer.IsOverUI() || _focusItem.Item is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
+		
+		if(_currentClickable != null)
+		{
+			ToolObject tool = _focusItem.Item as ToolObject;
+		
+			_damageMin = ExtractParameterValue(_damageMinParameter);
+			_damageMax = ExtractParameterValue(_damageMaxParameter);
+			
+			System.Random rnd = new System.Random();
+			var damage = rnd.Next(_damageMin, _damageMax + 1); 
+			
+			_currentClickable.Hit(damage, tool.ToolType);
+		}
+		else
+		{
+			HitTilemap();
+		}
+		
+		_clickTimer.RemainingSeconds = 0.2f;
 	}
 	
 	private void DisableControl(ISignalParameters parameters)
@@ -56,6 +90,11 @@ public class CursorControl : MonoBehaviour
 	private void EnableControl(ISignalParameters parameters)
 	{
 		_playerInput.Enable();
+	}
+	
+	private void Hold(InputAction.CallbackContext context)
+	{
+		_heldDown = context.performed;
 	}
 	
 	private void TryToInteract(InputAction.CallbackContext context)
@@ -80,28 +119,6 @@ public class CursorControl : MonoBehaviour
 		
 		int clickDistance = ExtractParameterValue(_clickDistanceParameter);
 		_clickDistance = clickDistance > 0 ? clickDistance : 1;
-	}
-	
-	private void Hit(InputAction.CallbackContext context)
-	{
-		if(Pointer.IsOverUI() || _focusItem.Item is not ToolObject) return;
-		
-		if(_currentClickable != null)
-		{
-			ToolObject tool = _focusItem.Item as ToolObject;
-		
-			_damageMin = ExtractParameterValue(_damageMinParameter);
-			_damageMax = ExtractParameterValue(_damageMaxParameter);
-			
-			System.Random rnd = new System.Random();
-			var damage = rnd.Next(_damageMin, _damageMax + 1); 
-			
-			_currentClickable.Hit(damage, tool.ToolType);
-		}
-		else
-		{
-			HitTilemap();
-		}
 	}
 	
 	private void HitTilemap()

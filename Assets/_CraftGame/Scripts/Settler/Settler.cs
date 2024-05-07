@@ -88,7 +88,7 @@ public class Settler : MonoBehaviour, IInteractable
 			if(_currentAmount >= _currentQuest.QuantityQuota)
 			{
 				_complete = true;
-				_po.PlayerExperience.AddExperience(_currentQuest.XpReward);
+				// _po.PlayerExperience.AddExperience(_currentQuest.XpReward);
 				_rewardFeedback?.PlayFeedbacks();
 				
 				GameManager.Instance.UpdateSettlerCurrentAmount(_settlerData, _currentAmount);

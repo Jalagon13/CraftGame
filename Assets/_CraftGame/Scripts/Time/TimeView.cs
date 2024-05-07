@@ -4,11 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyView : MonoBehaviour
+public class TimeView : MonoBehaviour
 {
 	[SerializeField] private Image _fillImage;
 	
-	public void UpdateEnergy(int maxEnergy, int currentEnergy)
+	public void UpdateTime(int maxEnergy, int currentEnergy)
 	{
 		_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, currentEnergy, maxEnergy));
 		

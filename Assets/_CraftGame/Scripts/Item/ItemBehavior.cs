@@ -18,7 +18,7 @@ public class ItemBehavior : MonoBehaviour
 	private void Awake()
 	{
 		_sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-		_attractor = gameObject.GetComponentInChildren<Attractor>();
+		_attractor = gameObject.GetComponentInChildren<Attractor>(); 
 	}
 	
 	private IEnumerator Start()
