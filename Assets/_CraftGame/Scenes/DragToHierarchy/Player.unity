@@ -1127,6 +1127,7 @@ GameObject:
   - component: {fileID: 1522204155}
   - component: {fileID: 1522204154}
   - component: {fileID: 1522204156}
+  - component: {fileID: 1522204164}
   - component: {fileID: 1522204158}
   - component: {fileID: 1522204157}
   - component: {fileID: 1522204159}
@@ -1427,6 +1428,20 @@ MonoBehaviour:
     Discovered: 1
   - Recipe: {fileID: 11400000, guid: 45acf2b1180f84f2998a33c58629ae70, type: 2}
     Discovered: 0
+--- !u!114 &1522204164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522204152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3275907f254eb439034489c965ddc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
+  _maxHealth: 10
 --- !u!1 &1643723598
 GameObject:
   m_ObjectHideFlags: 0

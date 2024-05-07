@@ -19,4 +19,8 @@ public static class GameSignals
 	public static readonly Signal ON_RECIPE_RESEARCHED = new("OnRecipeResearched");
 	public static readonly Signal ON_EXPAND = new("OnExpand");
 	public static readonly Signal ON_QUEST_COMPLETE = new("OnQuestComplete");
+	public static readonly Signal PLAYER_DAMAGED = new("PlayerDamaged");
+	public static readonly Signal PLAYER_HEALED = new("PlayerHealed");
+	public static readonly Signal PLAYER_DIED = new("PlayerDied");
+	public static readonly Signal PLAYER_RESPAWNED = new("PlayerRespawned");
 }
