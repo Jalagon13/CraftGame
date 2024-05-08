@@ -14,4 +14,9 @@ public class TimeView : MonoBehaviour
 		
 		// Test this next time you open this up and then make the XP stuff too
 	}
+	
+	public void EndDay() // Connected to end day button
+	{
+		
+	}
 }

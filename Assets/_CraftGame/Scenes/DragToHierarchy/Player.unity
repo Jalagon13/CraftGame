@@ -1133,6 +1133,7 @@ GameObject:
   - component: {fileID: 1522204161}
   - component: {fileID: 1522204162}
   - component: {fileID: 1522204163}
+  - component: {fileID: 1522204164}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1259,6 +1260,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _startingItems:
+  - Item: {fileID: 11400000, guid: ba1b5483052744e37947e2261e4d192d, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 524be7665cecc424ba870713ddb4f127, type: 2}
+    Quantity: 1
   - Item: {fileID: 11400000, guid: c1cb2f530d6e94c4780ecb0250348315, type: 2}
     Quantity: 1
 --- !u!114 &1522204157
@@ -1287,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
-  _maxTime: 100
+  _maxTime: 300
 --- !u!114 &1522204160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,6 +1352,18 @@ MonoBehaviour:
     Discovered: 1
   - Recipe: {fileID: 11400000, guid: 45acf2b1180f84f2998a33c58629ae70, type: 2}
     Discovered: 0
+--- !u!114 &1522204164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522204152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5caa7949d454582bc38eb6b267f789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643723598
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-public enum SkillCategory
-{
-	None,
-	Mining, 
-	Woodcutting,
-	Gathering,
-	Combat,
-	Fishing
-}
+
 
 public class TimeController
  : MonoBehaviour

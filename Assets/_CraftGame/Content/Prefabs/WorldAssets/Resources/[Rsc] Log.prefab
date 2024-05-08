@@ -25,6 +25,10 @@ PrefabInstance:
       value: Log
       objectReference: {fileID: 0}
     - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
+      propertyPath: _skillCategory
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609338530207100714, guid: 27bc0337348a74ad3849262d06f5f101, type: 3}
       propertyPath: _lootTable.Table.Array.size
       value: 1
       objectReference: {fileID: 0}

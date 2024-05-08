@@ -8,6 +8,7 @@ public class Clickable : MonoBehaviour
 	[SerializeField] private string _clickableName;
 	[SerializeField] private int _maxHitPoints;
 	[SerializeField] private ToolType _breakType;
+	[SerializeField] private SkillCategory _skillCategory;
 	[SerializeField] private LootTable _lootTable;
 	[Header("Feedbacks")]
 	[SerializeField] private MMF_Player _clickFeedback;
@@ -58,6 +59,7 @@ public class Clickable : MonoBehaviour
 		Signal signal = GameSignals.CLICKABLE_DESTROYED;
 		signal.ClearParameters();
 		signal.AddParameter("TimeAmount", _maxHitPoints);
+		signal.AddParameter("SkillCategory", _skillCategory);
 		signal.Dispatch();
 		
 		Destroy(gameObject);
