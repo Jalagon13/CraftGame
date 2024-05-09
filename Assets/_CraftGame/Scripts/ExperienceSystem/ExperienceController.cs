@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public enum SkillCategory
@@ -15,18 +16,27 @@ public enum SkillCategory
 
 public class ExperienceController : MonoBehaviour
 {
+	[SerializeField] private PlayerObject _po;
+	[SerializeField] private int _maxlevel;
+	[SerializeField] private AnimationCurve _expPerLevel;
+	
 	private ExperienceView _experienceView;
 	private ExperienceModel _experienceModel;
+	public ExperienceModel ExperienceModel => _experienceModel;
 	
 	private void Awake()
 	{
-		_experienceModel = new(new List<SkillCategory>(Enum.GetValues(typeof(SkillCategory)) as SkillCategory[]));
+		_po.PlayerExperience = this;
+		var categories = new List<SkillCategory>(Enum.GetValues(typeof(SkillCategory)) as SkillCategory[]);
+		_experienceModel = new(categories, _maxlevel, _expPerLevel);
+		_experienceModel.OnMultiplierUpdated += OnMultiplierUpdated;
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(AddExperience);
 	}
 	
 	private void OnDestroy()
 	{
+		_experienceModel.OnMultiplierUpdated -= OnMultiplierUpdated;
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(AddExperience);
 	}
 	
@@ -37,7 +47,7 @@ public class ExperienceController : MonoBehaviour
 	
 	private void AddExperience(ISignalParameters parameters)
 	{
-		if(!parameters.HasParameter("SkillCategory"));
+		if(!parameters.HasParameter("SkillCategory")) return;
 		
 		SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
 		
@@ -48,6 +58,16 @@ public class ExperienceController : MonoBehaviour
 		}
 	}
 	
+	public void AddToMultiplier(float addedValue)
+	{
+		_experienceModel.AddToMultiplier(addedValue);
+	}
+	
+	private void OnMultiplierUpdated()
+	{
+		_experienceView.UpdateMultiplierView(_experienceModel.ExpMultiplier);
+	}
+	
 	private void NotifyIncrementation(SkillCategory skill)
 	{
 		_experienceView.NotifySkillExpGain(skill);
@@ -56,6 +76,6 @@ public class ExperienceController : MonoBehaviour
 	private void IncrementSkillExp(SkillCategory skill)
 	{
 		// Communicate with model to increment skill
-		_experienceModel.IncrementSkill(skill);
+		_experienceModel.IncrementStoredExp(skill);
 	}
 }

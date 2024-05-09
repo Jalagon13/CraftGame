@@ -1,45 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Category
+{
+	public SkillCategory Skill;
+	public int StoredExp; // stored Exp that will be added to the level system at the end of the day
+	private LevelSystem _levelSystem;
+	public LevelSystem LevelSystem => _levelSystem;
+	
+	public Category(SkillCategory skill, int maxLevel, AnimationCurve expPerLevel)
+	{
+		Skill = skill;
+		_levelSystem = new(maxLevel, expPerLevel);
+		StoredExp = 0;
+	}
+}
+
 public class ExperienceModel
 {
+
+	public event Action OnMultiplierUpdated;
 	private List<Category> _skillCategories = new();
+	private float _expMultiplier = 1f;
 	
-	public class Category
-	{
-		public SkillCategory Skill;
-		private int _currentAmount;
-		
-		public Category(SkillCategory skill)
-		{
-			Skill = skill;
-			_currentAmount = 0;
-		}
-		
-		public void Increment()
-		{
-			_currentAmount++;
-		}
-	}
+	public float ExpMultiplier => _expMultiplier;
+	public List<Category> SkillCategories => _skillCategories;
 	
-	public ExperienceModel(List<SkillCategory> categories)
+	public ExperienceModel(List<SkillCategory> categories, int maxLevel, AnimationCurve expPerLevel)
 	{
 		foreach(SkillCategory skill in categories)
 		{
 			// Create an internal category
-			Category skillCategory = new(skill);
+			Category skillCategory = new(skill, maxLevel, expPerLevel);
 			_skillCategories.Add(skillCategory);
 		}
 	}
 	
-	public void IncrementSkill(SkillCategory skill)
+	public void AddToMultiplier(float multiplier)
+	{
+		_expMultiplier += multiplier;
+		OnMultiplierUpdated?.Invoke();
+	}
+	
+	public void IncrementStoredExp(SkillCategory skill)
 	{
 		Category category = GetSkillCategory(skill);
 		
 		if(category != null)
 		{
-			category.Increment();
+			category.StoredExp++;
 		}
 		else
 		{

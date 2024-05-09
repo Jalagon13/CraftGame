@@ -5,8 +5,7 @@ using UnityEngine;
 
 
 
-public class TimeController
- : MonoBehaviour
+public class TimeController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
 	[SerializeField] private int _maxTime;
@@ -19,17 +18,22 @@ public class TimeController
 		_currentTime = 0;
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(IncrementTime);
+		GameSignals.ON_DAY_END.AddListener(OnDayEnd);
+		GameSignals.ON_DAY_START.AddListener(OnDayStart);
 	}
 	
 	private void OnDestroy()
 	{
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(IncrementTime);
+		GameSignals.ON_DAY_END.RemoveListener(OnDayEnd);
+		GameSignals.ON_DAY_START.RemoveListener(OnDayStart);
 	}
 	
 	private void Start()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_timeView = FindObjectOfType<TimeView>();
+		_timeView.Initialize();
 		UpdateView();
 	}
 	
@@ -53,5 +57,15 @@ public class TimeController
 	private void UpdateView()
 	{
 		_timeView.UpdateTime(_currentTime, _maxTime);
+	}
+	
+	private void OnDayStart(ISignalParameters parameters)
+	{
+		
+	}
+	
+	private void OnDayEnd(ISignalParameters parameters)
+	{
+		
 	}
 }

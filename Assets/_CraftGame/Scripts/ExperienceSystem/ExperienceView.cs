@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ExperienceView : MonoBehaviour
 {
 	[SerializeField] private ExperienceNotifView _notification;
+	[SerializeField] private TextMeshProUGUI _multiplierText;
 	
-	public void Initialize()
+	public void UpdateMultiplierView(float multiplierToView)
 	{
-		
+		_multiplierText.text = $"Multiplier: {multiplierToView}x";
 	}
 	
 	public void NotifySkillExpGain(SkillCategory skill)

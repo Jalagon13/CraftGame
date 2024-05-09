@@ -18,4 +18,6 @@ public static class GameSignals
 	public static readonly Signal ON_RECIPE_RESEARCHED = new("OnRecipeResearched");
 	public static readonly Signal ON_EXPAND = new("OnExpand");
 	public static readonly Signal ON_QUEST_COMPLETE = new("OnQuestComplete");
+	public static readonly Signal ON_DAY_START = new("OnDayStart");
+	public static readonly Signal ON_DAY_END = new("OnDayEnd");
 }
