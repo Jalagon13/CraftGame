@@ -14,9 +14,9 @@ public class TimeView : MonoBehaviour
 		_dayTransitionPanel.gameObject.SetActive(false);
 	}
 	
-	public void UpdateTime(int maxEnergy, int currentEnergy)
+	public void UpdateTime(float maxTime, float currentTime)
 	{
-		_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, currentEnergy, maxEnergy));
+		_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, currentTime, maxTime));
 		
 		// Test this next time you open this up and then make the XP stuff too
 	}

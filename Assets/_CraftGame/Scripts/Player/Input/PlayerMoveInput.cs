@@ -12,6 +12,7 @@ public class PlayerMoveInput : MonoBehaviour
 	private PlayerInput _playerInput;
 	private Vector2 _moveDirection;
 	private Camera _mainCamera;
+	private TimeController _timeController;
 	
 	private void Awake()
 	{
@@ -21,6 +22,7 @@ public class PlayerMoveInput : MonoBehaviour
 		_playerInput.Enable();
 		
 		_rb = GetComponent<Rigidbody2D>();
+		_timeController = GetComponent<TimeController>();
 		
 		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
 		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
@@ -41,7 +43,7 @@ public class PlayerMoveInput : MonoBehaviour
 	
 	private void FixedUpdate()
 	{
-		_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+		_rb.MovePosition(_rb.position + _moveDirection * (_timeController.NoMoreEnergy() ? 2.5f : _speed) * Time.deltaTime);
 		_po.Position = transform.position;
 		_po.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 	}

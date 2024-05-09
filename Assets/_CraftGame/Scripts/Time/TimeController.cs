@@ -8,13 +8,16 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
 	[SerializeField] private PlayerObject _po;
-	[SerializeField] private int _maxTime;
+	[SerializeField] private float _maxTime;
 	
 	private TimeView _timeView;
-	private int _currentTime;
+	private float _currentTime;
+	public DayCycleHandler DayCycleHandler { get; set; }
+	public float CurrentDayRatio => _currentTime / _maxTime;
 	
 	private void Awake()
 	{
+		_po.TimeController = this;
 		_currentTime = 0;
 		
 		GameSignals.CLICKABLE_DESTROYED.AddListener(IncrementTime);
@@ -29,12 +32,20 @@ public class TimeController : MonoBehaviour
 		GameSignals.ON_DAY_START.RemoveListener(OnDayStart);
 	}
 	
-	private void Start()
+	private IEnumerator Start()
 	{
 		// Future note to self: This may cause some issues when creating a scene loading bootstrap
 		_timeView = FindObjectOfType<TimeView>();
 		_timeView.Initialize();
 		UpdateView();
+		
+		yield return new WaitForEndOfFrame();
+		DayCycleHandler.Tick();
+	}
+	
+	public bool NoMoreEnergy()
+	{
+		return _currentTime >= _maxTime;
 	}
 	
 	private void IncrementTime(ISignalParameters parameters)
@@ -43,6 +54,7 @@ public class TimeController : MonoBehaviour
 		
 		int timeAmount = (int)parameters.GetParameter("TimeAmount");
 		_currentTime += timeAmount;
+		DayCycleHandler.Tick();
 		
 		if(_currentTime > _maxTime)
 		{

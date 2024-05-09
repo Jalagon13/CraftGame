@@ -23,9 +23,11 @@ public class ExperienceController : MonoBehaviour
 	private ExperienceView _experienceView;
 	private ExperienceModel _experienceModel;
 	public ExperienceModel ExperienceModel => _experienceModel;
+	private TimeController _timeController;
 	
 	private void Awake()
 	{
+		_timeController = GetComponent<TimeController>();
 		_po.PlayerExperience = this;
 		var categories = new List<SkillCategory>(Enum.GetValues(typeof(SkillCategory)) as SkillCategory[]);
 		_experienceModel = new(categories, _maxlevel, _expPerLevel);
@@ -48,6 +50,7 @@ public class ExperienceController : MonoBehaviour
 	private void AddExperience(ISignalParameters parameters)
 	{
 		if(!parameters.HasParameter("SkillCategory")) return;
+		if(_timeController.NoMoreEnergy()) return;
 		
 		SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
 		

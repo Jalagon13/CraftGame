@@ -31,7 +31,6 @@ public class SkillCategoryPanel : MonoBehaviour
 		for (int i = 0; i < storedExp; i++)
 		{
 			_levelSystem.GainExperience(1);
-			Debug.Log(_category.Skill + " " + _levelSystem.CurrentExp);
 			UpdateTime();
 			yield return new WaitForSeconds(0.2f);
 		}
@@ -42,12 +41,9 @@ public class SkillCategoryPanel : MonoBehaviour
 	{
 		int currentLevel = _levelSystem.CurrentLevel;
 		int currentExp = _levelSystem.CurrentExp;
-		
 		int currentLevelAmount = _levelSystem.ExpPerLevel[currentLevel];
 		int nextLevelAmount = _levelSystem.ExpPerLevel[currentLevel + 1];
-		int expRelativeToNextLvl = currentExp - currentLevelAmount;
-		Debug.Log("currentExp " + currentExp);
-		Debug.Log("next level " + nextLevelAmount);
+		
 		_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, nextLevelAmount, currentExp - currentLevelAmount));
 	}
 }
