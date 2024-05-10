@@ -26,6 +26,8 @@ public class PlayerMoveInput : MonoBehaviour
 		
 		GameSignals.ON_UI_ACTIVATED.AddListener(DisableControl);
 		GameSignals.ON_UI_UNACTIVED.AddListener(EnableControl);
+		GameSignals.ON_DAY_END.AddListener(DisableControl);
+		GameSignals.ON_DAY_START.AddListener(EnableControl);
 	}
 	
 	private void OnDestroy()
@@ -34,6 +36,8 @@ public class PlayerMoveInput : MonoBehaviour
 		
 		GameSignals.ON_UI_ACTIVATED.RemoveListener(DisableControl);
 		GameSignals.ON_UI_UNACTIVED.RemoveListener(EnableControl);
+		GameSignals.ON_DAY_END.RemoveListener(DisableControl);
+		GameSignals.ON_DAY_START.RemoveListener(EnableControl);
 	}
 	
 	private void Start()

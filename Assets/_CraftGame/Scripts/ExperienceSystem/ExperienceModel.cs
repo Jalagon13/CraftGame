@@ -63,7 +63,7 @@ public class ExperienceModel
 		}
 	}
 	
-	private Category GetSkillCategory(SkillCategory skill)
+	public Category GetSkillCategory(SkillCategory skill)
 	{
 		foreach (Category item in _skillCategories)
 		{

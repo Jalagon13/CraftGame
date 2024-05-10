@@ -50,12 +50,16 @@ public class TimeController : MonoBehaviour
 	
 	private void IncrementTime(ISignalParameters parameters)
 	{
-		if(!parameters.HasParameter("TimeAmount")) return;
+		SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
+		int baseTimeAmount = (int)parameters.GetParameter("TimeAmount");
 		
-		int timeAmount = (int)parameters.GetParameter("TimeAmount");
+		// Efficency Calculation
+		int currentSkillLevel = _po.PlayerExperience.ExperienceModel.GetSkillCategory(skill).LevelSystem.CurrentLevel;
+		float baseTakeAwayMultiplier = 0.1f;
+		float subAmount = baseTakeAwayMultiplier * currentSkillLevel;
+		float totalTimeToAdd = baseTimeAmount - subAmount;
 		
-		// Note to future self: Need to implement timeAmount scales off of skill level
-		_currentTime += timeAmount;
+		_currentTime += totalTimeToAdd;
 		DayCycleHandler.Tick();
 		
 		if(_currentTime > _maxTime)
