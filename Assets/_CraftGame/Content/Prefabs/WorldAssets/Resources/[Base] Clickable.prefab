@@ -95,14 +95,9 @@ MonoBehaviour:
   _clickableName: 
   _maxHitPoints: 15
   _breakType: 1
-  _canBeHit: 1
-  _canGiveXp: 1
+  _skillCategory: 0
   _lootTable:
-    <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 80c12bd48a61b42cdbffb80d11594677, type: 2}
-      Min: 3
-      Max: 5
-      Chance: 100
+    Table: []
   _clickFeedback: {fileID: 4231091392320477771}
   _destroyFeedback: {fileID: 7406065402448151495}
   _spawnFeedback: {fileID: 2815768030862528332}
@@ -6811,7 +6806,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f47de66c646eeb440bc6b139cb5053d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

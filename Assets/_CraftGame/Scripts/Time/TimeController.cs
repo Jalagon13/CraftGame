@@ -53,6 +53,8 @@ public class TimeController : MonoBehaviour
 		if(!parameters.HasParameter("TimeAmount")) return;
 		
 		int timeAmount = (int)parameters.GetParameter("TimeAmount");
+		
+		// Note to future self: Need to implement timeAmount scales off of skill level
 		_currentTime += timeAmount;
 		DayCycleHandler.Tick();
 		
@@ -73,7 +75,9 @@ public class TimeController : MonoBehaviour
 	
 	private void OnDayStart(ISignalParameters parameters)
 	{
-		
+		_currentTime = 0;
+		DayCycleHandler.Tick();
+		UpdateView();
 	}
 	
 	private void OnDayEnd(ISignalParameters parameters)

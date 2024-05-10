@@ -30,7 +30,6 @@ public class DayCycleHandler : MonoBehaviour
 	
 	private void UpdateLight(float ratio)
 	{
-		Debug.Log(ratio);
 		if(DayLight != null)
 			DayLight.color = DayLightGradient.Evaluate(ratio);
 			

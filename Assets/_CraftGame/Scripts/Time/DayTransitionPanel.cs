@@ -28,6 +28,7 @@ public class DayTransitionPanel : MonoBehaviour
 			// For each Skill Category Panel, Populate it with correct information, increment xp and display the incrementation.
 			
 		List<Category> skillCategories = _po.PlayerExperience.ExperienceModel.SkillCategories; 
+		float multiplier = _po.PlayerExperience.ExperienceModel.ExpMultiplier;
 		foreach (Category category in skillCategories)
 		{
 			if(category.Skill == SkillCategory.None) continue;
@@ -35,7 +36,7 @@ public class DayTransitionPanel : MonoBehaviour
 			yield return new WaitForSeconds(0.5f);
 			
 			var scp = Instantiate(_skillCategoryPanel, _skillCategoryHolder);
-			scp.Initialize(category);
+			scp.Initialize(category, multiplier);
 		}
 	}
 }

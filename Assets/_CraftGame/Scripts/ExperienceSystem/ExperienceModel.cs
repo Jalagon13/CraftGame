@@ -20,7 +20,6 @@ public class Category
 
 public class ExperienceModel
 {
-
 	public event Action OnMultiplierUpdated;
 	private List<Category> _skillCategories = new();
 	private float _expMultiplier = 1f;
@@ -36,6 +35,12 @@ public class ExperienceModel
 			Category skillCategory = new(skill, maxLevel, expPerLevel);
 			_skillCategories.Add(skillCategory);
 		}
+	}
+	
+	public void ResetMultiplier()
+	{
+		_expMultiplier = 1f;
+		OnMultiplierUpdated?.Invoke();
 	}
 	
 	public void AddToMultiplier(float multiplier)

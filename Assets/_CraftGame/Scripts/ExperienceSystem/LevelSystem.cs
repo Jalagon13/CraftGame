@@ -24,7 +24,7 @@ public class LevelSystem
 		
 		for (int i = 0; i < _maxlevel; i++)
 		{
-			int yValue = Mathf.RoundToInt(expPerLevel.Evaluate(i));
+			int yValue = (int)expPerLevel.Evaluate(i);
 			_expPerLevel[i] = yValue;
 		}
 	}

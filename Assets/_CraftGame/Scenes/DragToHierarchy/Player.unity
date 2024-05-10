@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: c20d5050b30344509ae19c01d0b21c4b, type: 2}
-  _maxTime: 300
+  _maxTime: 100
 --- !u!114 &1522204160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,20 +1372,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 10
-      outSlope: 10
-      tangentMode: 34
+      inSlope: 3.598821
+      outSlope: 3.598821
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.0408712
     - serializedVersion: 3
-      time: 10
-      value: 100
-      inSlope: 10
-      outSlope: 10
-      tangentMode: 34
+      time: 100
+      value: 8000
+      inSlope: 18.413086
+      outSlope: 18.413086
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.028458862
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

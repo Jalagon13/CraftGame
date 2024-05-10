@@ -31,20 +31,27 @@ public class ExperienceController : MonoBehaviour
 		_po.PlayerExperience = this;
 		var categories = new List<SkillCategory>(Enum.GetValues(typeof(SkillCategory)) as SkillCategory[]);
 		_experienceModel = new(categories, _maxlevel, _expPerLevel);
-		_experienceModel.OnMultiplierUpdated += OnMultiplierUpdated;
 		
+		_experienceModel.OnMultiplierUpdated += OnMultiplierUpdated;
 		GameSignals.CLICKABLE_DESTROYED.AddListener(AddExperience);
+		GameSignals.ON_DAY_START.AddListener(ResetMultiplier);
 	}
 	
 	private void OnDestroy()
 	{
 		_experienceModel.OnMultiplierUpdated -= OnMultiplierUpdated;
 		GameSignals.CLICKABLE_DESTROYED.RemoveListener(AddExperience);
+		GameSignals.ON_DAY_START.RemoveListener(ResetMultiplier);
 	}
 	
 	private void Start()
 	{
 		_experienceView = FindObjectOfType<ExperienceView>();
+	}
+	
+	private void ResetMultiplier(ISignalParameters parameters)
+	{
+		_experienceModel.ResetMultiplier();
 	}
 	
 	private void AddExperience(ISignalParameters parameters)
@@ -59,6 +66,12 @@ public class ExperienceController : MonoBehaviour
 			IncrementSkillExp(skill);
 			NotifyIncrementation(skill);
 		}
+	}
+	
+	[Button("AddToMultiplier")]
+	private void Test()
+	{
+		AddToMultiplier(0.5f);
 	}
 	
 	public void AddToMultiplier(float addedValue)

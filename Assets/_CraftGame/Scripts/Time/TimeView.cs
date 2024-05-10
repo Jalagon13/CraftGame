@@ -31,5 +31,7 @@ public class TimeView : MonoBehaviour
 	public void StartDay() // Connected to start day button
 	{
 		GameSignals.ON_DAY_START.Dispatch();
+		
+		_dayTransitionPanel.gameObject.SetActive(false);
 	}
 }

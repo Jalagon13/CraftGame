@@ -79,7 +79,7 @@ public class CursorControl : MonoBehaviour
 			HitTilemap();
 		}
 		
-		_clickTimer.RemainingSeconds = 0.2f;
+		_clickTimer.RemainingSeconds = 0.1f; // Originally 0.2
 	}
 	
 	private void DisableControl(ISignalParameters parameters)
